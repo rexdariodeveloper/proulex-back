@@ -1,0 +1,2 @@
+ALTER TABLE ProgramasIdiomas
+ADD PROGI_Activo bit NOT NULL DEFAULT 1;

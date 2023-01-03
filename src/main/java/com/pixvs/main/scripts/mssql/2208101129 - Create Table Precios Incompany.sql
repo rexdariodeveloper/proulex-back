@@ -1,0 +1,116 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE PreciosIncompany(
+	PREINC_PrecioIncompanyId INT IDENTITY(1,1) NOT NULL,	
+	PREINC_Codigo VARCHAR(10) NOT NULL,
+	PREINC_Nombre VARCHAR(50) NOT NULL,
+	PREINC_FechaInicio DATE NULL,
+	PREINC_FechaFin DATE NULL,
+	PREINC_CMM_EstatusId INT NOT NULL,
+	PREINC_Indeterminado BIT NOT NULL,
+	PREINC_FechaCreacion datetime2(7) NOT NULL,
+	PREINC_USU_CreadoPorId int NOT NULL,
+	PREINC_FechaUltimaModificacion datetime2 (7) NULL,
+	PREINC_USU_ModificadoPorId int NULL
+ CONSTRAINT PK_PreciosIncompany PRIMARY KEY CLUSTERED 
+(
+	PREINC_PrecioIncompanyId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE PreciosIncompany  WITH CHECK ADD  CONSTRAINT FK_PREINC_CMM_EstatusId FOREIGN KEY(PREINC_CMM_EstatusId)
+REFERENCES ControlesMaestrosMultiples (CMM_ControlId)
+GO
+ALTER TABLE PreciosIncompany CHECK CONSTRAINT FK_PREINC_CMM_EstatusId
+GO
+
+ALTER TABLE PreciosIncompany  WITH CHECK ADD  CONSTRAINT FK_PREINC_USU_CreadoPorId FOREIGN KEY(PREINC_USU_CreadoPorId)
+REFERENCES Usuarios (USU_UsuarioId)
+GO
+ALTER TABLE PreciosIncompany CHECK CONSTRAINT FK_PREINC_USU_CreadoPorId
+GO
+
+ALTER TABLE PreciosIncompany  WITH CHECK ADD  CONSTRAINT FK_PREINC_USU_ModificadoPorId FOREIGN KEY(PREINC_USU_ModificadoPorId)
+REFERENCES Usuarios (USU_UsuarioId)
+GO
+ALTER TABLE PreciosIncompany CHECK CONSTRAINT FK_PREINC_USU_ModificadoPorId
+GO
+
+
+
+--------------- Detalles --------------------------------------------------------------------------
+CREATE TABLE PreciosIncompanyDetalles(
+	PREINCD_PrecioIncompanyDetalleId INT IDENTITY(1,1) NOT NULL,	
+	PREINCD_PREINC_PrecioIncompanyId INT NOT NULL,
+	PREINCD_CMM_ZonaId INT NOT NULL,
+	PREINCD_PrecioVenta DECIMAL(10,2) NOT NULL,
+	PREINCD_PorcentajeTransporte DECIMAL(10,2) NOT NULL,
+	PREINCD_CMM_IdiomaId INT NOT NULL,
+	PREINCD_PROG_ProgramaId INT NOT NULL,
+	PREINCD_PAMOD_ModalidadId INT NOT NULL,
+	PREINCD_PAMODH_PAModalidadHorarioId INT NOT NULL,
+	PREINCD_Activo BIT NOT NULL
+ CONSTRAINT PK_PreciosIncompanyDetalles PRIMARY KEY CLUSTERED 
+(
+	PREINCD_PrecioIncompanyDetalleId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-----Idioma
+ALTER TABLE PreciosIncompanyDetalles  WITH CHECK ADD  CONSTRAINT FK_PREINCD_CMM_IdiomaId FOREIGN KEY(PREINCD_CMM_IdiomaId)
+REFERENCES ControlesMaestrosMultiples (CMM_ControlId)
+GO
+ALTER TABLE PreciosIncompanyDetalles CHECK CONSTRAINT FK_PREINCD_CMM_IdiomaId
+GO
+
+--Zona
+ALTER TABLE PreciosIncompanyDetalles  WITH CHECK ADD  CONSTRAINT FK_PREINCD_CMM_ZonaId FOREIGN KEY(PREINCD_CMM_ZonaId)
+REFERENCES ControlesMaestrosMultiples (CMM_ControlId)
+GO
+ALTER TABLE PreciosIncompanyDetalles CHECK CONSTRAINT FK_PREINCD_CMM_ZonaId
+GO
+
+--Programa
+ALTER TABLE PreciosIncompanyDetalles  WITH CHECK ADD  CONSTRAINT FK_PREINCD_PROG_ProgramaId FOREIGN KEY(PREINCD_PROG_ProgramaId)
+REFERENCES Programas (PROG_ProgramaId)
+GO
+ALTER TABLE PreciosIncompanyDetalles CHECK CONSTRAINT FK_PREINCD_PROG_ProgramaId
+GO
+
+--Modalidad
+ALTER TABLE PreciosIncompanyDetalles  WITH CHECK ADD  CONSTRAINT FK_PREINCD_PAMOD_ModalidadId FOREIGN KEY(PREINCD_PAMOD_ModalidadId)
+REFERENCES PAModalidades (PAMOD_ModalidadId)
+GO
+ALTER TABLE PreciosIncompanyDetalles CHECK CONSTRAINT FK_PREINCD_PAMOD_ModalidadId
+GO
+
+--Horario
+ALTER TABLE PreciosIncompanyDetalles  WITH CHECK ADD  CONSTRAINT FK_PREINCD_PAMODH_PAModalidadHorarioId FOREIGN KEY(PREINCD_PAMODH_PAModalidadHorarioId)
+REFERENCES PAModalidadesHorarios (PAMODH_PAModalidadHorarioId)
+GO
+ALTER TABLE PreciosIncompanyDetalles CHECK CONSTRAINT FK_PREINCD_PAMODH_PAModalidadHorarioId
+GO
+
+--------------- Sucursales --------------------------------------------------------------------------
+CREATE TABLE PreciosIncompanySucursales(
+	PREINCS_PrecioIncompanySucursalId INT IDENTITY(1,1) NOT NULL,	
+	PREINCS_PREINC_PrecioIncompanyId INT NOT NULL,
+	PREINCD_SUC_SucursalId INT NOT NULL
+ CONSTRAINT PK_PreciosIncompanySucursales PRIMARY KEY CLUSTERED 
+(
+	PREINCS_PrecioIncompanySucursalId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+--Sucursal
+ALTER TABLE PreciosIncompanySucursales  WITH CHECK ADD  CONSTRAINT FK_PREINCD_SUC_SucursalId FOREIGN KEY(PREINCD_SUC_SucursalId)
+REFERENCES Sucursales (SUC_SucursalId)
+GO
+ALTER TABLE PreciosIncompanySucursales CHECK CONSTRAINT FK_PREINCD_SUC_SucursalId
+GO

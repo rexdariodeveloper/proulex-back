@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+
+    <fontFamily name="Calibri">
+        <normal><![CDATA[fonts/calibri/Regular.ttf]]></normal>
+        <bold><![CDATA[fonts/calibri/Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/calibri/Italic.ttf]]></italic>
+        <bolditalic><![CDATA[fonts/calibri/BoldItalic.ttf]]></bolditalic>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Tahoma">
+        <normal><![CDATA[fonts/tahoma/Regular.ttf]]></normal>
+        <bold><![CDATA[fonts/tahoma/TAHOMAB0.TTF]]></bold>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="ebrima">
+        <normal><![CDATA[fonts/ebrima/ebrima.ttf]]></normal>
+        <bold><![CDATA[fonts/ebrima/ebrima-bold.ttf]]></bold>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="arial">
+        <normal><![CDATA[fonts/arial/arial.ttf]]></normal>
+        <bold><![CDATA[fonts/arial/arial-bold-italic.ttf]]></bold>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="arial narrow">
+        <normal><![CDATA[fonts/arial-narrow/arial-narrow.ttf]]></normal>
+        <bold><![CDATA[fonts/arial-narrow/arial-narrow-Bold.ttf]]></bold>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+
+</fontFamilies>

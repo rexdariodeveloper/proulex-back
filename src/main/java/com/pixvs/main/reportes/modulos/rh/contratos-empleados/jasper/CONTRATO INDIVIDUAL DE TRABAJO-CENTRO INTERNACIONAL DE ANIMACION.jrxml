@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.10.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Centro Internacional de animacion" pageWidth="612" pageHeight="792" columnWidth="512" leftMargin="50" rightMargin="50" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="c6d812fd-eac1-4d68-b515-b0a796cb290a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="beneficiarios" uuid="ace93db2-8714-4605-aff7-e55767b5191c">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idEmpleado" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT
+		TRIM(CONCAT(TRIM(EMPBE_Nombre), ' ', TRIM(EMPBE_SegundoApellido), ' ', TRIM(NULLIF(EMPBE_SegundoApellido, '')) ) ) AS nombre,
+		CMM_Valor AS parentesco,
+		CONCAT(EMPBE_Porcentaje, '%') AS porcentaje
+	FROM EmpleadosBeneficiarios
+	INNER JOIN ControlesMaestrosMultiples ON EMPBE_CMM_ParentescoId = CMM_ControlId
+	WHERE EMPBE_EMP_EmpleadoId =  $P{idEmpleado}]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		</field>
+		<field name="parentesco" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="parentesco"/>
+			<property name="com.jaspersoft.studio.field.label" value="parentesco"/>
+		</field>
+		<field name="porcentaje" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="porcentaje"/>
+			<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
+		</field>
+	</subDataset>
+	<parameter name="idContrato" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT * FROM [dbo].[fn_getContrato]($P{idContrato})]]>
+	</queryString>
+	<field name="idEmpleado" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="idEmpleado"/>
+		<property name="com.jaspersoft.studio.field.label" value="idEmpleado"/>
+	</field>
+	<field name="entidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="entidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="entidad"/>
+	</field>
+	<field name="tipoContrato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipoContrato"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipoContrato"/>
+	</field>
+	<field name="folioContrato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="folioContrato"/>
+		<property name="com.jaspersoft.studio.field.label" value="folioContrato"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+	</field>
+	<field name="nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="nacionalidad"/>
+	</field>
+	<field name="fechaNacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaNacimiento"/>
+	</field>
+	<field name="genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="genero"/>
+	</field>
+	<field name="estadoCivil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estadoCivil"/>
+		<property name="com.jaspersoft.studio.field.label" value="estadoCivil"/>
+	</field>
+	<field name="gradoEstudio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gradoEstudio"/>
+		<property name="com.jaspersoft.studio.field.label" value="gradoEstudio"/>
+	</field>
+	<field name="curp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="curp"/>
+		<property name="com.jaspersoft.studio.field.label" value="curp"/>
+	</field>
+	<field name="rfc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rfc"/>
+		<property name="com.jaspersoft.studio.field.label" value="rfc"/>
+	</field>
+	<field name="domicilio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="domicilio"/>
+		<property name="com.jaspersoft.studio.field.label" value="domicilio"/>
+	</field>
+	<field name="puesto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="puesto"/>
+		<property name="com.jaspersoft.studio.field.label" value="puesto"/>
+	</field>
+	<field name="propositoPuesto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="propositoPuesto"/>
+		<property name="com.jaspersoft.studio.field.label" value="propositoPuesto"/>
+	</field>
+	<field name="ingresosAdicionales" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="ingresosAdicionales"/>
+		<property name="com.jaspersoft.studio.field.label" value="ingresosAdicionales"/>
+	</field>
+	<field name="sueldo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sueldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sueldo"/>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaInicio"/>
+	</field>
+	<field name="fechaFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaFin"/>
+	</field>
+	<field name="nombreFooter" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreFooter"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreFooter"/>
+	</field>
+	<field name="vigencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="vigencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="vigencia"/>
+	</field>
+	<field name="responsabilidades" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="responsabilidades"/>
+		<property name="com.jaspersoft.studio.field.label" value="responsabilidades"/>
+	</field>
+	<field name="cargaHoraria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cargaHoraria"/>
+		<property name="com.jaspersoft.studio.field.label" value="cargaHoraria"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="47" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="250" y="0" width="262" height="10" uuid="3fb13c41-772d-47cd-861f-f3d579a66f42">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entidad}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="350" y="12" width="162" height="10" uuid="9211270f-4078-46e7-9168-ae52e7f6812d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoContrato}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="350" y="24" width="162" height="10" uuid="735d8b6d-b718-43d0-870a-0125be6982be">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{folioContrato}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="40" width="512" height="1" forecolor="#7D7D7D" uuid="4b21ca1e-ef2a-40f0-b2f8-b1c886191e16">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="671" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="20" y="413" width="492" height="50" uuid="5afbfc16-0528-452b-b1d4-43467f8402f1">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Que sus generales son los siguientes:"+
+"<br>&nbsp;&nbsp;	a) Nacionalidad: "+$F{nacionalidad}+
+"<br>&nbsp;&nbsp;	b) Fecha de nacimiento: "+$F{fechaNacimiento}+
+"<br>&nbsp;&nbsp;	c) Sexo: "+$F{genero}+
+"<br>&nbsp;&nbsp;	d) Estado Civil: "+$F{estadoCivil}+
+"<br>&nbsp;&nbsp;	e) Domicilio: "+$F{domicilio}+
+"<br>&nbsp;&nbsp;	f) Escolaridad: "+$F{gradoEstudio}+
+"<br>&nbsp;&nbsp;	g) CURP: "+$F{curp}+
+"<br>&nbsp;&nbsp;	h) RFC: "+$F{rfc}+
+"<br><br>Que designa como beneficiarios, para el pago de los salarios y prestaciones devengadas y no cobradas, para el caso de fallecimiento o desaparición, a las siguientes personas:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="53" width="510" height="12" uuid="ecef0c06-0277-4492-b9d0-38036966028a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DECLARACIONES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="20" height="314" uuid="4b088475-e647-4a90-832b-afd3737336e8"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[I.
+
+
+II.
+
+
+
+
+III.
+
+
+
+IV.
+
+
+
+
+
+
+
+
+
+
+
+
+V.
+
+
+VI.
+
+VII.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="512" height="52" uuid="f6a39963-9e9a-45cf-b6fc-f7d01174cc6f"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONTRATO <b>INDIVIDUAL DE TRABAJADOR</b>, QUE CELEBRAN POR UNA PARTE <b>CENTRO INTERNACIONAL DE ANIMACIÓN</b> A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO <b>“EL PATRÓN”</b> REPRESENTADA EN ESTE ACTO POR CONDUCTO DEL COORDINADOR DE ENTIDADES PRODUCTIVAS PARA LA GENERACIÓN DE RECURSOS COMPLEMENTARIOS EL <b>MTRO. MISSAEL ROBLES ROBLES</b>, Y POR LA OTRA EL C. "+$F{nombre}+" A QUIEN EN LO SUCESIVO Y PARA LOS EFECTOS DE ESTE CONTRATO SE LE DENOMINARÁ COMO <b>“EL TRABAJADOR”</b> CONFORME AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="399" width="512" height="10" uuid="9ad7a771-64d7-4344-a33b-3efbc1159663">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Declara <b>“EL TRABAJADOR”</b> bajo protesta de decir verdad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="84" width="492" height="314" uuid="e4cb1a83-a429-4da7-92bb-4dd5549ff727">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Personalidad jurídica y patrimonio propios, de conformidad con lo dispuesto en el artículo 1o. de su Ley Orgánica, promulgada por el Ejecutivo local el día 15 de enero de 1994, en ejecución del decreto número 15319 del H. Congreso del Estado de Jalisco.
+&#9;<br>&#9;<br>
+Que el Coordinación de Entidades Productivas para la Generación de Recursos Complementarios, es una instancia dependiente del Centro Universitario de Ciencias Económico Administrativas y tiene como función entre otras la de intervenir en la administración de las entidades universitarias las cuales son creadas por la Universidad de Guadalajara para la obtención de recursos complementarios que puedan ser aplicados en programas prioritarios para su desarrollo institucional.
+&#9;<br>&#9;<br>
+Que el Mtro. Missael Robles Robles, es el Coordinador de Entidades Productivas para la Generación de Recursos Complementarios de la Universidad de Guadalajara por lo que es el responsable de dirigir, coordinar, administrar y representar las entidades universitarias, de conformidad con lo dispuesto en el artículo 51 del Estatuto Orgánico del Centro Universitario de Ciencias Económico Administrativas. 
+&#9;<br>&#9;<br>
+Que es atribución de la Universidad de Guadalajara, conforme al artículo 6 fracción XIII de la Ley Orgánica de la Universidad de Guadalajara, el crear entidades y realizar programas generadores de recursos complementarios; por lo que mediante dictamen número II/2020/536 del H. Consejo General Universitario, se creó Centro Internacional de Animación, la cual tiene por objeto: Producir, promover, albergar y facilitar proyectos de producción en la industria audiovisual, cinematográfica, televisiva y multimedia; por medio de la gestión de proyectos como largometrajes y cortometrajes animados enfocados principalmente en la técnica de stop motion; Enteramente de los puppets (muñecos de animación) por lo que se requiere tener la capacidad de patentar nuevos elementos mecánicos y decoración en los talleres de herrería, carpintería, pintura, látex y técnicas diversas;  Llevar a cabo la realización del diseño de personajes en impresoras 3D; Llevar acabó la formación, graduación y educación en especialidades y técnicas avanzadas, a través de cursos, talleres, andarías nacionales e internacionales; Organizar todo tipo de eventos, exposiciones o ferias, tendientes a promover el centro internacional de animación y sus actividades o cualquier actividad tendientes al desarrollo de la entidad; Organizar todo tipo de actividades relacionadas, tendientes o necesarios para cumplir con el objeto de ser un ente cultural de difusión del conocimiento y extensión de la cultura.
+&#9;<br><br>
+Que para llevar a cabo la ejecución del presente acuerdo designan como responsable a la Directora del Centro Internacional de Animación, <b>Lic. Lourdes Angélica Lares Espinoza.</b>
+&#9;<br>&#9;<br>
+Que señala como domicilio legal, el ubicado en la Avenida Juárez número 976, C.P. 44100 en Guadalajara, Jalisco.
+&#9;<br>&#9;<br>
+Que señala como domicilio del Centro Internacional de Animación, el localizado en Ing. Hugo Vázquez Reyes 40-A, Industrial Los Belenes, Código Postal 44157, Zapopan Jalisco, México.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="71" width="512" height="10" uuid="0de3cd80-240c-4648-84d4-12bf8a297d64">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Declara <b>“EL PATRÓN”</b> por medio de su representante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="480" width="20" height="20" uuid="e26b53cb-90f0-468d-982a-8695a4fa3124"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[III.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="21" y="480" width="491" height="20" uuid="543ac290-c07e-4da8-95a0-ea6a0a98bed8"/>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Declara <b>“EL TRABAJADOR”</b> tener los conocimientos, aptitudes, facultades y experiencia necesarios para desempeñar las funciones que se detallan en la cláusula primera y que es su voluntad desempeñar dicho puesto en servicio de <b>“EL PATRÓN”</b>.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="1" y="537" width="511" height="48" uuid="6175c396-12f2-41c0-abd3-91094c206e28"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>PRIMERA.- “EL TRABAJADOR”</b> conviene prestar sus servicios personales subordinados a Centro Internacional de Animación; sujetándose a la dirección, vigilancia o instrucciones que reciba de <b>“EL PATRÓN”</b> a través de su directora, para el desempeño de sus labores, obligándose a atender todas las actividades inherentes a su ocupación principal, esto es como;  <b>"+$F{puesto}+"</b>.<br><br>Las partes acuerdan que <b>“EL TRABAJADOR”</b> deberá "+$F{propositoPuesto}+".&#9;<br>&#9;<br><b>SEGUNDA.- “EL TRABAJADOR”</b> conviene en que prestará sus servicios en las instalaciones de la Centro Internacional de Animación o en cualquier domicilio dentro de la misma entidad federativa en donde <b>“EL PATRÓN”</b> por su objeto requiera de sus servicios personales.&#9;<br>&#9;<br><b>TERCERA.-</b> Toda vez que el pago del salario se realiza conforme a la labor principal de <b>“EL TRABAJADOR”</b>, las partes acuerdan que <b>“EL PATRÓN”</b> podrá realizar modificación de las condiciones de trabajo conforme el desempeño de <b>“EL TRABAJADOR”</b>, así como de las necesidades de la entidad; para lo cual <b>“EL PATRÓN”</b> podrá realizar cada tres meses una revisión del desempeño de funciones de <b>“EL TRABAJADOR”</b> y del sueldo, a efecto de valorar la continuidad del puesto cuando concurran circunstancias que la justifiquen.&#9;<br>&#9;<br><b>CUARTA.-</b> El presente contrato será por TIEMPO DETERMINADO comenzando a surtir efectos a partir del "+$F{fechaInicio}+", concluyendo el "+$F{fechaFin}+", de conformidad con lo dispuesto por los artículos 31 y 35 de la Ley Federal del Trabajo.&#9;<br>&#9;<br><b>QUINTA.-</b> Las partes convienen en que <b>“EL TRABAJADOR”</b> percibirá por los servicios prestados objeto de este contrato, la cantidad de "+$F{sueldo}+" menos deducciones, como salario mensual, suma que incluye el pago de los séptimos días y el correspondiente a los días de descanso obligatorio.&#9;<br>&#9;<br>El pago se realizará por medio electrónico a través de depósito en tarjeta de débito. &#9;<br>&#9;<br>El pago tendrá un incremento conforme al incremento que realice la Universidad de Guadalajara, misma que se sumará a sus ingresos, menos deducciones. Dicho incremento será retroactivo al primero de enero en el momento de ser, y estará vigente hasta la terminación del contrato.&#9;<br>&#9;<br><b>SEXTA.-</b> Las partes convienen en que <b>“EL TRABAJADOR”</b> desempeñará sus labores "+$F{cargaHoraria}+".&#9;<br>&#9;<br>En los términos del párrafo anterior <b>“EL TRABAJADOR”</b> otorga expresamente su consentimiento para que <b>“EL PATRÓN”</b> señale y varié los horarios de trabajo dentro de los cuales deberá laborar <b>“EL TRABAJADOR”</b>, de acuerdo con las necesidades de servicios.&#9;<br>&#9;<br><b>SÉPTIMA.– “EL TRABAJADOR”</b> gozará de un lapso de al menos 30 minutos para tomas sus alimentos o descansar, los cuales se contarán como tiempo efectivamente laborado.&#9;<br>&#9;<br><b>OCTAVA.-</b> En caso de que <b>“EL TRABAJADOR”</b> tenga que laborar mayor tiempo del que fija su jornada de conformidad con la cláusula sexta, deberá recabar previamente una constancia escrita donde <b>“EL PATRÓN”</b> lo autoriza para laborar tiempo extraordinario. Sin este requisito no estará autorizado para prestar sus servicios en jornada extraordinaria.&#9;<br>&#9;<br><b>NOVENA.- “EL TRABAJADOR”</b> está obligado a checar su tarjeta o a firmar listas de asistencia, a la entrada y salida de sus labores, por lo que el incumplimiento de este requisito indicará la falta injustificada a sus labores, para todos los efectos legales.&#9;<br>&#9;<br><b>DÉCIMA.-</b> La entrada a las labores se deberá realizar con puntualidad. <b>“EL PATRÓN”</b> otorga a <b>“EL TRABAJADOR”</b> 10 minutos como tiempo de tolerancia, si la entrada se hiciera después ese tiempo se considerará como retardo y después de 20 minutos se tomará como falta injustificada a sus labores. Cuando <b>“EL TRABAJADOR”</b> haya acumulado tres retardos en un mes, deberá reponer el tiempo acumulado de esos retardos, si se niega será tomado como falta injustificada. &#9;<br>&#9;<br><b>DÉCIMA PRIMERA.-</b> En caso de que <b>“EL TRABAJADOR”</b> continué laborando una vez concluido el presente contrato, siempre y cuando tenga más de un año trabajado; disfrutará de vacaciones con goce de sueldo, de conformidad con lo dispuesto en el Capítulo IV, Titulo III, de la Ley Federal del Trabajo, y de conforme con las actividades propias de la entidad universitaria, previo acuerdo con <b>“EL TRABAJADOR”</b>.&#9;<br>&#9;<br><b>DÉCIMA SEGUNDA.- “EL PATRÓN”</b> cubrirá a <b>“EL TRABAJADOR”</b> por concepto de prima vacacional el 25% del salario de <b>“EL TRABAJADOR”</b> los cuales se entregarán en una sola partida, en los subsiguientes periodos vacacionales, según los periodos establecidos en la cláusula anterior. Este pago se sumará al importe de los salarios que le correspondan durante el periodo vacacional.&#9;<br>&#9;<br><b>DÉCIMA TERCERA.-</b> Las partes convienen en que <b>“EL TRABAJADOR”</b> tendrá derecho anualmente a un aguinaldo proporcional a treinta días de salario nominal, que deberá pagársele a más tardar el 20 de diciembre de cada año.&#9;<br>&#9;<br><b>DÉCIMA CUARTA.- “EL TRABAJADOR”</b> reconoce que todos los documentos y la información que sirve para la realización de sus funciones y los resultados derivados de ellas son propiedad de <b>“CIA”</b> y será de carácter confidencial. Es así que, además de las obligaciones que emanan de la naturaleza del acuerdo <b>“EL TRABAJADOR”</b> estará́ obligado a:&#9;<br>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="521" width="512" height="12" uuid="30874059-be65-4bc9-bb24-fc5597dd4b2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULAS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="504" width="511" height="12" uuid="de6d1e0a-9c26-4f13-8cbf-dbb03e4e4a95"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[En consideración a las declaraciones que anteceden, convienen las partes en celebrar las siguientes:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="1" y="657" width="512" height="12" uuid="1c28e391-84ca-4331-8be8-243d7659d24d"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["La obligación de guardar la información confidencial surtirá sus efectos a partir de la firma del presente contrato y tendrá vigencia aún después de concluida la relación entre las partes por un periodo de diez años contados a partir de la fecha de terminación de dicha relación, según conste por escrito firmado por las partes.&#9;<br>&#9;<br><b>DÉCIMA QUINTA.-</b> En caso de que <b>“EL TRABAJADOR”</b>, deje de prestar sus servicios para <b>“EL PATRÓN”</b>, deberá entregar toda la información y/o documentación que se hubiera generado derivado de sus funciones, por lo que <b>“EL TRABAJADOR”</b> se obliga a entregarla una vez que concluya su relación laboral, y en caso de no hacerlo se hará acreedor a las sanciones que imponga la ley, incluidos los pagos de daños y perjuicios. &#9;<br>&#9;<br>Queda establecido que si derivado de la actividad contratada, <b>“EL TRABAJADOR”</b> viola algún derecho de propiedad intelectual de terceros, será su responsabilidad, por lo que se obliga a sacar en paz y a salvo a <b>“EL PATRÓN”</b> de cualquier reclamación que se presente en este sentido, así como pagar los daños y perjuicios que ocasione.&#9;<br>&#9;<br>De igual forma, <b>“EL TRABAJADOR”</b> estará obligado a firmar los documentos correspondientes cuando así se lo requiera <b>“EL PATRÓN”</b> a efecto de realizar los registros correspondientes ante las autoridades en materia de propiedad intelectual, que considere convenientes esta última.&#9;<br>&#9;<br><b>DÉCIMA SEXTA.-</b> Para cualquier controversia que pudiese surgir con relación a la interpretación y cumplimiento del presente contrato las partes se someten expresamente a la Jurisdicción y legislación de los tribunales del fuero común de la ciudad de Guadalajara, Jalisco, renunciando a cualquier otra jurisdicción que pueda corresponderles debido a sus domicilios presentes o futuros.&#9;<br>&#9;<br>Las partes enteradas del contenido y alcance del presente contrato manifiestan que en el mismo no existe mala fe, dolo, error o cualquier otro vicio de voluntad y lo firman por duplicado en compañía de los testigos, en la ciudad de Zapopan, Jalisco, el día " +$F{fechaInicio}+ " quedando cada una de las partes con un ejemplar del presente."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="585" width="20" height="72" uuid="a148c62b-698e-4214-afe8-93d7b355dd9f"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[I.
+
+II.
+III.
+
+IV.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="21" y="585" width="491" height="72" uuid="19fafbfd-722e-427b-8cf5-22a7b4a5c139">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Mantener la información confidencial en estricta reserva y no revelar ningún dato de la información a ninguna otra parte, relacionada o no, sin el consentimiento previo escrito de <b>“CIA”</b>.&#9;<br>
+Divulgar la información confidencial únicamente a las personas autorizadas para su recepción dentro de la organización.&#9;<br>
+Tratar confidencialmente toda la información recibida directa o indirectamente de <b>“CIA”</b>, y no utilizar ningún dato de esa información de ninguna manera distinta al propósito del presente acuerdo.&#9;<br>
+No manejar, usar, explotar, o divulgar la información confidencial a ninguna persona o entidad por ningún motivo en contravención a lo dispuesto en este instrumento, salvo que sea expresamente autorizado por escrito a hacerlo por “CIA”]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="466" width="513" height="11" forecolor="#FFFFFF" uuid="1fb360f9-037c-4bab-b169-af35c841eacc">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="beneficiarios" uuid="6ac6d390-b078-43bf-be5d-ed4e28dd278d">
+						<datasetParameter name="idEmpleado">
+							<datasetParameterExpression><![CDATA[$F{idEmpleado}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="30" uuid="cb47801c-aa4f-4d41-badd-f4ca63d738fc">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="aa44647b-45b0-4c38-8c8d-3b1d810f237d">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="11" uuid="f06aa32e-d970-4f78-aeb2-cc3a98260aed"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="170" uuid="043a92ba-3d63-4fd4-b8b0-ac1d5e07d1a3">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="170" height="11" uuid="f84f9fc6-b120-47bb-bfb6-e048fd94cfd8"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="063f6be4-3a52-4d27-aa4a-ed558f876356">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="11" uuid="d91ca10a-ba51-4241-84fc-fe556755d880"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Parentesco:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="bcf2d977-312d-4af7-9ad1-fa5671cbc50a">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="70" height="11" uuid="2b62db67-658e-4acb-8b47-861528ea9232"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{parentesco}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="66d4412c-2f2a-4027-922e-b0d19fdaaba5">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="11" uuid="ab083819-a3ad-46dd-8818-89a45512ab23"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="246097e0-87b2-4259-8913-1ab8d1b0d80c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="11" uuid="783b170e-d054-4144-bdf1-8f6f9f095973"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="413" width="20" height="50" uuid="65c8780d-e852-454d-ae79-9dd2c351c53f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I. <br><br><br><br><br><br><br><br><br><br>II."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="0" y="3" width="250" height="10" uuid="efad73fe-d377-496f-8514-b7e68b675005"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreFooter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="3" width="262" height="10" uuid="7d40474f-f49f-42dc-890e-b667726678e8"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vigencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="13" width="152" height="10" uuid="0678569f-f405-49f1-b8c5-6bf98182de2a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="502" y="13" width="8" height="10" uuid="26aeb05b-ccd1-479a-9545-7e95d395fbf0"/>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="198" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement positionType="Float" x="10" y="16" width="209" height="10" isPrintWhenDetailOverflows="true" uuid="8d949873-448c-4178-ae6a-8cc6efee795d"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por <b>“CIA”<b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="290" y="16" width="209" height="10" isPrintWhenDetailOverflows="true" uuid="4e2b2795-08ee-413e-84dc-698aa151c23d"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Por <b>“EL TRABAJADOR”<b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="10" y="67" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="b0ccb28b-1ec3-44e5-884c-e468681d4da7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Mtro. Missael Robles Robles</b><br>Coordinador de Entidades Productivas para la Generación de Recursos Complementarios"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="293" y="67" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="3df1a8cf-5813-4db9-9754-e0da2b7db8ae"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b> C: "+$F{nombreFooter}+"<b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="100" width="511" height="10" isPrintWhenDetailOverflows="true" uuid="4777b99b-7feb-4ee5-b0d2-3a7c6b50a0a9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[TESTIGOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="10" y="153" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="fb457454-c995-442d-b87d-d5548dfda0bf"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>L.A.E. Lucía Verónica Vargas Sánchez</b><br>Jefa de la Unidad de Administración y Finanzas de Entidades Productivas para la Generación de Recursos Complementarios"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="290" y="153" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="8d0b1e9b-4213-4484-a85c-5c8e3e0bf30f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Lic. Lourdes Angélica Lares Espinoza</b><br>Directora de Centro Internacional de Animación"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

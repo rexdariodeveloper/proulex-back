@@ -1,0 +1,12 @@
+ALTER TABLE [dbo].[BecasUDG] ADD [BECU_FechaExpiracion] DATETIME2(7)
+GO
+ALTER TABLE [dbo].[BecasUDG] ADD [BECU_SIAPId] INT
+GO
+ALTER TABLE [dbo].[BecasUDG] ADD [BECU_ENBE_EntidadBecaId] INT
+GO
+
+ALTER TABLE [dbo].[BecasUDG]  WITH CHECK ADD  CONSTRAINT [FK_BECU_ENBE_EntidadBecaId] FOREIGN KEY([BECU_ENBE_EntidadBecaId])
+REFERENCES [dbo].[EntidadesBecas] ([ENBE_EntidadBecaId])
+GO
+ALTER TABLE [dbo].[BecasUDG] CHECK CONSTRAINT [FK_BECU_ENBE_EntidadBecaId]
+GO

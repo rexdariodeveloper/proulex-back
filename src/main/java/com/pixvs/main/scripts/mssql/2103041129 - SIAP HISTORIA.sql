@@ -1,0 +1,70 @@
+/****** Object:  Table [dbo].[HISTORIA]    Script Date: 13/02/2021 11:04:41 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[HISTORIA](
+	[CODALU] [nvarchar](255) NULL,
+	[CODCUR] [nvarchar](255) NULL,
+	[DESCUR] [nvarchar](255) NULL,
+	[FECHINI] [date] NULL,
+	[FECHFIN] [date] NULL,
+	[COSTO] [decimal](28, 2) NULL,
+	[PERIODO] [int] NULL,
+	[NIVEL] [int] NULL,
+	[POLIZA] [nvarchar](255) NULL,
+	[SEDE_PIXVS_ID] [nvarchar](255) NULL,
+	[FECHA_CREACION] [datetime2](7) NULL,
+	[FECHA_MODIFICACION] [datetime2](7) NULL,
+	[CODIGO_CURSO] [nvarchar](5) NULL,
+	[CODIGO_SEDE] [nvarchar](5) NULL,
+	[COMENTARIO] [nvarchar](500) NULL,
+	[CODLIB] [nvarchar](255) NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[_SIAP_CURSOS](
+	[CODIGO_CURSO] [nvarchar](5) NOT NULL,
+	[DESCRIPCION] [nvarchar](50) NULL,
+ CONSTRAINT [PK__SIAP_CURSOS] PRIMARY KEY CLUSTERED 
+(
+	[CODIGO_CURSO] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+CREATE TABLE [dbo].[_SIAP_CURSOS_LIBROS](
+	[CODIGO_CURSO] [nvarchar](5) NULL,
+	[ART_ArticuloId] [int] NOT NULL,
+	[CANTIDAD] [int] NOT NULL,
+	[NIVEL] [int] NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[_SIAP_CURSOS_LIBROS]  WITH CHECK ADD  CONSTRAINT [FK__SIAP_CURSOS_LIBROS__SIAP_CURSOS] FOREIGN KEY([CODIGO_CURSO])
+REFERENCES [dbo].[_SIAP_CURSOS] ([CODIGO_CURSO])
+GO
+
+ALTER TABLE [dbo].[_SIAP_CURSOS_LIBROS] CHECK CONSTRAINT [FK__SIAP_CURSOS_LIBROS__SIAP_CURSOS]
+GO
+
+ALTER TABLE [dbo].[_SIAP_CURSOS_LIBROS]  WITH CHECK ADD  CONSTRAINT [FK__SIAP_CURSOS_LIBROS_Articulos] FOREIGN KEY([ART_ArticuloId])
+REFERENCES [dbo].[Articulos] ([ART_ArticuloId])
+GO
+
+ALTER TABLE [dbo].[_SIAP_CURSOS_LIBROS] CHECK CONSTRAINT [FK__SIAP_CURSOS_LIBROS_Articulos]
+GO
+
+
+
+
+SET IDENTITY_INSERT [dbo].[ControlesMaestrosMultiples] ON 
+GO
+
+INSERT [dbo].[ControlesMaestrosMultiples] ([CMM_ControlId], [CMM_Control], [CMM_Valor], [CMM_Activo], [CMM_Referencia], [CMM_Sistema], [CMM_USU_CreadoPorId], [CMM_FechaCreacion], [CMM_USU_ModificadoPorId], [CMM_FechaModificacion]) 
+VALUES (2000019, N'CMM_IM_TipoMovimiento', N'Inscripción SIAP', 1, NULL, 1, NULL, GETDATE(), NULL, NULL)
+SET IDENTITY_INSERT [dbo].[ControlesMaestrosMultiples] OFF
+GO

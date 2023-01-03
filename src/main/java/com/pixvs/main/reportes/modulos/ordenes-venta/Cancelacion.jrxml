@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cancelacion" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="634d493f-42b2-420e-bb11-5dab6fabf39c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.report.description" value="Solicitud de cancelación de OV"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQL Server"/>
+	<style name="Body" forecolor="#000000" isBlankWhenNull="true" fontSize="14">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="TableBody" style="Body" hTextAlign="Right">
+		<box>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Title" hTextAlign="Center" vTextAlign="Middle" fontSize="20" isBold="true"/>
+	<parameter name="path" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:/Projects/PSCA/pixvs-core-front/src"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT * FROM fn_getFormatoReembolsoOV ( $P{id} )]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="motivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="motivo"/>
+	</field>
+	<field name="sede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sede"/>
+		<property name="com.jaspersoft.studio.field.label" value="sede"/>
+	</field>
+	<field name="fechaCancelacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaCancelacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaCancelacion"/>
+	</field>
+	<field name="alumno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="alumno"/>
+		<property name="com.jaspersoft.studio.field.label" value="alumno"/>
+	</field>
+	<field name="banco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="banco"/>
+		<property name="com.jaspersoft.studio.field.label" value="banco"/>
+	</field>
+	<field name="beneficiario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="beneficiario"/>
+		<property name="com.jaspersoft.studio.field.label" value="beneficiario"/>
+	</field>
+	<field name="cuenta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cuenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="cuenta"/>
+	</field>
+	<field name="CLABE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CLABE"/>
+		<property name="com.jaspersoft.studio.field.label" value="CLABE"/>
+	</field>
+	<field name="importe" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="importe"/>
+		<property name="com.jaspersoft.studio.field.label" value="importe"/>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="telefono"/>
+		<property name="com.jaspersoft.studio.field.label" value="telefono"/>
+	</field>
+	<field name="notaVenta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="notaVenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="notaVenta"/>
+	</field>
+	<field name="corte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="corte"/>
+		<property name="com.jaspersoft.studio.field.label" value="corte"/>
+	</field>
+	<title>
+		<band height="90">
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top" onErrorType="Blank">
+				<reportElement x="0" y="0" width="190" height="35" uuid="638c24ff-6329-49a3-a4fd-8bbceccfcada">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<imageExpression><![CDATA[$P{path} +"/app/main/img/logos/reportes/jobs.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="34" width="580" height="46" forecolor="#565656" uuid="8ad653f4-fc73-4d5a-b736-39eb333ac193"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMATO DE SOLICITUD DE REEMBOLSO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="660">
+			<staticText>
+				<reportElement style="TableBody" x="0" y="50" width="279" height="20" uuid="8e7fbc3f-9a37-44d9-abca-1313239ace60">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Sede:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="70" width="279" height="20" uuid="17996236-1e98-42a8-b3de-c2dbab88be35">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="90" width="279" height="20" uuid="68a6b527-fa66-445d-89e6-5a9daf6b4ec7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre Completo Alumno(a):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="110" width="279" height="20" uuid="868141d1-64a1-474c-b733-6a16a27fb4e9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Banco:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="130" width="279" height="20" uuid="00504b69-32ad-4b48-ba3b-a4ec6f416907">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cuenta a Nombre de:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="150" width="279" height="20" uuid="85676f55-ff6a-4eb5-8698-e5a313b0b243">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Número de Cuenta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="170" width="279" height="20" uuid="4e5220c2-8389-41cb-b43d-5049e0879f27">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Clabe Interbancaria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="190" width="279" height="20" uuid="6077fb98-3768-4aae-83ae-9b0802d3ea4b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Importe a Reembolsar:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="TableBody" x="0" y="210" width="279" height="20" uuid="aa2d64f3-66e9-41d9-861b-5e70c1b4c02f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Teléfono de Contacto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="250" width="279" height="20" uuid="6eda6a3c-635c-47fc-9385-d5e003b0ceaf">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Firma]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="250" width="300" height="20" uuid="490aad2a-616f-421c-bb27-aed66aea1f9b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Vo. Bo. Dirección de Sede]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="270" width="300" height="120" uuid="a10dcb5c-ea31-423b-be3d-861456ece1c2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="270" width="279" height="120" uuid="3b3de6ed-1c57-4c97-a9bc-2baf5aa3c8b8">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="390" width="300" height="20" uuid="e198cfd9-339d-49f5-962c-712b2fc02ec1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre y Firma Dirección de Sede]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="390" width="279" height="20" uuid="a2b09edb-fa50-4aab-a8f9-d95b7316f093">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box rightPadding="5">
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre y Firma del Solicitante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="430" width="579" height="20" uuid="8ab22174-b8c6-4ff2-a696-7cae72a1b418"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Documentos necesarios para el expediente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="500" width="449" height="20" uuid="725ed938-6347-4733-8ef6-d8e89f923008"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="520" width="408" height="20" uuid="c609ce22-badf-472c-8679-c3f6bb046738"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="540" width="159" height="20" uuid="ece77842-c23c-4a8d-ba29-0e8c808405b1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="Body" x="0" y="0" width="578" height="40" uuid="76bad0c3-4770-4898-9e68-37a6cee3099d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Se solicita al Sistema Corporativo PROULEX-COMLEX el Reembolso de Inscripción por el motivo: " + $F{motivo}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="50" width="299" height="20" uuid="e8b1d27a-3551-41f4-bad1-c90d3bf816f0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sede}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="70" width="299" height="20" uuid="0265d58f-130b-4446-970b-327b110dc879"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaCancelacion}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="90" width="299" height="20" uuid="2fda454c-7263-487c-9dc1-3f86b7ac95c6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alumno}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="110" width="299" height="20" uuid="d1298d54-0526-4f46-9bcd-12b656ef1fad"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{banco}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="130" width="299" height="20" uuid="627e478b-a284-4c52-91fd-f15bb0528ce9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{beneficiario}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="150" width="299" height="20" uuid="45d4494a-1b44-4414-990f-629938bbdf46"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="170" width="299" height="20" uuid="994684c7-4a92-4d4c-9653-5b3fc4977a47"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CLABE}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement style="TableBody" x="279" y="190" width="299" height="20" uuid="b4d90c21-dce4-4efb-8fc7-5ad139376378"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="279" y="210" width="299" height="20" uuid="572e849f-c17f-4973-93af-577243ef6a7e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="180" y="460" width="400" height="20" uuid="4eb7bc29-3db2-4160-b18a-f7568aa0610d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{notaVenta}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="TableBody" x="140" y="480" width="438" height="20" uuid="76788b85-bba3-4956-89c4-4ce43f716089"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{corte}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="460" width="180" height="20" uuid="72b5a04e-c31b-4cfa-9be6-1eba9b4eca71">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["• Nota de venta o Factura:"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="480" width="140" height="20" uuid="18930217-47b2-48e9-a1b5-ce420c33b861">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["• Número de Corte:"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="1" y="500" width="129" height="20" uuid="bfd344e4-01ff-4649-a4b1-7c85429bbfad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["• Nota de Crédito:"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="520" width="170" height="20" uuid="3c6c1947-2f4e-4800-afde-5e9f58373b28">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["• Comprobante de Pago:"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="540" width="420" height="20" uuid="364edab4-5f92-4559-85f6-353fee5e0df3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["• Identificación Oficial de la persona que recibirá la Transferencia:"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

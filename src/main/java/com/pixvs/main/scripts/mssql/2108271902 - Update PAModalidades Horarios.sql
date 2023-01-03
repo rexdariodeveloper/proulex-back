@@ -1,0 +1,9 @@
+UPDATE PAModalidadesHorarios
+SET PAMODH_Codigo=12
+WHERE PAMODH_Horario='09:00 - 12:00' AND PAMODH_PAMOD_ModalidadId=14
+GO
+
+UPDATE PAModalidadesHorarios
+SET PAMODH_Codigo=13
+WHERE PAMODH_Horario='15:00 - 18:00' AND PAMODH_PAMOD_ModalidadId=14
+GO

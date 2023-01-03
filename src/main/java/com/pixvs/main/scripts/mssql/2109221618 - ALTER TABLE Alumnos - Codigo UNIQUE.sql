@@ -1,0 +1,2 @@
+ALTER TABLE [dbo].[Alumnos] WITH CHECK ADD CONSTRAINT [UNQ_ALU_Codigo] UNIQUE ([ALU_Codigo])
+GO

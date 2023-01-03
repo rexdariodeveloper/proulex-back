@@ -1,0 +1,7 @@
+ALTER TABLE ProgramasIdiomas
+DROP CONSTRAINT FK_PROGI_TAB_TabuladorId
+GO
+
+ALTER TABLE ProgramasIdiomas
+DROP COLUMN PROGI_TAB_TabuladorId
+GO

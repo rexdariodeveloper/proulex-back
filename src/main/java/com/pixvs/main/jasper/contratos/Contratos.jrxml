@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Criterios de evaluacion" pageWidth="595" pageHeight="842" columnWidth="593" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="1" uuid="07128a8d-258d-4e01-9db0-a4d23d82724b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Contrato" hTextAlign="Justified" fontName="SansSerif" fontSize="6">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<subDataset name="GruposDetalles" uuid="34081cbc-c665-4716-801c-6a3d9c030506">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="EmpleadoId" class="java.lang.Integer"/>
+		<parameter name="ProgramaId" class="java.lang.Integer"/>
+		<parameter name="ModalidadId" class="java.lang.Integer"/>
+		<parameter name="FechaInicio" class="java.lang.String"/>
+		<parameter name="FechaFin" class="java.lang.String"/>
+		<parameter name="CicloId" class="java.lang.Integer"/>
+		<parameter name="IdiomaCmm" class="java.lang.Integer"/>
+		<parameter name="SucursalId" class="java.lang.Integer"/>
+		<parameter name="PlantelId" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT "ProgramasGrupos"."PROGRU_Codigo" AS codigo,
+	CONCAT( PROG_Codigo,' ',CMM_Valor,' ',PAMOD_Nombre,' Nivel ',FORMAT( PROGRU_Nivel,'00'),' Grupo ',FORMAT( PROGRU_Grupo,'00')) AS nombreGrupo,
+	"ProgramasGrupos"."PROGRU_Nivel" AS nivel,
+	"PAModalidadesHorarios"."PAMODH_Horario" AS horario,
+	"ProgramasGrupos"."PROGRU_SueldoProfesor" AS sueldo
+FROM "ProgramasGrupos"
+	INNER JOIN "ProgramasIdiomas" ON 
+	 "ProgramasIdiomas"."PROGI_ProgramaIdiomaId" = "ProgramasGrupos"."PROGRU_PROGI_ProgramaIdiomaId" 
+	INNER JOIN "Programas" ON 
+	 "Programas"."PROG_ProgramaId" = "ProgramasIdiomas"."PROGI_PROG_ProgramaId" 
+	INNER JOIN "PAModalidades" ON 
+	 "PAModalidades"."PAMOD_ModalidadId" = "ProgramasGrupos"."PROGRU_PAMOD_ModalidadId" 
+	INNER JOIN "PAModalidadesHorarios" ON 
+	 "PAModalidadesHorarios"."PAMODH_PAModalidadHorarioId" = "ProgramasGrupos"."PROGRU_PAMODH_PAModalidadHorarioId" 
+	INNER JOIN "Empleados" ON 
+	 "Empleados"."EMP_EmpleadoId" = "ProgramasGrupos"."PROGRU_EMP_EmpleadoId" 
+	INNER JOIN "SucursalesPlanteles" ON 
+	 "SucursalesPlanteles"."SP_SucursalPlantelId" = "ProgramasGrupos"."PROGRU_SP_SucursalPlantelId" 
+	INNER JOIN "ControlesMaestrosMultiples" ON 
+	 "ControlesMaestrosMultiples"."CMM_ControlId" = "ProgramasIdiomas"."PROGI_CMM_Idioma" 
+WHERE 
+	 "Empleados"."EMP_EmpleadoId" = $P{EmpleadoId} 
+	 AND "ProgramasGrupos"."PROGRU_PROGI_ProgramaIdiomaId" = $P{ProgramaId} 
+	 AND "ProgramasGrupos"."PROGRU_FechaInicio" >= $P{FechaInicio} 
+	 AND "PAModalidades"."PAMOD_ModalidadId" = $P{ModalidadId} 
+	 AND "ProgramasGrupos"."PROGRU_PACIC_CicloId" = $P{CicloId} 
+	 AND PROGRU_SP_SucursalPlantelId =  $P{PlantelId} 
+	 AND "ControlesMaestrosMultiples"."CMM_ControlId" = $P{IdiomaCmm} 
+	 AND "ProgramasGrupos"."PROGRU_SUC_SucursalId" = $P{SucursalId}]]>
+		</queryString>
+		<field name="codigo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+			<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		</field>
+		<field name="nombreGrupo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombreGrupo"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombreGrupo"/>
+		</field>
+		<field name="nivel" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="nivel"/>
+			<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+		</field>
+		<field name="horario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="horario"/>
+			<property name="com.jaspersoft.studio.field.label" value="horario"/>
+		</field>
+		<field name="sueldo" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="sueldo"/>
+			<property name="com.jaspersoft.studio.field.label" value="sueldo"/>
+		</field>
+		<group name="codigo">
+			<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+		</group>
+		<group name="nombreGrupo">
+			<groupExpression><![CDATA[$F{nombreGrupo}]]></groupExpression>
+		</group>
+		<group name="nivel">
+			<groupExpression><![CDATA[$F{nivel}]]></groupExpression>
+		</group>
+		<group name="horario">
+			<groupExpression><![CDATA[$F{horario}]]></groupExpression>
+		</group>
+		<group name="sueldo">
+			<groupExpression><![CDATA[$F{sueldo}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="Dataset1" uuid="1ac2dfa5-1349-41b4-a9d9-b14507c652c3">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<subDataset name="Dataset2" uuid="a7afee8b-6733-4be0-b18a-4e3f3ad6783c">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="IdiomaId" class="java.lang.Integer"/>
+	<parameter name="FechaInicio" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
+	<parameter name="EmpleadoId" class="java.lang.Integer"/>
+	<parameter name="SucursalId" class="java.lang.Integer"/>
+	<parameter name="ModalidadId" class="java.lang.Integer"/>
+	<parameter name="CicloId" class="java.lang.Integer"/>
+	<parameter name="IdiomaCmm" class="java.lang.Integer"/>
+	<parameter name="PlantelId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SET LANGUAGE Spanish
+Select 
+EMP_EmpleadoId as profesorId,
+CONCAT(UPPER(EMP_Nombre),' ',UPPER(EMP_PrimerApellido),' ',UPPER(EMP_SegundoApellido)) as nombreProfesor,
+EMP_CodigoEmpleado as codigoProfesor,
+SP_Nombre as plantel,
+CONCAT(SP_Direccion,' Colonia ',SP_Colonia,' ',SP_Municipio,',',' Jalisco, México') as domicilioPlantel,
+PROGRU_Nivel as nivel,
+PROGRU_SueldoProfesor as salario,
+CONCAT(CASE WHEN PAMOD_Lunes=1 THEN 'Lun,' ELSE '' END,
+CASE WHEN PAMOD_Martes=1 THEN 'Mar,' ELSE '' END,CASE WHEN PAMOD_Miercoles=1 THEN 'Mie,' ELSE '' END,
+CASE WHEN PAMOD_Jueves=1 THEN 'Jue,' ELSE '' END,CASE WHEN PAMOD_Viernes=1 THEN 'Vie,' ELSE '' END,
+CASE WHEN PAMOD_Sabado=1 THEN 'Sab,' ELSE '' END,CASE WHEN PAMOD_Domingo=1 THEN 'Dom,' ELSE '' END) as modalidad,
+DAY(fechaInicio) as diaInicio,
+DATENAME(MONTH,fechaInicio) as mesInicio,
+YEAR(fechaInicio) as anioInicio,
+DAY(fechaFin) as diaFin,
+DATENAME(MONTH,fechaFin) as mesFin,
+YEAR(fechaFin) as anioFin,
+CONCAT(CMM_Valor,' ',PROGRU_CategoriaProfesor) as programa,
+(Select UPPER(right(CMA_Valor, charindex('-', reverse(CMA_Valor)) - 1)) from ControlesMaestros where CMA_Nombre='CM_DIRECTOR_GENERAL') as directorGeneral,
+(Select UPPER(right(CMA_Valor, charindex('-', reverse(CMA_Valor)) - 1)) from ControlesMaestros where CMA_Nombre='CM_DIRECTOR_RECURSOS_HUMANOS') as directorRecursosHumanos,
+(SELECT UPPER(CONCAT(USU_Nombre,' ',USU_PrimerApellido,' ',USU_SegundoApellido))
+FROM Usuarios
+INNER JOIN Sucursales on SUC_USU_ResponsableId = USU_UsuarioId WHERE SUC_SucursalId = PROGRU_SUC_SucursalId) as directorSede,
+(SELECT UPPER(CONCAT(USU_Nombre,' ',USU_PrimerApellido,' ',USU_SegundoApellido))
+FROM Usuarios
+INNER JOIN Sucursales on SUC_USU_CoordinadorId = USU_UsuarioId WHERE SUC_SucursalId = PROGRU_SUC_SucursalId) as coordinadorSede
+from ProgramasGrupos
+INNER JOIN ProgramasIdiomas ON PROGI_ProgramaIdiomaId = PROGRU_PROGI_ProgramaIdiomaId
+INNER JOIN Programas ON PROG_ProgramaId = PROGI_PROG_ProgramaId
+INNER JOIN PAModalidades ON PAMOD_ModalidadId = PROGRU_PAMOD_ModalidadId
+INNER JOIN VW_ProgramasGruposProfesores ON grupoId = PROGRU_GrupoId
+INNER JOIN Empleados ON EMP_EmpleadoId = empleadoId
+INNER JOIN SucursalesPlanteles ON SP_SucursalPlantelId = PROGRU_SP_SucursalPlantelId
+INNER JOIN ControlesMaestrosMultiples on CMM_ControlId = PROGI_CMM_Idioma
+INNER JOIN Sucursales on SUC_SucursalId = PROGRU_SUC_Sucursalid
+INNER JOIN Usuarios on USU_UsuarioId = SUC_USU_ResponsableId OR USU_UsuarioId = SUC_USU_CoordinadorId
+WHERE EMP_EmpleadoId= $P{EmpleadoId} 
+AND PROGRU_PROGI_ProgramaIdiomaId=  $P{IdiomaId} 
+AND PROGRU_FechaInicio >= $P{FechaInicio} 
+AND PAMOD_ModalidadId =  $P{ModalidadId} 
+AND PROGRU_PACIC_CicloId =  $P{CicloId} 
+AND CMM_ControlId =  $P{IdiomaCmm} 
+AND PROGRU_SP_SucursalPlantelId = $P{PlantelId} 
+AND PROGRU_SUC_SucursalId =  $P{SucursalId}
+GROUP BY PROGRU_PROGI_ProgramaIdiomaId,PROGRU_SP_SucursalPlantelId,PROGRU_FechaInicio,EMP_EmpleadoId,
+PROGRU_FechaFin,PROGRU_PAMOD_ModalidadId,EMP_Nombre,EMP_PrimerApellido,EMP_SegundoApellido,
+EMP_CodigoEmpleado,SP_Nombre,SP_Direccion,SP_Colonia,PROGRU_Nivel,PROGRU_SueldoProfesor,PAMOD_Nombre,
+PROG_Codigo,CMM_Valor,PROGRU_SUC_SucursalId,SP_Municipio,PROGRU_CategoriaProfesor,PAMOD_Lunes,
+PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado,PAMOD_Domingo, fechaInicio, FechaFin
+ORDER BY EMP_EmpleadoId]]>
+	</queryString>
+	<field name="profesorId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="profesorId"/>
+		<property name="com.jaspersoft.studio.field.label" value="profesorId"/>
+	</field>
+	<field name="nombreProfesor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreProfesor"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreProfesor"/>
+	</field>
+	<field name="codigoProfesor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigoProfesor"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigoProfesor"/>
+	</field>
+	<field name="plantel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="plantel"/>
+		<property name="com.jaspersoft.studio.field.label" value="plantel"/>
+	</field>
+	<field name="domicilioPlantel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="domicilioPlantel"/>
+		<property name="com.jaspersoft.studio.field.label" value="domicilioPlantel"/>
+	</field>
+	<field name="nivel" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="nivel"/>
+		<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+	</field>
+	<field name="salario" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="salario"/>
+		<property name="com.jaspersoft.studio.field.label" value="salario"/>
+	</field>
+	<field name="modalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="modalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="modalidad"/>
+	</field>
+	<field name="diaInicio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="diaInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaInicio"/>
+	</field>
+	<field name="mesInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesInicio"/>
+	</field>
+	<field name="anioInicio" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="anioInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioInicio"/>
+	</field>
+	<field name="diaFin" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="diaFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaFin"/>
+	</field>
+	<field name="mesFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesFin"/>
+	</field>
+	<field name="anioFin" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="anioFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioFin"/>
+	</field>
+	<field name="programa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="programa"/>
+		<property name="com.jaspersoft.studio.field.label" value="programa"/>
+	</field>
+	<field name="directorGeneral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorGeneral"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorGeneral"/>
+	</field>
+	<field name="directorRecursosHumanos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorRecursosHumanos"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorRecursosHumanos"/>
+	</field>
+	<field name="directorSede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorSede"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorSede"/>
+	</field>
+	<field name="coordinadorSede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="coordinadorSede"/>
+		<property name="com.jaspersoft.studio.field.label" value="coordinadorSede"/>
+	</field>
+	<group name="DatosProfesor">
+		<groupExpression><![CDATA[$F{profesorId}]]></groupExpression>
+		<groupHeader>
+			<band height="615">
+				<textField>
+					<reportElement style="Contrato" x="40" y="0" width="510" height="40" uuid="1d8ecabf-0d43-4f89-8546-dff0c3ccce67"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DETERMINADO QUE CELEBRAN POR UNA PARTE \"SISTEMA CORPORATIVO PROULEX-COMLEX” A QUIEN EN LO SUCESIVO SE DENOMINARA  “EL PATRON” REPRESENTADA POR SU DIRECTOR GENERAL EL MTRO. EDWIN ALFREDO BELLO RAMÍREZ , Y POR LA OTRA EL (LA) C. "+$F{nombreProfesor}+" A QUIEN EN LO SUCESIVO SE DENOMINARA  EL \"INSTRUCTOR\" EL CUAL SUJETAN AL TENOR  DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Contrato" x="224" y="40" width="142" height="10" uuid="266de009-d7e8-4896-b02d-f29d08dd14a0"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[D E C L A R A C I O N E S:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Contrato" x="40" y="60" width="510" height="140" isPrintWhenDetailOverflows="true" uuid="f6022838-745a-4088-9afc-41d66b22b5c7"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified"/>
+					<textFieldExpression><![CDATA["I   Que la Universidad de Guadalajara, es un organismo público descentralizado del Gobierno del Estado de Jalisco con autonomía, personalidad jurídica y patrimonio propios, de conformidad con lo dispuesto en el artículo 1º de su Ley Orgánica, promulgada por el Ejecutivo local el día 15 de Enero de 1994, en ejecución del decreto número 15319 del H. Congreso del Estado de Jalisco.\n"+"II.  Que es atribución de la Universidad de Guadalajara, conforme al artículo 6 fracción XIII, Crear entidades y realizar programas generadores de recursos complementarios y para tal efecto mediante dictamen número 251, emitido por el H. Consejo General Universitario, se creó “Sistema Corporativo Proulex-Comlex”, la cual tiene por objeto: prestar servicios de educación continua en todas las áreas de idioma extranjero y en computación así como dedicarse a la adquisición y venta de equipo y de servicios técnicos especializados.\n"+"III.  Que mediante dictamen Núm. IV/2021/131 del H. Consejo General Universitario, se creó la Coordinación de Entidades Productivas para la Generación de Recursos Complementarios, por lo que de conformidad en lo dispuesto en el resolutivo cuarto las empresas Universitarias que formaban parte de la Coordinación del Corporativo de Empresas Universitarias como instancias integrantes de la misma, pasarán a formar parte de la Coordinación de Entidades Productivas para la Generación de Recursos Complementarios, como Entidades Productivas de dicha Coordinación, por lo que, a partir de la aprobación del presente dictamen, serán nombradas como Entidades Productivas.\n"+"IV.  Que el Director General del Sistema Corporativo Proulex-Comlex, cuenta con atribuciones para administrar y representar a la entidad, de conformidad con lo establecido en las fracciones I y III del punto décimo primero del Dictamen de Creación del Sistema Corporativo Proulex-Comlex, así como en la fracción I del artículo 71 del Estatuto Orgánico del Escuela Preparatoria de Ciencias Económico-Administrativas\n"+"V.   Que designa como responsable para la ejecución del presente convenio al Jefe de la Unidad de Personal de Sistema Corporativo Proulex Comlex\n"+"VI.  Que para efectos del presente contrato señala como domicilio de las Oficinas Corporativas en la calle Prisciliano Sánchez número 1105, Colonia Americana, en Guadalajara, Jalisco y como domicilio de la fuente de trabajo en el "+ $F{plantel} +" ubicado en "+$F{domicilioPlantel}+".  Que en lo sucesivo se denominará como Escuela Preparatoria."]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Contrato" x="40" y="50" width="170" height="10" uuid="55bf7daa-c0c9-4392-8f1c-b12f52e64349"/>
+					<box leftPadding="5"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Declara "EL PATRÓN":]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Contrato" x="40" y="200" width="510" height="20" uuid="7ab6c9c2-fe9a-4056-984b-802d6beebdb2"/>
+					<box leftPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[DECLARA “EL INSTRUCTOR”:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Contrato" x="40" y="221" width="510" height="30" uuid="21650137-f195-4099-ba09-5d6b4e359505"/>
+					<textElement textAlignment="Left" markup="styled"/>
+					<textFieldExpression><![CDATA["I.\tQue cuenta con la capacidad y las aptitudes para el desarrollo del trabajo motivo de este contrato, y que sus datos personales y generales se encuentran detalladas dentro del expediente personal con que cuenta"+"<style isBold=\"true\">"+" “EL PATRON”.\n" +"</style>"+"<style isBold=\"true\">"+"DECLARAN LAS PARTES:\n" +"</style>"+"Que en consideración a las declaraciones que anteceden, convienen en las siguientes:\n"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Contrato" x="40" y="250" width="510" height="10" uuid="98dfa7ae-881f-4a3b-a5a0-102d20d438d6"/>
+					<textElement textAlignment="Center" verticalAlignment="Top"/>
+					<text><![CDATA[C L Á U S U L A S:]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Contrato" x="40" y="261" width="510" height="74" uuid="6abc6d1f-9c6e-4d9d-b75b-c7abb4c6d4d0">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified" markup="styled"/>
+					<textFieldExpression><![CDATA[""+"<style isBold=\"true\">"+"PRIMERA." +"</style>"+"- "+"<style isBold=\"true\">"+" “EL PATRON”." +"</style>"+", contrata al "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" por el periodo comprendido del día "+"<style isBold=\"true\">"+$F{diaInicio}+"</style>"+" del mes "+"<style isBold=\"true\">"+$F{mesInicio}+"</style>"+" del año "+"<style isBold=\"true\">"+$F{anioInicio}+"</style>"+", al día "+"<style isBold=\"true\">"+$F{diaFin}+"</style>"+" del mes "+"<style isBold=\"true\">"+$F{mesFin}+"</style>"+" del año "+"<style isBold=\"true\">"+$F{anioFin}+"</style>"+", para prestar sus servicios en la el "+$F{plantel}+" como "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" en:  "+$F{programa}+".\n" +"Las partes acuerdan, dada la naturaleza de la materia de trabajo del presente contrato que en los casos en que el grupo al cual se asignó al INSTRUCTOR, no se inscriba el mínimo de alumnos que tiene contemplado EL PATRÓN dentro de los tres primeros días de inicio del curso, el presente contrato se dará por terminado al cuarto día.\n" +"En el mismo sentido y de conformidad con lo dispuesto en el numerales 37 fracción I de la Ley Federal del Trabajo, así como en la cláusula séptima del Contrato Colectivo de Trabajo celebrado entre el Sistema Corporativo Proulex-Comlex y el Sindicato Único de Trabajadores de la Universidad de Guadalajara, las partes acuerdan que una vez terminada la vigencia a que se refiere la presente cláusula, el presente contrato concluirá automáticamente.\n" +""+"<style isBold=\"true\">"+"SEGUNDA." +"</style>"+".- Las partes acuerdan que la prestación de los servicios del "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”." +"</style>"+" consistirán principalmente en: \n"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Contrato" x="40" y="335" width="510" height="154" uuid="7f106a78-9916-4ada-9be6-6b53e7055298">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Left" markup="styled"/>
+					<textFieldExpression><![CDATA["1.\tImpartir las clases de manera presencial, para las cuales se le contrató en el Escuela Preparatoria señalado en la declaración VI de "+"<style isBold=\"true\">"+" “EL PATRON”." +"</style>"+".\n" +"2.\tEvitar hablar de asuntos personales durante la impartición de las clases. Así como abstenerse de usar sus dispositivos para temas personales durante la impartición de sus clases.\n"+"3.\tAsistir puntualmente al lugar de trabajo en el horario fijado, en los días laborales registrando su ingreso y salida, en el entendido de que deberá cubrir las horas contratadas completas.\n" +"4.\tControlar la asistencia y disciplina de sus alumnos y evitar intimar con ellos, así como evitar tocar en cualquier forma o situación a los alumnos. \n" +"5.\tEfectuar las evaluaciones y/o exámenes con estricto apego al calendario establecido.\n" +"6.\tCapturar las asistencias diariamente de los alumnos en el sistema PLIC, así como las calificaciones de los alumnos en el sistema PLIC, máximo 5 días después de cada examen que se aplique de acuerdo a la calendarización de "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+", con excepción del examen final, ya que el reporte de calificaciones lo deberá capturar el último día del curso. \n" +"7.\tUtilizar el material didáctico y los programas oficiales señalados por "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+".\n" +"8.\tLas demás funciones específicas derivadas de las anteriores que le sean encargadas por "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" o sus representantes." +"\n9.\tAsistir a los cursos de preparación o capacitación, así como talleres de trabajo que indique "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+", ya sea que se impartan de manera virtual o presencial\n" +"10.\tEn las clases de idiomas, abstenerse de hablar español en la clase. \n" +"11.\tPortar el uniforme y el gafete de instructor en lugar visible, proporcionados por "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" y vestir de manera apropiada durante su estancia en la fuente de trabajo.\n" +"12.\tAplicar a los alumnos los exámenes parciales y/o finales que indique "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" de acuerdo al programa oficial.\n" +"13.\tDirigirse a sus compañeros, representantes del patrón y alumnos, con respeto y lenguaje adecuado.\n" +"14.\tDar aviso oportunamente a "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" cuando no le sea posible asistir a sus labores a efecto de que se esté en la posibilidad de sustituirlo, y evitar suspender las clases.\n" +"15.\tCumplir con lo estipulado en la Ley Federal del Trabajo, el Contrato Colectivo de Trabajo y el Reglamento Interior de Trabajo para los instructores en idiomas y cómputo del Sistema Corporativo Proulex Comlex.\n" +"16.\tCumplir con los protocolos de salud y seguridad sanitarias que dicten tanto las autoridades federales como locales, así como las que establezca "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+".\n"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Contrato" x="39" y="489" width="510" height="60" uuid="168f744d-7159-40fe-9985-1234fdf92be7">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified" markup="styled"/>
+					<textFieldExpression><![CDATA[""+"<style isBold=\"true\">"+"TERCERA" +"</style>"+".- El presente Contrato obliga a lo expresamente pactado conforme a las disposiciones contenidas en el artículo 31 de la Ley Federal de Trabajo y la duración del mismo será la señalada en la cláusula primera, por lo que al concluir su término las partes contratantes lo darán por terminado con apoyo en el artículo antes mencionado e igualmente en los artículos 35, 37 Fracción I, 53 Fracción III y demás relativos de la citada Ley Federal del Trabajo, sin responsabilidad de ninguna naturaleza para "+"<style isBold=\"true\">"+" “EL PATRON”.\n" +"</style>"+".\n" +"CUARTA.- "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" conviene en que prestará sus servicios en el domicilio del Escuela Preparatoria señalada en la fracción VI de las declaraciones de “EL PATRÓN”. \n" +"QUINTA.- La jornada de trabajo constituye el tiempo durante el cual el instructor está a disposición de "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+"  para prestar sus servicios de conformidad con los siguientes grupos:\n"]]></textFieldExpression>
+				</textField>
+				<componentElement>
+					<reportElement style="Contrato" positionType="Float" x="70" y="554" width="437" height="60" uuid="cd9a156a-2ee7-4269-ad98-31dc967304f0">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 7_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 7_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 7_TD"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="GruposDetalles" uuid="814443d8-853e-4674-ad56-c2d84562e3b2">
+							<datasetParameter name="EmpleadoId">
+								<datasetParameterExpression><![CDATA[$P{EmpleadoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="ProgramaId">
+								<datasetParameterExpression><![CDATA[$P{IdiomaId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="FechaInicio">
+								<datasetParameterExpression><![CDATA[$P{FechaInicio}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="FechaFin">
+								<datasetParameterExpression><![CDATA[$P{FechaFin}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="IdiomaCmm">
+								<datasetParameterExpression><![CDATA[$P{IdiomaCmm}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="ModalidadId">
+								<datasetParameterExpression><![CDATA[$P{ModalidadId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="CicloId">
+								<datasetParameterExpression><![CDATA[$P{CicloId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="SucursalId">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="PlantelId">
+								<datasetParameterExpression><![CDATA[$P{PlantelId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="120" uuid="1cdf5519-d274-4ec3-b720-013634cd0f15">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 7_TH" height="30">
+								<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								<staticText>
+									<reportElement style="Contrato" x="0" y="0" width="120" height="30" uuid="2d4655bb-e3e5-47c4-b70e-270dac86a8ff"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Código]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 7_TD" height="30">
+								<textField>
+									<reportElement style="Contrato" x="0" y="0" width="120" height="30" uuid="3d0323b7-ef50-4e75-bfca-e7ba88adf57d"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="130" uuid="3ade1627-addc-4c65-9b64-dcddab52db4a">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+							<jr:tableHeader style="Table 7_TH" height="30">
+								<staticText>
+									<reportElement style="Contrato" x="0" y="0" width="130" height="30" uuid="455bcdb6-1e93-4524-8f9b-66bf2257741b">
+										<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+									</reportElement>
+									<box leftPadding="5"/>
+									<text><![CDATA[Descripción]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 7_TD" height="30">
+								<textField>
+									<reportElement style="Contrato" x="0" y="0" width="130" height="30" uuid="ce081b5d-18f2-4fc3-a5ee-6e7b199222a0"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{nombreGrupo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="46" uuid="9a7b518b-67aa-476c-bfef-0d8fcb9c2a6d">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+							<jr:tableHeader style="Table 7_TH" height="30">
+								<staticText>
+									<reportElement style="Contrato" x="0" y="0" width="46" height="30" uuid="87de0238-77c7-4bba-826f-2d99ccb936b1"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Nivel]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 7_TD" height="30">
+								<textField>
+									<reportElement style="Contrato" x="0" y="0" width="46" height="30" uuid="5409c995-0d0c-4407-a3ce-f1dc8952f9f1"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="74" uuid="7320bd80-2b18-4326-b415-07fec7034d37">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+							<jr:tableHeader style="Table 7_TH" height="30">
+								<staticText>
+									<reportElement style="Contrato" x="0" y="0" width="74" height="30" uuid="763bc36a-9746-4f1a-9738-c7fd9850ff5a"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Horario]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 7_TD" height="30">
+								<textField>
+									<reportElement style="Contrato" x="0" y="0" width="74" height="30" uuid="025776eb-ff6b-4a8f-b742-54dcdaf1e2d4"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="60" uuid="b866da64-1a77-4d15-b975-cfe16fbd4dc1">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+							<jr:tableHeader style="Table 7_TH" height="30">
+								<staticText>
+									<reportElement style="Contrato" x="0" y="0" width="60" height="30" uuid="9afadc14-3bd7-41d0-9591-23363f0aa058"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Salario por hora]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 7_TD" height="30">
+								<textField>
+									<reportElement style="Contrato" x="0" y="0" width="60" height="30" uuid="113e00aa-941f-408f-bb48-fe5b8a8548bf"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA["$"+$F{sueldo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+			<band height="124">
+				<textField>
+					<reportElement style="Contrato" x="40" y="34" width="510" height="80" uuid="e16480e2-cc56-4989-aa17-1c6bea7c47d3"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified" markup="styled"/>
+					<textFieldExpression><![CDATA["<style isBold=\"true\">"+"SEXTA" +"</style>"+".- El"+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" percibirá el salario por clase impartida (en caso que labore menos de las horas contratadas sin causa justificada, no se pagará dicho tiempo), lo anterior de conformidad a lo dispuesto por el artículo 83 de la Ley Federal del Trabajo y por los montos especificados en el tabulador salarial del Contrato Colectivo de Trabajo el cual le será cubierto los días quince y último del mes y será pago electrónico remitiendo su recibo al domicilio de \"EL PATRÓN\" donde tenga su mayor carga horaria.\n" +
+                "Del salario anterior, "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" hará por cuenta del "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" las deducciones legales correspondientes, particularmente las que se refieren a Impuestos sobre la Renta, Seguro Social y otras que acuerden las partes.\n" +
+                ""+"<style isBold=\"true\">"+"SÉPTIMA" +"</style>"+".- En caso que el curso que imparta el "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+", coincida con periodo vacacional, esté disfrutará de dos periodos vacacionales, dos semanas en primavera  y dos semanas en invierno, de conformidad a lo establecido en el Contrato Colectivo de Trabajo y percibirá una prima vacacional que consistirá en un pago del 25% de los salarios que corresponda al periodo vacacional a que tuviera derecho, en relación a su antigüedad y conforme lo marca el artículo 76 de la Ley Federal del Trabajo.\n"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Contrato" x="40" y="2" width="506" height="20" uuid="8f891c28-92d6-4b3b-b796-d2117a45ca38"/>
+					<box leftPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Todos los grupos en la Modalidad de: "+new String($F{modalidad}).replaceAll(".$", "")]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="245">
+				<textField>
+					<reportElement style="Contrato" x="40" y="15" width="510" height="220" uuid="7fd630a2-a2f6-4f8c-8d9e-77fccbb97cd7"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Justified" markup="styled"/>
+					<textFieldExpression><![CDATA[""+"<style isBold=\"true\">"+"OCTAVA" +"</style>"+".- El "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" percibirá un aguinaldo anual equivalente a 30 días de salario tabulado promedio ó el proporcional al tiempo trabajado y disfrutará de los días de descanso obligatorio que refiere el Contrato Colectivo de Trabajo.\n" +
+                "NOVENA .- Las partes convienen que "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" podrá rescindir la relación de trabajo que por este medio se contrata, con el solo requisito de comunicar su decisión por escrito al trabajador en los siguientes casos:\n" +"Si el "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" no ejecuta los servicios de acuerdo a lo estipulado en este contrato, o si altera o modifica el programa de enseñanza sin la autorización correspondiente.\n" +"a)\tSi suspende injustificadamente las clases que se le asignaron o si no los realiza eficaz y oportunamente, con base en sus conocimientos y experiencia por los cuales fue contratado.\n" +"b)\tSi el "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" sin autorización saca copias de libros casetes, CDs o cualquier otro material electrónico o impreso exclusivo de "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+".\n" +"c)\tEn caso de que promocione o realice propaganda de servicios de enseñanza de idiomas o de cómputo respecto de los servicios que brinde ya sea por sí mismo de manera externa o que brinde un tercero o cualquier otra institución. \n" +""+"<style isBold=\"true\">"+"DÉCIMA" +"</style>"+"- El "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" se obliga en los términos de la Fracción X del artículo 134 de la Ley Federal del Trabajo a someterse a todos los reconocimientos y exámenes médicos que "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" indique.\n" +""+"<style isBold=\"true\">"+"DÉCIMA PRIMERA" +"</style>"+".- "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" se obliga a no divulgar, así como a no hacer uso para beneficio propio o de terceros, por cualquier medio, de la información que pudiera obtener con motivo de su trabajo en "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+", de toda clase de investigaciones, estudios, métodos y formas de trabajo y/o proyectos a que haya tenido acceso y que hubiera tenido conocimiento, las cuales son propiedad de la Universidad de Guadalajara. \n" +""+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" se obliga, tanto durante el tiempo que preste sus servicios y al menos seis años posteriores a la conclusión del mismo, con respecto a la Información y el Know How de EL PATRÓN, a lo siguiente:\n" +"a)\tProteger y asegurar la información de uso no autorizado o su divulgación.\n" +"b)\tEvitar exponer o divulgar material confidencial en lugares donde puedan ser observados fácilmente.\n" +"c)\tEvitar los comentarios de toda clase de investigaciones, estudios, métodos y formas de trabajo y/o proyectos que obtenga, \n" +"d)\tAbstenerse de copiar o reproducir por cualquier medio, diseminar o divulgar en cualquier forma la información a que se refiere el inciso anterior a la que tenga acceso.\n" +"e)\tInformar inmediatamente de cualquier pérdida de información.\n" +"f)\tCustodiar y cuidar la documentación e información a la cual se tenga acceso.\n" +"g)\tAbstenerse de realizar prácticas desleales.\n" +""+"<style isBold=\"true\">"+"DÉCIMA SEGUNDA" +"</style>"+".-"+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" reconoce que las únicamente tiene derecho a las prestaciones que se establecen en el presente contrato, así como a las que se establecen en el Contrato Colectivo celebrado por Sistema Corporativo Proulex, por lo que manifiesta que no le corresponden prestaciones adicionales a las señaladas en el presente documento y en el Contrato Colectivo señalado.\n" +""+"<style isBold=\"true\">"+"DÉCIMA TERCERA" +"</style>"+".- El "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" se obliga a participar en todos los Planes de Capacitación y Adiestramiento que "+"<style isBold=\"true\">"+" “EL PATRON”" +"</style>"+" le imparta para el mejor desarrollo de sus aptitudes y conocimiento, planes que podrán implantarse dentro de los programas educativos y durante las labores del "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+". Ya sea de manera virtual o presencial. De igual modo deberá observar las medidas preventivas de riesgos de trabajo.\n" + ""+"<style isBold=\"true\">"+"DÉCIMA CUARTA" +"</style>"+".- "+"<style isBold=\"true\">"+" “EL INSTRUCTOR”" +"</style>"+" está obligado a checar su tarjeta, firmar listas de asistencia ó a registrar su asistencia por medios electrónicos, a la entrada y salida de sus labores, por lo que el incumplimiento de este requisito indicará la falta injustificada a sus labores, para todos los efectos legales. La entrada a las labores se deberá realizar con puntualidad, de acuerdo a lo que marca el Reglamento Interior de Trabajo para instructores de idiomas y de cómputo en su cláusula 21.\n"]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="264">
+				<textField>
+					<reportElement style="Contrato" x="40" y="0" width="504" height="40" uuid="696b1f7f-ccfd-413c-bda3-c1759495e1e3">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement markup="styled"/>
+					<textFieldExpression><![CDATA["<style isBold=\"true\">"+" DÉCIMO QUINTA" +"</style>"+".- Lo no previsto por este contrato se regirá por las disposiciones de la Ley Federal del Trabajo, del Contrato Colectivo de Trabajo vigente y el Reglamento Interior de Trabajo."+"Leído que fue el presente contrato por quienes en el intervienen lo ratifican e impuestos de su contenido lo suscriben por duplicado quedando un original en poder de cada parte. En la ciudad de Guadalajara, Jalisco a "+"<style isBold=\"true\">"+$F{diaInicio}+"</style>"+" del mes "+"<style isBold=\"true\">"+$F{mesInicio}+"</style>"+" del año "+"<style isBold=\"true\">"+$F{anioInicio}+"</style>"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Table 7_TD" x="42" y="43" width="255" height="30" uuid="f06f8f1b-0e02-4b56-8b44-9ff2b9a285b0"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA["EL INSTRUCTOR"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table 7_TD" x="300" y="43" width="250" height="30" uuid="815f86bc-82f3-4364-864f-450a9f62dfa4"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA["EL PATRÓN"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table 7_TD" x="300" y="73" width="250" height="20" uuid="2f465b3f-bbaa-44df-99d1-002c5af1b192"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[____________________________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table 6_TD" x="39" y="73" width="260" height="20" uuid="0e32bd47-2a7b-4f95-9a53-59bf78ae9553"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[____________________________________]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Table 7_TD" x="301" y="90" width="248" height="20" isPrintWhenDetailOverflows="true" uuid="a863e88b-6027-4263-96f4-4c238d6f072d"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{directorGeneral}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table 7_TD" x="40" y="90" width="258" height="20" uuid="1862ca42-a09a-4e96-a1ed-94f3ce9c661e"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombreProfesor}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Table 7_TD" x="40" y="113" width="508" height="20" uuid="10f0d1f2-f241-4cbd-9811-310e43e02f91"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TESTIGOS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table 7_TD" x="299" y="133" width="248" height="20" uuid="7ea8065e-223d-4048-9817-1b32dfd61c7b"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[____________________________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Table 7_TD" x="40" y="133" width="262" height="20" uuid="f952effa-5224-4fe5-847b-9ef474731b85"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[____________________________________]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="Table 7_TD" x="300" y="150" width="246" height="20" uuid="09a2425e-84e4-4da2-b155-252b98f1314f"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{coordinadorSede}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Table 7_TD" x="41" y="150" width="256" height="20" uuid="f579d225-5a12-41e9-a233-842436d799be"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{directorSede}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Contrato" x="40" y="190" width="500" height="30" uuid="fabd9007-f714-4c71-a3b0-467e0af7d0df"/>
+					<box leftPadding="5"/>
+					<textFieldExpression><![CDATA["Control, aplicación y archivo: "+$F{directorRecursosHumanos}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="39" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="176" y="19" width="240" height="20" uuid="c35b04db-e2c3-4d9a-9220-4a0ce9d756fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA CORPORATIVO PROULEX-COMLEX]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="9" width="76" height="30" uuid="79ce373d-573d-42e0-9de0-ee48c6baee03"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoProfesor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

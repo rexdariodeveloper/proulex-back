@@ -1,0 +1,19 @@
+UPDATE Inscripciones SET INS_CMM_EstatusId = 2000512 WHERE INS_InscripcionId IN (
+	select MAX(INS_InscripcionId) maxId from
+	Inscripciones
+	where INS_CMM_EstatusId <> 2000512
+	group by INS_PROGRU_GrupoId, INS_ALU_AlumnoId
+	having COUNT(INS_InscripcionId) > 1
+)
+GO
+
+SET ANSI_PADDING ON
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [IX_AlumnoGrupoEstatus] ON [dbo].[Inscripciones]
+(
+	[INS_ALU_AlumnoId] ASC,
+	[INS_PROGRU_GrupoId] ASC
+)
+WHERE (INS_CMM_EstatusId <> (2000512))
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO

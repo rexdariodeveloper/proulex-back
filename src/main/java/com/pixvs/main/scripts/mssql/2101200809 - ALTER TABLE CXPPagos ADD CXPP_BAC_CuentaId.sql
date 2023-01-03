@@ -1,0 +1,5 @@
+ALTER TABLE CXPPagos ADD CXPP_BAC_CuentaId int
+GO
+
+UPDATE CXPPagos SET CXPP_BAC_CuentaId = COALESCE((SELECT BAC_CuentaId FROM BancosCuentas WHERE BAC_Codigo = CXPP_CuentaBancaria),1)
+GO

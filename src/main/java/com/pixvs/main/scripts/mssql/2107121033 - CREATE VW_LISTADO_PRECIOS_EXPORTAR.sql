@@ -1,0 +1,13 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE OR ALTER VIEW [dbo].[VW_LISTADO_PRECIOS_EXPORTAR]
+AS
+	Select 
+	ART_CodigoArticulo as 'CODIGO_ARTICULO',
+	ART_NombreArticulo as 'NOMBRE_ARTICULO',
+	ART_Descripcion as 'DESCRIPCION',
+	0 as 'PRECIO'
+	from Articulos where ART_ArticuloParaVenta=1
+GO

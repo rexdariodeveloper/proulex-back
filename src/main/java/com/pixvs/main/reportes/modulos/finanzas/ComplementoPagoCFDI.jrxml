@@ -1,0 +1,1161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Facturacion" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="XML_Factura"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="418"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="568"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="SansSerif" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="SansSerif" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="SansSerif" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="SansSerif"/>
+	<style name="Row" mode="Transparent" fontName="SansSerif" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Style_Campo_Dinero" pattern="¤#,##0.00;¤-#,##0.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{DECIMALES_DINERO} == 4]]></conditionExpression>
+			<style pattern="¤#,##0.0000;¤-#,##0.0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{DECIMALES_DINERO} == 6]]></conditionExpression>
+			<style pattern="¤#,##0.000000;¤-#,##0.000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style_Campo_Cantidad" pattern="#,###.00">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{DECIMALES_CANTIDAD} == 0]]></conditionExpression>
+			<style pattern="#,###"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{DECIMALES_CANTIDAD} == 4]]></conditionExpression>
+			<style pattern="#,###.0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{DECIMALES_CANTIDAD} == 6]]></conditionExpression>
+			<style pattern="#,###.000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style_TextFieldTestado">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{MOSTRAR_TESTADO} == true]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF" backcolor="#050505" fontSize="7" isBold="true"/>
+		</conditionalStyle>
+	</style>
+	<style name="Style_Color_Primario" backcolor="#D4D4D4"/>
+	<parameter name="XML_DATA_DOCUMENT" class="org.w3c.dom.Document" isForPrompting="false"/>
+	<parameter name="XML_INPUT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="XML_FILE" class="java.io.File" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.xml.source" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="XML_DATE_PATTERN" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="XML_NUMBER_PATTERN" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="XML_LOCALE" class="java.util.Locale" isForPrompting="false"/>
+	<parameter name="XML_TIME_ZONE" class="java.util.TimeZone" isForPrompting="false"/>
+	<parameter name="JSON_INPUT_STREAM" class="java.io.InputStream" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.sources" class="java.util.List" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.date.pattern" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.number.pattern" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="JSON_LOCALE" class="java.util.Locale" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.locale.code" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="JSON_TIME_ZONE" class="java.util.TimeZone" isForPrompting="false"/>
+	<parameter name="net.sf.jasperreports.json.timezone.id" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="URL_LOGO" class="java.lang.String">
+		<defaultValueExpression><![CDATA["http://www.pixvs.com/img/logo.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COLOR_PRIMARIO" class="java.lang.String">
+		<defaultValueExpression><![CDATA["#DEDEDE"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COLOR_PRIMARIO_LETRA" class="java.lang.String">
+		<defaultValueExpression><![CDATA["#545454"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MOSTRAR_PARTIDAS_IMPUESTOS" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DECIMALES_DINERO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DECIMALES_CANTIDAD" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2]]></defaultValueExpression>
+	</parameter>
+	<parameter name="TIPO_DE_COMPROBANTE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FORMA_PAGO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="METODO_PAGO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="EMISOR_REGIMEN_FISCAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RECEPTOR_REGIMEN_FISCAL" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="RECEPTOR_USO_CFDI" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="MOSTRAR_TESTADO" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="P_FORMA_PAGO" class="java.lang.String">
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/Comprobante/Complemento/Pagos/Pago/DoctoRelacionado]]>
+	</queryString>
+	<field name="DR_IdDocumento" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@IdDocumento"/>
+		<fieldDescription><![CDATA[@IdDocumento]]></fieldDescription>
+	</field>
+	<field name="DR_Serie" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@Serie"/>
+		<fieldDescription><![CDATA[@Serie]]></fieldDescription>
+	</field>
+	<field name="DR_Folio" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@Folio"/>
+		<fieldDescription><![CDATA[@Folio]]></fieldDescription>
+	</field>
+	<field name="DR_ImpSaldoAnt" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@ImpSaldoAnt"/>
+		<fieldDescription><![CDATA[@ImpSaldoAnt]]></fieldDescription>
+	</field>
+	<field name="DR_ImpPagado" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@ImpPagado"/>
+		<fieldDescription><![CDATA[@ImpPagado]]></fieldDescription>
+	</field>
+	<field name="DR_ImpSaldoInsoluto" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@ImpSaldoInsoluto"/>
+		<fieldDescription><![CDATA[@ImpSaldoInsoluto]]></fieldDescription>
+	</field>
+	<field name="DR_MonedaDR" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@MonedaDR"/>
+		<fieldDescription><![CDATA[@MonedaDR]]></fieldDescription>
+	</field>
+	<field name="DR_EquivalenciaDR" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@EquivalenciaDR"/>
+		<fieldDescription><![CDATA[@EquivalenciaDR]]></fieldDescription>
+	</field>
+	<field name="DR_NumParcialidad" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="@NumParcialidad"/>
+		<fieldDescription><![CDATA[@NumParcialidad]]></fieldDescription>
+	</field>
+	<field name="C_Certificado" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Certificado"/>
+		<fieldDescription><![CDATA[/Comprobante/@Certificado]]></fieldDescription>
+	</field>
+	<field name="C_NoCertificado" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@NoCertificado"/>
+		<fieldDescription><![CDATA[/Comprobante/@NoCertificado]]></fieldDescription>
+	</field>
+	<field name="C_Exportacion" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Exportacion"/>
+		<fieldDescription><![CDATA[/Comprobante/@Exportacion]]></fieldDescription>
+	</field>
+	<field name="C_Fecha" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Fecha"/>
+		<fieldDescription><![CDATA[/Comprobante/@Fecha]]></fieldDescription>
+	</field>
+	<field name="C_Serie" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Serie"/>
+		<fieldDescription><![CDATA[/Comprobante/@Serie]]></fieldDescription>
+	</field>
+	<field name="C_Folio" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Folio"/>
+		<fieldDescription><![CDATA[/Comprobante/@Folio]]></fieldDescription>
+	</field>
+	<field name="C_LugarExpedicion" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@LugarExpedicion"/>
+		<fieldDescription><![CDATA[/Comprobante/@LugarExpedicion]]></fieldDescription>
+	</field>
+	<field name="C_Sello" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Sello"/>
+		<fieldDescription><![CDATA[/Comprobante/@Sello]]></fieldDescription>
+	</field>
+	<field name="C_TipoDeComprobante" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@TipoDeComprobante"/>
+		<fieldDescription><![CDATA[/Comprobante/@TipoDeComprobante]]></fieldDescription>
+	</field>
+	<field name="C_Version" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/@Version"/>
+		<fieldDescription><![CDATA[/Comprobante/@Version]]></fieldDescription>
+	</field>
+	<field name="C_EmisorNombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Emisor/@Nombre"/>
+		<fieldDescription><![CDATA[/Comprobante/Emisor/@Nombre]]></fieldDescription>
+	</field>
+	<field name="C_EmisorRegimenFiscal" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Emisor/@RegimenFiscal"/>
+		<fieldDescription><![CDATA[/Comprobante/Emisor/@RegimenFiscal]]></fieldDescription>
+	</field>
+	<field name="C_EmisorRfc" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Emisor/@Rfc"/>
+		<fieldDescription><![CDATA[/Comprobante/Emisor/@Rfc]]></fieldDescription>
+	</field>
+	<field name="C_ReceptorDomicilioFiscalReceptor" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Receptor/@DomicilioFiscalReceptor"/>
+		<fieldDescription><![CDATA[/Comprobante/Receptor/@DomicilioFiscalReceptor]]></fieldDescription>
+	</field>
+	<field name="C_ReceptorNombre" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Receptor/@Nombre"/>
+		<fieldDescription><![CDATA[/Comprobante/Receptor/@Nombre]]></fieldDescription>
+	</field>
+	<field name="C_ReceptorRegimenFiscalReceptor" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Receptor/@RegimenFiscalReceptor"/>
+		<fieldDescription><![CDATA[/Comprobante/Receptor/@RegimenFiscalReceptor]]></fieldDescription>
+	</field>
+	<field name="C_ReceptorRfc" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Receptor/@Rfc"/>
+		<fieldDescription><![CDATA[/Comprobante/Receptor/@Rfc]]></fieldDescription>
+	</field>
+	<field name="C_ReceptorUsoCFDI" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Receptor/@UsoCFDI"/>
+		<fieldDescription><![CDATA[/Comprobante/Receptor/@UsoCFDI]]></fieldDescription>
+	</field>
+	<field name="P_FechaPago" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@FechaPago"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@FechaPago]]></fieldDescription>
+	</field>
+	<field name="P_FormaPago" class="java.lang.Integer">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@FormaDePagoP"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@FormaDePagoP]]></fieldDescription>
+	</field>
+	<field name="P_Moneda" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@MonedaP"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@MonedaP]]></fieldDescription>
+	</field>
+	<field name="P_TipoCambioP" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@TipoCambioP"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@TipoCambioP]]></fieldDescription>
+	</field>
+	<field name="P_NumOperacion" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@NumOperacion"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@NumOperacion]]></fieldDescription>
+	</field>
+	<field name="P_Monto" class="java.math.BigDecimal">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/Pagos/Pago/@Monto"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/Pagos/Pago/@Monto]]></fieldDescription>
+	</field>
+	<field name="TFD_FechaTimbrado" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@FechaTimbrado"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@FechaTimbrado]]></fieldDescription>
+	</field>
+	<field name="TFD_NoCertificadoSAT" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@NoCertificadoSAT"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@NoCertificadoSAT]]></fieldDescription>
+	</field>
+	<field name="TFD_RfcProvCertif" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@RfcProvCertif"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@RfcProvCertif]]></fieldDescription>
+	</field>
+	<field name="TFD_SelloCFD" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@SelloCFD"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@SelloCFD]]></fieldDescription>
+	</field>
+	<field name="TFD_SelloSAT" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@SelloSAT"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@SelloSAT]]></fieldDescription>
+	</field>
+	<field name="TFD_UUID" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@UUID"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@UUID]]></fieldDescription>
+	</field>
+	<field name="TFD_Version" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/Comprobante/Complemento/TimbreFiscalDigital/@Version"/>
+		<fieldDescription><![CDATA[/Comprobante/Complemento/TimbreFiscalDigital/@Version]]></fieldDescription>
+	</field>
+	<title>
+		<band height="170" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="0" y="0" width="110" height="75" uuid="94883631-a913-43e2-b182-ab8d77d0181e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{URL_LOGO}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="340" y="21" width="98" height="12" forecolor="#575757" uuid="0b3f9342-da78-4cfa-9fc5-2301c4749678"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Serie y Folio]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="120" y="21" width="210" height="14" forecolor="#2E2E2E" uuid="f4ae2383-b53f-498e-a9d9-552c513f0e72">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R.F.C. "+$F{C_EmisorRfc}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="Style_TextFieldTestado" mode="Opaque" x="438" y="21" width="116" height="12" backcolor="#B8B8B8" uuid="664b3290-8164-4a7d-a728-890ed33dfa22">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+					<printWhenExpression><![CDATA[$P{MOSTRAR_TESTADO}  == false]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{C_Serie}  == null ? "" : $F{C_Serie} ) +" " +  ($F{C_Folio}  == null ? "" :$F{C_Folio} )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement mode="Opaque" x="120" y="0" width="434" height="18" forecolor="#FFFFFF" backcolor="#949494" uuid="ec290b6a-36a0-491f-a525-dd21cbd4a8c9">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["COMPLEMENTO PARA RECEPCIÓN DE PAGOS"]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="480" y="33" width="74" height="12" uuid="66931ab8-63be-4d01-8823-c6ca76bbe8a5"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $F{C_Fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="33" width="98" height="12" forecolor="#575757" uuid="965c3e78-3ac1-4510-96f7-75d6c32fda0f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Lugar, Fecha y Hora Emisión]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_TextFieldTestado" x="438" y="45" width="116" height="12" uuid="f141fbee-e73f-441f-ac31-cbdf11b70841"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TFD_UUID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="45" width="98" height="12" forecolor="#575757" uuid="ab6c45b6-c08a-45ba-a92e-e302c98e72fa">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Folio Fiscal]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_TextFieldTestado" x="438" y="57" width="116" height="12" uuid="914b7d31-c4a0-4c42-825a-84b55577e433"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_NoCertificado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="57" width="98" height="12" forecolor="#575757" uuid="186093e5-bfad-41b7-8133-a73d1c37b810">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Numero de certificado]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="Style_TextFieldTestado" x="438" y="69" width="116" height="12" uuid="b37da200-e31d-4a8f-9824-1b0336b45ca7"/>
+				<box rightPadding="1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{C_TipoDeComprobante} + ($P{TIPO_DE_COMPROBANTE} == null ? "" : " - " + $P{TIPO_DE_COMPROBANTE}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="69" width="98" height="12" forecolor="#575757" uuid="8d672d09-5bbb-43a5-98cb-24f7c9cfb0c7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Tipo de Comprobante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="49" width="40" height="12" forecolor="#575757" uuid="5deb05fa-1a6e-4ccb-8af5-4ed07eb99712">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Régimen Fiscal]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="160" y="49" width="170" height="12" uuid="9dba8fbb-c2e7-45cd-b8a4-146432dc5dce"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_EmisorRegimenFiscal} + ($P{EMISOR_REGIMEN_FISCAL} == null ? "": " - "+$P{EMISOR_REGIMEN_FISCAL})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="438" y="33" width="42" height="12" uuid="450be409-4d87-48d3-894f-f107100c5e85"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_LugarExpedicion}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="93" width="4" height="60" backcolor="#D4D4D4" uuid="eccd31ed-31b9-45b8-8dae-d7496312f887">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="85" width="556" height="1" forecolor="#595959" backcolor="rgba(255, 255, 255, 0.5176471)" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<propertyExpression name="net.sf.jasperreports.style.pen.lineColor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineColor="#757575"/>
+				</graphicElement>
+			</line>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="86" y="105" width="190" height="12" uuid="30885882-3d84-403b-a1be-6be61674a737"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_ReceptorRfc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="105" width="82" height="12" forecolor="#575757" uuid="40ee92e3-d76c-4d61-ae69-37b8a968e4cb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[R.F.C.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="93" width="82" height="12" forecolor="#575757" uuid="ef4d040b-e03a-430e-9604-330fdd8ad3ba">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Nombre o razón social]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="86" y="93" width="190" height="12" uuid="69e2453f-9bae-4362-8124-68059cd23fa5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_ReceptorNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="141" width="82" height="12" forecolor="#575757" uuid="7d423b2a-446a-4323-9093-0c787fe46e8b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$F{C_ReceptorDomicilioFiscalReceptor} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Domicilio Fiscal]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="86" y="141" width="190" height="12" uuid="f43517af-11fc-4eb9-9285-19524e071815">
+					<printWhenExpression><![CDATA[$F{C_ReceptorDomicilioFiscalReceptor} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_ReceptorDomicilioFiscalReceptor}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="86" y="117" width="190" height="12" uuid="dbacc32b-40aa-4079-8d1d-55dedb01db60"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_ReceptorUsoCFDI} + ($P{RECEPTOR_USO_CFDI} == null ? "" : " - " +$P{RECEPTOR_USO_CFDI})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="117" width="82" height="12" forecolor="#575757" uuid="f0ca3d42-3f11-4c29-9df6-4e037609250d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Uso CFDI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="129" width="82" height="12" forecolor="#575757" uuid="26ec4edc-7755-4005-a29c-a40ea38488c8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<printWhenExpression><![CDATA[$F{C_ReceptorRegimenFiscalReceptor} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="4" rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Régimen Fiscal]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="86" y="129" width="190" height="12" uuid="c6dc7a7b-6405-4ca8-bf2f-c7f3906f80ea">
+					<printWhenExpression><![CDATA[$F{C_ReceptorRegimenFiscalReceptor} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_ReceptorRegimenFiscalReceptor}+ ($P{RECEPTOR_REGIMEN_FISCAL} == null ? "": " - "+$P{RECEPTOR_REGIMEN_FISCAL})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="105" width="98" height="12" forecolor="#575757" uuid="798fb2b7-b774-4b5d-8b43-95295362d10d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Fecha de pago]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="438" y="93" width="116" height="12" uuid="989a15ab-5407-4c05-93a4-803498c96951"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{P_FormaPago} + ($P{P_FORMA_PAGO} == null ? "" : " - " + $P{P_FORMA_PAGO})]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="438" y="105" width="116" height="12" uuid="7bf2d14b-4455-4a32-9b12-532551d7f66e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{P_FechaPago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="93" width="98" height="12" forecolor="#575757" uuid="9d76f4df-7f0b-4b7a-8d43-0a221c454626">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Forma de pago]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement style="Style_Campo_Cantidad" x="438" y="129" width="116" height="12" uuid="45c53d41-f723-43d7-9a1f-de63cb821b4b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{P_TipoCambioP} == null ? 1 : $F{P_TipoCambioP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="129" width="98" height="12" forecolor="#575757" uuid="21396b10-1632-463c-b7d6-003e10ba3c37">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Tipo de cambio]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="438" y="117" width="116" height="12" uuid="5d8e363f-a7a1-42ed-9ed9-a2af4ea16b2a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{P_Moneda}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="117" width="98" height="12" forecolor="#575757" uuid="e2b58cc1-ffbc-4b5c-bb64-17523646fb5f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Moneda]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="438" y="153" width="116" height="12" uuid="edb4a168-e4ab-4d48-bb87-d83c19434569"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{C_Version}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="153" width="98" height="12" forecolor="#575757" uuid="ecc5abee-9a98-4051-a7fe-07e71d81e09e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Versión del comprobante]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="120" y="35" width="210" height="14" forecolor="#2E2E2E" uuid="ae5940ae-a510-43ae-8970-c8bb012151de">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Emisor "+$F{C_EmisorNombre}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="438" y="141" width="116" height="12" uuid="3a5ef506-99fc-4344-927e-2581ef82231f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{P_NumOperacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="141" width="98" height="12" forecolor="#575757" uuid="57b004b6-dc87-450a-859d-eca825008bc8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Número de operación]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="28">
+			<rectangle>
+				<reportElement x="0" y="16" width="555" height="12" uuid="641951df-0ba8-48a6-8860-e44b521d860b"/>
+				<graphicElement>
+					<pen lineColor="#B8B8B8"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="245" y="16" width="55" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="2c2ad438-bd32-44f5-888c-f04f6a611d4b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b5f3dc1-b123-4acb-afb3-bc63055591dc"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moneda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="0" y="16" width="165" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="96768051-c507-4581-b958-15c3f7698227">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdde2c53-6ac1-4687-9207-69c3c8451a7b"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UUID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="300" y="16" width="60" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="7108509b-3b35-4c9d-87ed-62316bbac0c2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ad71cf9-656f-43e5-a39c-e7a82f2e85c9"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de cambio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="360" y="16" width="65" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="ad39832e-59ac-488d-a9b1-1a46c7ef37bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d70c4f2b-005e-4c80-9b12-31bf5c52a113"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo anterior]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="490" y="16" width="65" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="ebc5631c-0f00-4648-91e5-45b3a30c9bf7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2ea5899-13f0-4bee-a3a5-7474433b786d"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo insoluto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="165" y="16" width="80" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="1ade4a3b-6e7a-413d-bc5e-afe320aa12af">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02c19ae0-459c-4f6f-b2fd-b1d7f9b9c224"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie y Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" mode="Opaque" x="425" y="16" width="65" height="12" forecolor="#FFFFFF" backcolor="#D4D4D4" uuid="603ef27c-17db-43d3-ac33-11dfe4403df0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a2ea5899-13f0-4bee-a3a5-7474433b786d"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					<propertyExpression name="net.sf.jasperreports.style.forecolor"><![CDATA[$P{COLOR_PRIMARIO_LETRA}]]></propertyExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto pagado]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="0" y="0" width="210" height="14" forecolor="#2E2E2E" uuid="1ed851fd-8a3c-41be-a4d7-475fa6a12b5c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DOCUMENTOS RELACIONADOS"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12">
+			<rectangle>
+				<reportElement stretchType="ContainerHeight" x="0" y="0" width="555" height="12" uuid="1f4131f1-41cf-415f-b2a8-18100577e10e"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#BDBDBD"/>
+				</graphicElement>
+			</rectangle>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="245" y="0" width="55" height="12" uuid="293c160b-80d4-41bd-b8aa-55b299292407">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b5f3dc1-b123-4acb-afb3-bc63055591dc"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_MonedaDR}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="0" y="0" width="165" height="12" uuid="5b56947d-59f6-48f1-9cb6-61445b4fc998">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bdde2c53-6ac1-4687-9207-69c3c8451a7b"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_IdDocumento}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_Campo_Dinero" positionType="Float" x="490" y="0" width="65" height="12" uuid="a00c9dd6-f3d4-4e4f-8627-86b08be9db03">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3520e0a-85fc-4221-b68b-014ca920efc3"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_ImpSaldoInsoluto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="165" y="0" width="80" height="12" uuid="a8c7bde5-f187-467e-9fca-910f0d071ae2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02c19ae0-459c-4f6f-b2fd-b1d7f9b9c224"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{DR_Serie}  == null ? "" : $F{DR_Serie} ) +" " +  ($F{DR_Folio}  == null ? "" :$F{DR_Folio} )]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_Campo_Cantidad" positionType="Float" x="300" y="0" width="60" height="12" uuid="76310c2b-6e03-4746-9346-8567a149f726">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3520e0a-85fc-4221-b68b-014ca920efc3"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_EquivalenciaDR} == null ? 1 : $F{DR_EquivalenciaDR}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_Campo_Dinero" positionType="Float" x="360" y="0" width="65" height="12" uuid="4db80fe3-6f83-4be6-aac3-746df0240ae5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3520e0a-85fc-4221-b68b-014ca920efc3"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_ImpSaldoAnt}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Style_Campo_Dinero" positionType="Float" x="425" y="0" width="65" height="12" uuid="9a867390-9e0e-4bf3-8c40-d53f450918c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3520e0a-85fc-4221-b68b-014ca920efc3"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#D9D9D9"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#D9D9D9"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DR_ImpPagado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="11">
+			<textField textAdjust="ScaleFont">
+				<reportElement x="460" y="0" width="84" height="10" uuid="bf965552-b5c7-431e-a999-5d7c4b5b3746"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" evaluationTime="Report">
+				<reportElement x="544" y="0" width="11" height="10" uuid="325d7f62-907c-4b98-b31f-f73583605b8a"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="21">
+			<textField textAdjust="ScaleFont" evaluationTime="Report">
+				<reportElement x="543" y="10" width="11" height="10" uuid="ab86ac41-3284-428d-ac55-803b7789fe0f"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="459" y="10" width="84" height="10" uuid="8233ef7d-6f2a-4c67-b88b-d513913bec3c"/>
+				<box rightPadding="2"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="0" width="549" height="10" forecolor="#363636" uuid="71098246-a415-471f-a00d-a6c5ef0ba448">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<propertyExpression name="net.sf.jasperreports.style.box.left.pen.lineColor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+				</reportElement>
+				<box topPadding="0" leftPadding="5" bottomPadding="0" rightPadding="0">
+					<pen lineColor="#BABABA"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Este documento es una representación impresa de un CFDI]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="230" splitType="Immediate">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$F{TFD_UUID} != null]]></printWhenExpression>
+			<frame>
+				<reportElement positionType="Float" mode="Transparent" x="0" y="43" width="553" height="180" backcolor="#FFFFFF" uuid="57f0c093-a5f1-448d-8b5a-35f40ff6965c"/>
+				<componentElement>
+					<reportElement style="Style_TextFieldTestado" mode="Opaque" x="438" y="10" width="111" height="119" uuid="03eb8b2a-9ae7-4bf3-b50b-69edd68e4208">
+						<property name="com.jaspersoft.studio.unit.margin" value="px"/>
+					</reportElement>
+					<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" margin="1">
+						<jr:codeExpression><![CDATA["https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx/" + "?&re="+$F{C_EmisorRfc}+"&rr="+$F{C_ReceptorRfc}+"&tt="+new DecimalFormat("0000000000.000000").format($F{P_Monto})+"&id="+$F{TFD_UUID}+"&fe="+$F{C_Sello}.substring($F{C_Sello}.length()-8, $F{C_Sello}.length())]]></jr:codeExpression>
+					</jr:QRCode>
+				</componentElement>
+				<staticText>
+					<reportElement x="4" y="0" width="427" height="20" uuid="96be85f7-c477-4829-8524-ce34cd8668b7">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textElement verticalAlignment="Bottom" markup="none">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sello digital del CFDI:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="60" width="427" height="20" uuid="3d0013ce-e2a6-4e8f-91ab-8fbd2601cf5b">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textElement verticalAlignment="Bottom" markup="none">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sello digital del SAT:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="120" width="427" height="20" uuid="13efa83f-1338-44e8-9697-b733aacd4247">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textElement verticalAlignment="Bottom" markup="none">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Cadena Original del complemento de certificación digital del SAT:]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont">
+					<reportElement style="Style_TextFieldTestado" x="4" y="20" width="427" height="40" uuid="b7fe2d00-b808-40dc-8eae-c21cfe9633d0">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textFieldExpression><![CDATA[$F{TFD_SelloCFD}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont">
+					<reportElement style="Style_TextFieldTestado" x="4" y="140" width="547" height="40" uuid="6fd2a4b0-2ff3-422c-9454-b1b2619457ce">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textFieldExpression><![CDATA["||"+$F{TFD_Version}+"|"+$F{TFD_UUID}+"|"+$F{TFD_FechaTimbrado}+"|"+$F{TFD_RfcProvCertif}+"|"+$F{TFD_SelloCFD} +"|"+$F{TFD_NoCertificadoSAT}+"||"]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont">
+					<reportElement style="Style_TextFieldTestado" x="4" y="80" width="427" height="40" uuid="767479b6-bb27-415d-a509-54d7b0ac077b">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="4"/>
+					<textFieldExpression><![CDATA[$F{TFD_SelloSAT}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont">
+					<reportElement style="Style_TextFieldTestado" x="438" y="10" width="111" height="120" uuid="cfca2ff2-2b70-4ad2-93fe-beff67ecf8e7">
+						<printWhenExpression><![CDATA[$P{MOSTRAR_TESTADO}]]></printWhenExpression>
+					</reportElement>
+					<box leftPadding="3"/>
+					<textFieldExpression><![CDATA[""]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="0" width="4" height="180" backcolor="#D4D4D4" uuid="20263ad4-db60-4ca3-88b7-abf08975caa0">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<propertyExpression name="net.sf.jasperreports.style.backcolor"><![CDATA[$P{COLOR_PRIMARIO}]]></propertyExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.0"/>
+					</graphicElement>
+				</rectangle>
+			</frame>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="60" y="2" width="494" height="18" uuid="12c15ea4-fbb4-489a-badb-85446609ec0a">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new com.ibm.icu.text.RuleBasedNumberFormat($P{REPORT_LOCALE}, com.ibm.icu.text.RuleBasedNumberFormat.SPELLOUT).format( $F{P_Monto}.intValue(), "%spellout-numbering").toUpperCase()+" PESOS CON "+($F{P_Monto}.remainder(BigDecimal.ONE).setScale(2).toString().replaceFirst("0.", ""))+"/100 M.N."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="60" height="18" forecolor="#575757" uuid="3eeab312-1ec5-4778-8146-b6feac3283d7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Importe con letra]]></text>
+			</staticText>
+			<frame>
+				<reportElement stretchType="ContainerHeight" x="0" y="25" width="555" height="15" uuid="3fe1c987-b87b-4d9e-93ce-54662dc1d269">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<frame>
+					<reportElement positionType="Float" mode="Transparent" x="330" y="1" width="224" height="12" uuid="2746beb5-e642-4428-b751-45536c3f8f6a"/>
+					<textField textAdjust="ScaleFont">
+						<reportElement style="Style_Campo_Dinero" mode="Transparent" x="100" y="0" width="124" height="12" uuid="38564ff0-fbfa-44e3-b365-2ea6cc2b7215"/>
+						<box>
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font size="9" isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{P_Monto}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement style="Table_CH" mode="Transparent" x="0" y="0" width="100" height="12" forecolor="#575757" uuid="cb6a6d34-d33d-42b3-8240-18bfde105410">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						</reportElement>
+						<box rightPadding="4">
+							<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+							<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textElement textAlignment="Left" verticalAlignment="Middle">
+							<font size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Total]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

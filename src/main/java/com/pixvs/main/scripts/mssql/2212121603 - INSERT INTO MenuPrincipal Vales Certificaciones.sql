@@ -1,0 +1,2 @@
+INSERT INTO MenuPrincipal(MP_NodoPadreId, MP_Titulo, MP_TituloEN, MP_Activo, MP_Icono, MP_Orden, MP_Tipo, MP_URL, MP_CMM_SistemaAccesoId, MP_FechaCreacion)
+VALUES(1068, 'Vales Certificaciones', 'Vouchers Certifications', 1, 'person', 9, 'item', '/app/control-escolar/vales-certificaciones', 1000021, GETDATE())

@@ -1,0 +1,5 @@
+DELETE pac
+FROM ProgramacionAcademicaComercial pac
+LEFT JOIN ProgramacionAcademicaComercialDetalles pacd ON PACD_PAC_ProgramacionAcademicaComercialId = PAC_ProgramacionAcademicaComercialId
+WHERE pacd.PACD_ProgramacionAcademicaComercialDetalleId IS NULL
+GO

@@ -1,0 +1,20 @@
+/****** Object:  Table [dbo].[Proveedores]    Script Date: 03/09/2020 10:40:57 a. m. ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Proveedores](
+	[PRO_ProveedorId] [int] NOT NULL,
+	[PRO_Nombre] [varchar](250) NOT NULL,
+	[PRO_RFC] [varchar](250) NULL,
+ CONSTRAINT [PK_Proveedor] PRIMARY KEY CLUSTERED 
+(
+	[PRO_ProveedorId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+

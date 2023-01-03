@@ -1,0 +1,3 @@
+ALTER TABLE [dbo].[BancosCuentas]
+ALTER COLUMN [BAC_Convenio][VARCHAR](30) NULL
+GO

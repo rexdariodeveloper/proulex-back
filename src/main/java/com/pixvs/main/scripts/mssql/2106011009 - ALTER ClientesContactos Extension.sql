@@ -1,0 +1,1 @@
+ALTER TABLE ClientesContactos ALTER COLUMN CLIC_Extension VARCHAR (20) NULL;

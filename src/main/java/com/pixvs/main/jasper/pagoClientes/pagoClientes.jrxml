@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pago a proveedores" pageWidth="1000" pageHeight="595" orientation="Landscape" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="634d493f-42b2-420e-bb11-5dab6fabf39c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQL Server"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.report.description" value="Reporte de pago a proveedores"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="291"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="701"/>
+	<style name="Header" hTextAlign="Center" vTextAlign="Middle" fontSize="8" isBold="true">
+		<pen lineWidth="0.0" lineColor="rgba(0, 0, 0, 0.0)"/>
+		<box>
+			<pen lineWidth="0.25"/>
+		</box>
+	</style>
+	<style name="Group Label" hTextAlign="Left" vTextAlign="Middle" fontSize="8" isBold="true"/>
+	<style name="Title" hTextAlign="Center" vTextAlign="Middle" fontSize="12" isBold="true"/>
+	<style name="Detail" hTextAlign="Left" vTextAlign="Middle" fontSize="8">
+		<box>
+			<leftPen lineWidth="0.25"/>
+			<rightPen lineWidth="0.25"/>
+		</box>
+	</style>
+	<parameter name="path" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:/Projects/PSCA/pixvs-core-front/src"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA["PIXVS"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaInicio" class="java.lang.String">
+		<defaultValueExpression><![CDATA["1900-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaFin" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2100-12-31"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sedes" class="java.util.Collection" nestedType="java.lang.Integer"/>
+	<parameter name="clientes" class="java.lang.String"/>
+	<parameter name="documento" class="java.lang.String"/>
+	<parameter name="moneda" class="java.lang.Integer"/>
+	<parameter name="allFormaPago" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="formaPago" class="java.util.Collection" nestedType="java.lang.Integer"/>
+	<parameter name="cuenta" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT pagos.id,
+       CONVERT(DATE, fechaRegistro) AS fechaRegistro,
+       cliente,
+       numeroOperacion,
+       moneda,
+       monto,
+       tipoCambio,
+       fechaPago,
+       formaPago,
+       cuenta,
+       facturas.sede,
+       numeroFactura,
+       fechaFactura,
+       montoFactura,
+       importePagado,
+       saldo,
+       metodoPago
+FROM VW_ReporteCXCPagos AS pagos
+     INNER JOIN VW_ReporteCXCPagosDetalles AS facturas ON pagos.id = facturas.pagoId
+WHERE CONVERT(DATE, fechaRegistro) BETWEEN $P{fechaInicio} AND $P{fechaFin}
+     AND $X{IN, facturas.sedeId, sedes}
+	 AND (COALESCE($P{clientes}, '') = '' OR $P{clientes} LIKE CONCAT('%|', alumnoClienteId, '|%'))
+     AND (COALESCE($P{documento}, 0) = 0 OR TRIM(UPPER(pagos.numeroOperacion)) LIKE TRIM(UPPER(CONCAT('%', $P{documento}, '%'))))
+	 AND (COALESCE($P{moneda}, 0) = 0 OR pagos.monedaId = $P{moneda})
+	 AND ($P{allFormaPago} = 1 OR $X{IN, pagos.formaPagoId, formaPago})
+	 AND (COALESCE($P{cuenta}, 0) = 0 OR pagos.cuentaId = $P{cuenta})
+ORDER BY fechaRegistro,
+         cliente,
+		 facturas.sede,
+		 fechaFactura
+OPTION (RECOMPILE)]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+	</field>
+	<field name="fechaRegistro" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechaRegistro"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaRegistro"/>
+	</field>
+	<field name="cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="cliente"/>
+	</field>
+	<field name="numeroOperacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numeroOperacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="numeroOperacion"/>
+	</field>
+	<field name="moneda" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="moneda"/>
+		<property name="com.jaspersoft.studio.field.label" value="moneda"/>
+	</field>
+	<field name="monto" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="monto"/>
+		<property name="com.jaspersoft.studio.field.label" value="monto"/>
+	</field>
+	<field name="tipoCambio" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="tipoCambio"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipoCambio"/>
+	</field>
+	<field name="fechaPago" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechaPago"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaPago"/>
+	</field>
+	<field name="formaPago" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="formaPago"/>
+		<property name="com.jaspersoft.studio.field.label" value="formaPago"/>
+	</field>
+	<field name="cuenta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cuenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="cuenta"/>
+	</field>
+	<field name="sede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sede"/>
+		<property name="com.jaspersoft.studio.field.label" value="sede"/>
+	</field>
+	<field name="numeroFactura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="numeroFactura"/>
+		<property name="com.jaspersoft.studio.field.label" value="numeroFactura"/>
+	</field>
+	<field name="fechaFactura" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechaFactura"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaFactura"/>
+	</field>
+	<field name="montoFactura" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="montoFactura"/>
+		<property name="com.jaspersoft.studio.field.label" value="montoFactura"/>
+	</field>
+	<field name="importePagado" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="importePagado"/>
+		<property name="com.jaspersoft.studio.field.label" value="importePagado"/>
+	</field>
+	<field name="saldo" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="saldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="saldo"/>
+	</field>
+	<field name="metodoPago" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="metodoPago"/>
+		<property name="com.jaspersoft.studio.field.label" value="metodoPago"/>
+	</field>
+	<group name="CXCPago">
+		<groupExpression><![CDATA[$F{fechaRegistro}+$F{cliente}+$F{numeroOperacion}+$F{moneda}+$F{tipoCambio}+$F{fechaPago}+$F{formaPago}+$F{cuenta}+$F{monto}]]></groupExpression>
+		<groupHeader>
+			<band height="48">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<staticText>
+					<reportElement style="Header" x="0" y="36" width="120" height="12" uuid="57a44250-bbb3-4477-9d6d-57a64b71b990">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Sede]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="120" y="36" width="90" height="12" uuid="2ff84008-a751-4145-88c6-41ad9e44853e">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[No factura]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="210" y="36" width="60" height="12" uuid="7de781a7-d2bb-4342-bb81-35196956e2a8">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="450" y="0" width="90" height="12" uuid="31064e66-385f-40f4-bb76-426803e61f39">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Monto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="710" y="0" width="120" height="12" uuid="ef757510-c582-4238-856d-c5a4027cf3ff">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Forma de pago]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="830" y="0" width="130" height="12" uuid="ab8e836c-343a-45f0-8e4b-47e4875bf5ed">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Cuenta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="630" y="0" width="80" height="12" uuid="a3ae14b5-a9f3-4332-ae21-70addae23c62">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Fecha de pago]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="0" y="0" width="60" height="12" uuid="4293cffe-0924-46e5-ab04-720576b7f61e">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Registro]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="540" y="0" width="90" height="12" uuid="cf51aa1c-b787-4e6e-8d73-d69c4bfab4ad">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Tipo de cambio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="360" y="0" width="90" height="12" uuid="e96cf5ea-1dfd-4db5-ba36-fc45e739c135">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Moneda]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="60" y="0" width="210" height="12" uuid="92dec2de-1bbc-42e0-8b94-6263dfc917da">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Cliente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="270" y="0" width="90" height="12" uuid="bdbf2410-b29a-4258-9052-57f8412b51eb">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[No operación]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" mode="Opaque" x="0" y="24" width="630" height="12" backcolor="#D3D3D3" uuid="b191dad0-d16c-4e83-8382-4ac72029d461">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Detalles del pago]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="270" y="36" width="90" height="12" uuid="135d1923-19c5-4d0a-badf-c51299a3fca4">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Monto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="360" y="36" width="90" height="12" uuid="41a0ce47-3786-4923-a284-c907f64b4491">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Importe pagado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="450" y="36" width="90" height="12" uuid="7ef235df-7ec2-4d51-96cb-b6083c7605ec">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Saldo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Header" x="540" y="36" width="90" height="12" uuid="ffeb91e7-8454-477a-8baf-0a3a147fd37d">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Método de pago]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont" pattern="dd/mm/yyyy" isBlankWhenNull="true">
+					<reportElement style="Detail" x="0" y="12" width="60" height="12" uuid="28aa115e-00bb-4d5b-afeb-18c164b275d7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{fechaRegistro}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="Detail" x="60" y="12" width="210" height="12" uuid="02f72724-403c-4097-af1a-a8b52c3ba461"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{cliente}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="Detail" x="270" y="12" width="90" height="12" uuid="3c1e4f97-3747-4d4e-a85f-9f41c4e69041">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{numeroOperacion}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" pattern="$ #,##0.00" isBlankWhenNull="true">
+					<reportElement style="Detail" x="450" y="12" width="90" height="12" uuid="532748a5-0b1a-400d-b226-46f3a9df5208">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="0" rightPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{monto}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="Detail" x="360" y="12" width="90" height="12" uuid="fbdcc324-8706-4ff1-8936-e10e7e00e9ea">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{moneda}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" pattern="#,##0.0000" isBlankWhenNull="true">
+					<reportElement style="Detail" x="540" y="12" width="90" height="12" uuid="4abfd46a-b7bb-417d-80c9-50b6db7cefcd">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="0" rightPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{tipoCambio}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement style="Detail" x="630" y="12" width="80" height="12" uuid="1d7717d6-45bb-4706-bb39-5fffdc87850f">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="0">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{fechaPago}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="Detail" x="710" y="12" width="120" height="12" uuid="ea20e1de-4c63-43b6-afff-dabbc893bc55"/>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{formaPago}]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement style="Detail" x="830" y="12" width="130" height="12" uuid="8029d632-bb40-469b-a286-c1c2b1e33b3a">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<box leftPadding="2">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="12">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="84" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image scaleImage="RetainShape" hAlign="Left" vAlign="Top">
+				<reportElement x="0" y="0" width="210" height="72" uuid="d13ed754-795f-4bca-9045-398195295ca3">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{path} + "/app/main/img/logos/logo_reportes.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement style="Title" x="210" y="0" width="500" height="24" uuid="3734205d-5133-4a7f-abf9-fac021d52dbc">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" x="210" y="24" width="500" height="24" uuid="fdab7b4d-5336-4f58-99aa-5baf4e5d57b5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Reporte pago de clientes]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Title" x="210" y="48" width="500" height="24" uuid="b0c39b74-e452-45c2-8604-06b8eb6f9a92">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[DATEFORMAT(new SimpleDateFormat("yyyy-MM-dd").parse($P{fechaInicio}),"dd/MM/yyyy") + " - " + DATEFORMAT(new SimpleDateFormat("yyyy-MM-dd").parse($P{fechaFin}),"dd/MM/yyyy")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="12">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" x="0" y="0" width="120" height="12" uuid="35415f44-5515-415c-a42b-0019832d694e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="2">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sede}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" x="120" y="0" width="90" height="12" uuid="763efe21-c83f-494f-aba2-1735071a0288">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{numeroFactura}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement style="Detail" x="210" y="0" width="60" height="12" uuid="48efde32-9b15-43be-8886-8b45316f891d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{fechaFactura}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Detail" x="360" y="0" width="90" height="12" uuid="07273bca-8a5a-4c02-b9ec-74cccb2490ac">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{importePagado}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Detail" x="450" y="0" width="90" height="12" uuid="66496063-d0a3-493f-9b72-8a65e53ed86e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{saldo}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" pattern="$ #,##0.00" isBlankWhenNull="true">
+				<reportElement style="Detail" x="270" y="0" width="90" height="12" uuid="f0334c2c-a207-4d19-a320-db6bb27bc73d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0" rightPadding="2">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{montoFactura}.setScale(2, BigDecimal.ROUND_HALF_UP)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement style="Detail" x="540" y="0" width="90" height="12" uuid="df3849d9-de82-46d5-b98f-04bfb115b54b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="0">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{metodoPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

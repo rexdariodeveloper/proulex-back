@@ -1,0 +1,8 @@
+INSERT INTO TabuladoresCursos(TABC_TAB_TabuladorId,TABC_PROG_ProgramaId,TABC_PAMOD_ModalidadId,TABC_PAMODH_PAModalidadHorarioId,TABC_PROGI_ProgramaIdiomaId,TABC_Activo)
+Select DISTINCT
+TAB_TabuladorId,PROGI_PROG_ProgramaId as programa,PROGIM_PAMOD_ModalidadId as modalidad,PAMODH_PAModalidadHorarioId as horario,PROGI_ProgramaIdiomaId as curso,1 as activo
+from Tabuladores
+INNER JOIN ProgramasIdiomas on PROGI_TAB_TabuladorId = TAB_TabuladorId
+INNER JOIN ProgramasIdiomasModalidades on PROGIM_PROGI_ProgramaIdiomaId = PROGI_ProgramaIdiomaId
+INNER JOIN PAModalidadesHorarios on PAMODH_PAMOD_ModalidadId = PROGIM_PAMOD_ModalidadId
+GO

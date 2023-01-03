@@ -1,0 +1,1 @@
+UPDATE ControlesMaestrosMultiples SET CMM_Valor = N'En tránsito' WHERE CMM_ControlId = 2000021;

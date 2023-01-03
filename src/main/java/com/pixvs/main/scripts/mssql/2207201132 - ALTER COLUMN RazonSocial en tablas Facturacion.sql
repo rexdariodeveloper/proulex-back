@@ -1,0 +1,5 @@
+ALTER TABLE AlumnosFacturacion ALTER COLUMN ALUF_RazonSocial VARCHAR(200)
+GO
+
+ALTER TABLE ClientesFacturacion ALTER COLUMN CLIF_RazonSocial VARCHAR(200)
+GO

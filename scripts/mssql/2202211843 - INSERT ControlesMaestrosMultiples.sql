@@ -1,0 +1,31 @@
+SET IDENTITY_INSERT [dbo].[ControlesMaestrosMultiples] ON 
+GO
+
+INSERT INTO [dbo].[ControlesMaestrosMultiples]
+           ([CMM_ControlId],[CMM_Control],[CMM_Valor],[CMM_Activo],[CMM_Referencia],[CMM_Sistema],[CMM_USU_CreadoPorId],[CMM_FechaCreacion],[CMM_USU_ModificadoPorId],[CMM_FechaModificacion],[CMM_Orden],[CMM_ARC_ImagenId],[CMM_CMM_ReferenciaId],[CMM_Color])
+VALUES
+           (2000660,'CMM_ENT_TipoContrato','Individual de trabajo',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (2000661,'CMM_ENT_TipoContrato','Por obra determinada',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (2000662,'CMM_ENT_TipoContrato','Por Susutitución',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (2000663,'CMM_ENT_TipoContrato','A Prueba',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (2000664,'CMM_ENT_TipoContrato','Capacitación Inicial',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (2000665,'CMM_ENT_TipoContrato','Honorarios',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		  
+
+		   (539,'CMM_EMP_Nacionalidad','MEXICANA',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (540,'CMM_EMP_Nacionalidad','ESTADOUNIDENSE',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (572,'CMM_EMP_Nacionalidad','AUSTRALIANA',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   
+		   (563,'CMM_EMP_TipoSangre','A+',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (564,'CMM_EMP_TipoSangre','A-',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (565,'CMM_EMP_TipoSangre','B+',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+           (566,'CMM_EMP_TipoSangre','B-',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (567,'CMM_EMP_TipoSangre','AB+',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (568,'CMM_EMP_TipoSangre','AB-',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+           (569,'CMM_EMP_TipoSangre','O+',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL),
+		   (570,'CMM_EMP_TipoSangre','O-',1,NULL,1,NULL,GETDATE(),NULL,NULL,NULL,NULL,NULL,NULL)
+
+GO
+
+SET IDENTITY_INSERT [dbo].[ControlesMaestrosMultiples] OFF 
+GO

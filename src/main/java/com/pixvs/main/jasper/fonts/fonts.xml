@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+
+    <fontFamily name="Calibri">
+        <normal><![CDATA[fonts/calibri/Regular.ttf]]></normal>
+        <bold><![CDATA[fonts/calibri/Bold.ttf]]></bold>
+        <italic><![CDATA[fonts/calibri/Italic.ttf]]></italic>
+        <bolditalic><![CDATA[fonts/calibri/BoldItalic.ttf]]></bolditalic>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+    <fontFamily name="Tahoma">
+        <normal><![CDATA[fonts/tahoma/Regular.ttf]]></normal>
+        <bold><![CDATA[fonts/tahoma/TAHOMAB0.TTF]]></bold>
+        <pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+    </fontFamily>
+
+
+</fontFamilies>

@@ -1,0 +1,1 @@
+UPDATE MenuPrincipal SET MP_Titulo = N'Valuación de Inventario' where MP_TituloEN like N'Inventory valuation';

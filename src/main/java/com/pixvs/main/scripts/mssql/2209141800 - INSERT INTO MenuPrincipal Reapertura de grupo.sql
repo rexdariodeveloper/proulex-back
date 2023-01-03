@@ -1,0 +1,2 @@
+INSERT INTO MenuPrincipal(MP_NodoPadreId, MP_Titulo, MP_TituloEN, MP_Activo, MP_Icono, MP_Orden, MP_Tipo, MP_URL, MP_CMM_SistemaAccesoId, MP_FechaCreacion)
+VALUES(4, 'Reapertura de grupo', 'Group reopening', 1, 'assignment', 9, 'item', '/config/reapertura-grupo', 1000021, GETDATE())

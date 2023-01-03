@@ -1,0 +1,16 @@
+Delete from ProgramasIdiomasNiveles where PROGIN_ProgramaIdiomaNivelId is not null
+GO
+Delete from ProgramasIdiomasExamenesUnidades where PROGIEU_ProgramaIdiomaExamenUnidadId is not null
+GO
+Delete from ProgramasIdiomasExamenesModalidades where PROGIEM_ProgramaIdiomaExamenDiaId is not null
+GO
+Delete from ProgramasIdiomasExamenes where PROGIE_ProgramaIdiomaExamenId is not null
+GO
+DROP TABLE ProgramasIdiomasNiveles
+GO
+DROP TABLE ProgramasIdiomasExamenesUnidades
+GO
+DROP TABLE ProgramasIdiomasExamenesModalidades
+GO
+DROP TABLE ProgramasIdiomasExamenes
+GO

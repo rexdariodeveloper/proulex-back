@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Criterios de evaluacion" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07128a8d-258d-4e01-9db0-a4d23d82724b">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Table_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TH" mode="Opaque" backcolor="#DCDCDC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="GruposProfe" uuid="5fcda59a-86e0-4d7c-b444-6df7e8c716b2">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.String"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT "ProgramasGrupos"."PROGRU_Codigo" AS codigoGrupo,
+	"PAModalidadesHorarios"."PAMODH_Horario" AS horario,
+	"ProgramasGrupos"."PROGRU_Nivel" AS nivel,
+	COALESCE( PROGRU_Aula,'No asignada') AS aula,
+	COALESCE( PROGRU_Comentarios,'') AS comentarios
+FROM "ProgramasGrupos"
+	INNER JOIN "Empleados" ON 
+	 "Empleados"."EMP_EmpleadoId" = "ProgramasGrupos"."PROGRU_EMP_EmpleadoId" 
+	INNER JOIN "PAModalidadesHorarios" ON 
+	 "PAModalidadesHorarios"."PAMODH_PAModalidadHorarioId" = "ProgramasGrupos"."PROGRU_PAMODH_PAModalidadHorarioId" 
+	 INNER JOIN Sucursales on PROGRU_SUC_SucursalId = SUC_SucursalId
+WHERE 
+	 "Empleados"."EMP_EmpleadoId" = $P{P1} AND SUC_SucursalId =  $P{P2}
+	  AND ($P{FechaInicio} = '' OR "ProgramasGrupos"."PROGRU_FechaInicio" >= $P{FechaInicio})]]>
+		</queryString>
+		<field name="codigoGrupo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="codigoGrupo"/>
+			<property name="com.jaspersoft.studio.field.label" value="codigoGrupo"/>
+		</field>
+		<field name="horario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="horario"/>
+			<property name="com.jaspersoft.studio.field.label" value="horario"/>
+		</field>
+		<field name="nivel" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="nivel"/>
+			<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+		</field>
+		<field name="aula" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="aula"/>
+			<property name="com.jaspersoft.studio.field.label" value="aula"/>
+		</field>
+		<field name="comentarios" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="comentarios"/>
+			<property name="com.jaspersoft.studio.field.label" value="comentarios"/>
+		</field>
+	</subDataset>
+	<subDataset name="Evaluacion" uuid="360f08b1-c449-47ad-a28c-6ebb6f7cf8f0">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.Integer"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT DISTINCT actividad,fechaHabil
+FROM (
+Select
+PAAE_Actividad as actividad,
+(SELECT DISTINCT fecha
+		FROM (
+			Select fecha,ROW_NUMBER() OVER (ORDER BY fecha) AS RowNum from dbo.fn_getDiaHabiles(PROGRU_FechaInicio ,PROGRU_FechaFin,PAMOD_Domingo,PAMOD_Lunes,PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado) where fecha is not null
+		) as fechaAplicacion where RowNum = PROGIEM_Dias
+	) as fechaHabil
+from ProgramasIdiomasExamenesDetalles
+INNER JOIN ProgramasIdiomasExamenes ON PROGIE_ProgramaIdiomaExamenId = PROGIED_PROGIE_ProgramaIdiomaExamenId
+INNER JOIN ProgramasIdiomasNiveles ON PROGIN_ProgramaIdiomaNivelId = PROGIE_PROGIN_ProgramaIdiomaNivelId
+INNER JOIN ProgramasIdiomasExamenesModalidades ON PROGIEM_PROGIED_ProgramaIdiomaExamenDetalleId = PROGIED_ProgramaIdiomaExamenDetalleId AND PROGIEM_Dias !='continuo'
+INNER JOIN PAActividadesEvaluacion ON PAAE_ActividadEvaluacionId = PROGIED_PAAE_ActividadEvaluacionId
+INNER JOIN ControlesMaestrosMultiples ON CMM_ControlId = PROGIED_CMM_TestId
+INNER JOIN PAModalidades ON PAMOD_ModalidadId = PROGIEM_PAMOD_ModalidadId
+INNER JOIN ProgramasGrupos ON PROGRU_PROGI_ProgramaIdiomaId = PROGIN_PROGI_ProgramaIdiomaId AND PROGIEM_PAMOD_ModalidadId = PROGRU_PAMOD_ModalidadId
+WHERE PROGIN_NivelInicial >=1 AND PROGIN_NivelFinal <=3 AND PROGRU_EMP_EmpleadoId = $P{P1}  AND PROGRU_SUC_SucursalId= $P{P2} 
+)a1 WHERE a1.fechaHabil is not null ORDER BY actividad]]>
+		</queryString>
+		<field name="actividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividad"/>
+		</field>
+		<field name="fechaHabil" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="fechaHabil"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaHabil"/>
+		</field>
+		<group name="actividad">
+			<groupExpression><![CDATA[$F{actividad}]]></groupExpression>
+		</group>
+		<group name="fechaHabil">
+			<groupExpression><![CDATA[$F{fechaHabil}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="Tabla2" uuid="d2dbfe3d-ec73-4e23-b781-6e0f85ec26d7">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.Integer"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT DISTINCT actividad,fechaHabil
+FROM (
+Select
+PAAE_Actividad as actividad,
+(SELECT DISTINCT fecha
+		FROM (
+			Select fecha,ROW_NUMBER() OVER (ORDER BY fecha) AS RowNum from dbo.fn_getDiaHabiles(PROGRU_FechaInicio ,PROGRU_FechaFin,PAMOD_Domingo,PAMOD_Lunes,PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado) where fecha is not null
+		) as fechaAplicacion where RowNum = PROGIEM_Dias
+	) as fechaHabil
+from ProgramasIdiomasExamenesDetalles
+INNER JOIN ProgramasIdiomasExamenes ON PROGIE_ProgramaIdiomaExamenId = PROGIED_PROGIE_ProgramaIdiomaExamenId
+INNER JOIN ProgramasIdiomasNiveles ON PROGIN_ProgramaIdiomaNivelId = PROGIE_PROGIN_ProgramaIdiomaNivelId
+INNER JOIN ProgramasIdiomasExamenesModalidades ON PROGIEM_PROGIED_ProgramaIdiomaExamenDetalleId = PROGIED_ProgramaIdiomaExamenDetalleId AND PROGIEM_Dias !='continuo'
+INNER JOIN PAActividadesEvaluacion ON PAAE_ActividadEvaluacionId = PROGIED_PAAE_ActividadEvaluacionId
+INNER JOIN ControlesMaestrosMultiples ON CMM_ControlId = PROGIED_CMM_TestId
+INNER JOIN PAModalidades ON PAMOD_ModalidadId = PROGIEM_PAMOD_ModalidadId
+INNER JOIN ProgramasGrupos ON PROGRU_PROGI_ProgramaIdiomaId = PROGIN_PROGI_ProgramaIdiomaId AND PROGIEM_PAMOD_ModalidadId = PROGRU_PAMOD_ModalidadId
+WHERE PROGIN_NivelInicial >=4 AND PROGIN_NivelFinal <=9 AND PROGRU_EMP_EmpleadoId = $P{P1}  AND PROGRU_SUC_SucursalId= $P{P2} 
+)a1 WHERE a1.fechaHabil is not null ORDER BY actividad]]>
+		</queryString>
+		<field name="actividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividad"/>
+		</field>
+		<field name="fechaHabil" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="fechaHabil"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaHabil"/>
+		</field>
+		<group name="actividad">
+			<groupExpression><![CDATA[$F{actividad}]]></groupExpression>
+		</group>
+		<group name="fechaHabil">
+			<groupExpression><![CDATA[$F{fechaHabil}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="Tabla3" uuid="480f8be7-9b01-4ea8-bbe5-2ebf92b50ed8">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.Integer"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT actividad,fechaHabil
+FROM (
+Select DISTINCT
+PROGIE_Nombre as actividad,
+	(SELECT DISTINCT fecha
+		FROM (
+			Select fecha,ROW_NUMBER() OVER (ORDER BY fecha) AS RowNum from dbo.fn_getDiaHabiles(PROGRU_FechaInicio ,PROGRU_FechaFin,PAMOD_Domingo,PAMOD_Lunes,PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado) where fecha is not null
+		) as fechaAplicacion where RowNum = PROGIEM_Dias
+	) as fechaHabil
+from ProgramasIdiomasExamenesDetalles
+INNER JOIN ProgramasIdiomasExamenes ON PROGIE_ProgramaIdiomaExamenId = PROGIED_PROGIE_ProgramaIdiomaExamenId
+INNER JOIN ProgramasIdiomasNiveles ON PROGIN_ProgramaIdiomaNivelId = PROGIE_PROGIN_ProgramaIdiomaNivelId
+INNER JOIN ProgramasIdiomasExamenesModalidades ON PROGIEM_PROGIED_ProgramaIdiomaExamenDetalleId = PROGIED_ProgramaIdiomaExamenDetalleId
+INNER JOIN PAActividadesEvaluacion ON PAAE_ActividadEvaluacionId = PROGIED_PAAE_ActividadEvaluacionId
+INNER JOIN ControlesMaestrosMultiples ON CMM_ControlId = PROGIED_CMM_TestId
+INNER JOIN PAModalidades ON PAMOD_ModalidadId = PROGIEM_PAMOD_ModalidadId
+INNER JOIN ProgramasIdiomas ON PROGI_ProgramaIdiomaId = PROGIN_PROGI_ProgramaIdiomaId
+INNER JOIN ProgramasGrupos ON PROGRU_PROGI_ProgramaIdiomaId = PROGI_ProgramaIdiomaId
+INNER JOIN Empleados ON EMP_EmpleadoId = PROGRU_EMP_EmpleadoId
+INNER JOIN Sucursales on PROGRU_SUC_SucursalId = SUC_SucursalId
+WHERE EMP_EmpleadoId=$P{P1} AND PROGRU_Nivel >= 10 AND PROGRU_Nivel <=12 AND SUC_SucursalId=  $P{P2} 
+)a1 WHERE a1.fechaHabil is not null]]>
+		</queryString>
+		<field name="actividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividad"/>
+		</field>
+		<field name="fechaHabil" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="fechaHabil"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaHabil"/>
+		</field>
+		<group name="actividad">
+			<groupExpression><![CDATA[$F{actividad}]]></groupExpression>
+		</group>
+		<group name="fechaHabil">
+			<groupExpression><![CDATA[$F{fechaHabil}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="FechasFestivas" uuid="ec7e5145-7d37-47ee-bf1f-3a4072f0cb89">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.Integer"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT
+STRING_AGG(fecha, ',') WITHIN GROUP (ORDER BY fecha) AS diasFestivo
+FROM(
+Select DISTINCT
+--STRING_AGG(,',') WITHIN GROUP (ORDER BY fecha) as diasFestivo
+EMP_EmpleadoId as idEmpleado,
+CONCAT(fecha,'-',motivo) as fecha
+from ProgramasGrupos
+INNER JOIN Empleados on EMP_EmpleadoId = PROGRU_EMP_EmpleadoId
+INNER JOIN PAModalidadesHorarios on PAMODH_PAModalidadHorarioId = PROGRU_PAMODH_PAModalidadHorarioId
+INNER JOIN PAModalidades on PROGRU_PAMOD_ModalidadId = PAMOD_ModalidadId
+INNER JOIN Sucursales on PROGRU_SUC_SucursalId = SUC_SucursalId
+outer apply dbo.fn_getDiasFestivosConMotivo(PROGRU_FechaInicio,PROGRU_FechaFin,PAMOD_Domingo,PAMOD_Lunes,PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado)
+WHERE EMP_EmpleadoId= $P{P1} AND fecha is not null AND SUC_SucursalId= $P{P2} 
+)at1]]>
+		</queryString>
+		<field name="diasFestivo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="diasFestivo"/>
+			<property name="com.jaspersoft.studio.field.label" value="diasFestivo"/>
+		</field>
+		<group name="diasFestivo">
+			<groupExpression><![CDATA[$F{diasFestivo}]]></groupExpression>
+		</group>
+	</subDataset>
+	<subDataset name="T3" uuid="6e301d5a-cc1c-46d7-80a0-eb9da1684756">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<parameter name="P1" class="java.lang.Integer"/>
+		<parameter name="P2" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT DISTINCT actividad,fechaHabil
+FROM (
+Select
+PAAE_Actividad as actividad,
+(SELECT DISTINCT fecha
+		FROM (
+			Select fecha,ROW_NUMBER() OVER (ORDER BY fecha) AS RowNum from dbo.fn_getDiaHabiles(PROGRU_FechaInicio ,PROGRU_FechaFin,PAMOD_Domingo,PAMOD_Lunes,PAMOD_Martes,PAMOD_Miercoles,PAMOD_Jueves,PAMOD_Viernes,PAMOD_Sabado) where fecha is not null
+		) as fechaAplicacion where RowNum = PROGIEM_Dias
+	) as fechaHabil
+from ProgramasIdiomasExamenesDetalles
+INNER JOIN ProgramasIdiomasExamenes ON PROGIE_ProgramaIdiomaExamenId = PROGIED_PROGIE_ProgramaIdiomaExamenId
+INNER JOIN ProgramasIdiomasNiveles ON PROGIN_ProgramaIdiomaNivelId = PROGIE_PROGIN_ProgramaIdiomaNivelId
+INNER JOIN ProgramasIdiomasExamenesModalidades ON PROGIEM_PROGIED_ProgramaIdiomaExamenDetalleId = PROGIED_ProgramaIdiomaExamenDetalleId AND PROGIEM_Dias !='continuo'
+INNER JOIN PAActividadesEvaluacion ON PAAE_ActividadEvaluacionId = PROGIED_PAAE_ActividadEvaluacionId
+INNER JOIN ControlesMaestrosMultiples ON CMM_ControlId = PROGIED_CMM_TestId
+INNER JOIN PAModalidades ON PAMOD_ModalidadId = PROGIEM_PAMOD_ModalidadId
+INNER JOIN ProgramasGrupos ON PROGRU_PROGI_ProgramaIdiomaId = PROGIN_PROGI_ProgramaIdiomaId AND PROGIEM_PAMOD_ModalidadId = PROGRU_PAMOD_ModalidadId
+WHERE PROGIN_NivelInicial >=13 AND PROGIN_NivelFinal <=15 AND PROGRU_EMP_EmpleadoId = $P{P1}  AND PROGRU_SUC_SucursalId= $P{P2} 
+)a1 WHERE a1.fechaHabil is not null ORDER BY actividad]]>
+		</queryString>
+		<field name="actividad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="actividad"/>
+			<property name="com.jaspersoft.studio.field.label" value="actividad"/>
+		</field>
+		<field name="fechaHabil" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.name" value="fechaHabil"/>
+			<property name="com.jaspersoft.studio.field.label" value="fechaHabil"/>
+		</field>
+		<group name="actividad">
+			<groupExpression><![CDATA[$F{actividad}]]></groupExpression>
+		</group>
+		<group name="fechaHabil">
+			<groupExpression><![CDATA[$F{fechaHabil}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="RutaImagen" class="java.lang.String"/>
+	<parameter name="AlumnoId" class="java.lang.Integer"/>
+	<parameter name="FechaInicio" class="java.lang.String"/>
+	<parameter name="FechaFin" class="java.lang.String"/>
+	<parameter name="SucursalId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from [dbo].[fn_getReporteCriteriosProfesor]( $P{AlumnoId} )]]>
+	</queryString>
+	<field name="empleadoId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="empleadoId"/>
+		<property name="com.jaspersoft.studio.field.label" value="empleadoId"/>
+	</field>
+	<field name="empleadoNombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="empleadoNombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="empleadoNombre"/>
+	</field>
+	<field name="grupoCodigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoCodigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoCodigo"/>
+	</field>
+	<field name="grupoFechaInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoFechaInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoFechaInicio"/>
+	</field>
+	<field name="grupoFechaFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoFechaFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoFechaFin"/>
+	</field>
+	<field name="grupoHorario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoHorario"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoHorario"/>
+	</field>
+	<field name="grupoNivel" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="grupoNivel"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoNivel"/>
+	</field>
+	<field name="grupoModalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoModalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoModalidad"/>
+	</field>
+	<field name="grupoAula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoAula"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoAula"/>
+	</field>
+	<field name="grupoComentarios" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoComentarios"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoComentarios"/>
+	</field>
+	<field name="grupoActividad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoActividad"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoActividad"/>
+	</field>
+	<field name="grupoFechaAplicacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="grupoFechaAplicacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="grupoFechaAplicacion"/>
+	</field>
+	<field name="fechaActual" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaActual"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaActual"/>
+	</field>
+	<field name="niveles" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="niveles"/>
+		<property name="com.jaspersoft.studio.field.label" value="niveles"/>
+	</field>
+	<field name="fechaSuplencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaSuplencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaSuplencia"/>
+	</field>
+	<variable name="EmpleadoId" class="java.lang.String"/>
+	<group name="Grupos">
+		<groupExpression><![CDATA[$F{empleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="72">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<componentElement>
+					<reportElement x="0" y="0" width="550" height="60" uuid="a57a42dd-83dd-49f9-bbaf-81017b27ab8d">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="GruposProfe" uuid="ad8378e7-966b-4fd9-8054-328fd66cf54a">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="858bf7ca-dd58-43e9-871f-ca501a2b5e81">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="30" uuid="dbcf4467-3a10-4c8d-9f3f-08bd3b25ccb9"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Código de grupo]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="130" height="30" uuid="b67038ba-7e70-4b4c-9fc1-7236802d263a"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{codigoGrupo}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="70" uuid="fb96d714-a9d2-4b5b-a28c-70693de16fc8">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+							<jr:tableHeader style="Table_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="70" height="30" uuid="9f8dd99f-8cbd-4ea0-936a-9c0f63fe7384"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Horario]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="70" height="30" uuid="0db761f2-d877-4845-9f0c-25276e33f4f1"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="59" uuid="0dfb7e97-eff2-4104-8d4c-03531e88ff28">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+							<jr:tableHeader style="Table_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="59" height="30" uuid="b8c76bee-4153-485f-bd6b-4b226e408f19"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Nivel]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="59" height="30" uuid="ddd38ae8-d6c1-4d2c-97dd-e1b00c39d060"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="120" uuid="2f8653ce-2f11-4813-8675-dc74079636fa">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+							<jr:tableHeader style="Table_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="120" height="30" uuid="8b79cd87-cddb-436a-8297-9855d4ae047d"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Aula]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" uuid="f597f8ee-1244-4cc7-9892-088d40f3c759"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{aula}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="171" uuid="12ea85e8-d283-44f5-8700-a471b1dbaa74">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+							<jr:tableHeader style="Table_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="171" height="30" uuid="f7be7ff6-6f2c-48ab-bcb0-609f520b0129"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Comentarios]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="171" height="30" uuid="24cea1cf-113c-4cf1-9398-97b4ef70d20e"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{comentarios}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="144">
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				<componentElement>
+					<reportElement x="1" y="10" width="549" height="130" uuid="d81c557a-cf09-4452-af8f-9cd31976fa8c">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 4_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 4_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 4_TD"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="FechasFestivas" uuid="9a497f4a-57ba-4a58-90c5-0066a5e77286">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="549" uuid="71283c9a-30a2-4bdc-9936-310911db159f">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 4_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="549" height="30" uuid="f79c2351-1e92-4428-8cee-fbe85863eaf0"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Días festivos]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 4_TD" height="100">
+								<property name="com.jaspersoft.studio.unit.height" value="px"/>
+								<textField>
+									<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="549" height="100" isPrintWhenDetailOverflows="true" uuid="ea364487-2473-4a59-b11b-9943951f828b"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{diasFestivo}.replace(",","   |  ")]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{empleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="64">
+				<componentElement>
+					<reportElement x="1" y="-1" width="130" height="60" isRemoveLineWhenBlank="true" uuid="ddfcaadf-a026-4005-ad8b-ce9b9b72868a">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Evaluacion" uuid="12db30bc-535b-4e45-a8b4-d050c90f9660">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="98d3017b-9e1b-4153-87fa-a1d814f66a73">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 1_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="30" uuid="ffc49992-3dc0-4631-9a4f-7c814486b9b7"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Levels 1-3]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 1_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="130" height="30" isRemoveLineWhenBlank="true" uuid="50063aa5-7624-4749-8159-4b41d0cd4264"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{actividad}+"-"+$F{fechaHabil}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:detail/>
+					</jr:table>
+				</componentElement>
+				<componentElement>
+					<reportElement x="140" y="-1" width="130" height="60" uuid="37ab430b-2f82-4466-84ec-1401ad878bf4">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 2_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 2_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 2_TD"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="Tabla2" uuid="1b9f558c-85bd-4aa9-97ae-0c1de13b407c">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="9bb776c3-c6c7-451f-ad44-c24afcd1e95f">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 2_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="30" uuid="bb54e32e-3803-4736-a779-8cd745d3ffc3"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Levels 4-9]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 2_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="130" height="30" uuid="d23b0cbe-e88f-40d2-9819-3b406eaff0e5"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{actividad}+"-"+$F{fechaHabil}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+				<componentElement>
+					<reportElement x="280" y="-1" width="130" height="60" uuid="4a409d7a-4a48-45af-9030-04d2604a9c68">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 3_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 3_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 3_TD"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="T3" uuid="8ca27b14-5b21-4174-a3cb-5a6775ac52cc">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="2336dfe0-bab3-45cf-8c11-dae4325c4bf4">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 3_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="30" uuid="09efd90c-2c8e-4f04-91fa-6748f0a83437"/>
+									<box leftPadding="5"/>
+									<text><![CDATA[Levels 10-12]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 3_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="130" height="30" uuid="c375e178-5ec8-4ab4-a87e-9b3d0cbc524d"/>
+									<box leftPadding="5"/>
+									<textFieldExpression><![CDATA[$F{actividad}+"-"+$F{fechaHabil}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+				<componentElement>
+					<reportElement x="420" y="-1" width="130" height="60" uuid="139f88a5-7c6f-4b09-a207-dc885064304c">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+						<property name="com.jaspersoft.studio.table.style.table_header" value="Table 6_TH"/>
+						<property name="com.jaspersoft.studio.table.style.column_header" value="Table 6_CH"/>
+						<property name="com.jaspersoft.studio.table.style.detail" value="Table 6_TD"/>
+					</reportElement>
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="T3" uuid="ccc0b68e-d986-43c6-a88c-2f707ecc9722">
+							<datasetParameter name="P1">
+								<datasetParameterExpression><![CDATA[$P{AlumnoId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="P2">
+								<datasetParameterExpression><![CDATA[$P{SucursalId}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:column width="130" uuid="6f4f3eb0-6505-4bbf-ba27-e985c71075fc">
+							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+							<jr:tableHeader style="Table 6_TH" height="30">
+								<staticText>
+									<reportElement x="0" y="0" width="130" height="30" uuid="a8d92b89-f479-4152-b1ab-234c17423032"/>
+									<text><![CDATA[Levels 13-15]]></text>
+								</staticText>
+							</jr:tableHeader>
+							<jr:detailCell style="Table 6_TD" height="30">
+								<textField>
+									<reportElement x="0" y="0" width="130" height="30" uuid="0f8e4d2e-327a-4322-a4d5-e128112cc2fa"/>
+									<textFieldExpression><![CDATA[$F{actividad}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:table>
+				</componentElement>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="197" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="0" width="559" height="95" uuid="6415afcc-a8b4-4c06-b016-0efa13023db6"/>
+				<imageExpression><![CDATA[$P{RutaImagen}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="108" width="200" height="20" backcolor="#D3D3D3" uuid="8ba8cd17-911e-4364-a16f-cc4298d9a9ff"/>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Asignación de clases (Assignment class)]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="420" y="108" width="130" height="20" uuid="52e582a9-d971-4f4d-b1b4-91a8e6076422">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="163" width="110" height="20" backcolor="#D3D3D3" uuid="63b8918e-401e-40b3-affe-c31efcd3ccea">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Instructor:]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="110" y="163" width="440" height="20" uuid="fa1bea22-9083-45ab-8e04-f4010100a6dd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{empleadoNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="142" width="110" height="20" backcolor="#D3D3D3" uuid="b1cdea94-b379-4b52-8e28-3f2e73483832">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Modalidad:]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="110" y="142" width="110" height="20" uuid="b068ca54-38f4-4907-adfc-11b38aa59568">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{grupoModalidad}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="329" y="142" width="221" height="20" uuid="dd9d34d3-574e-4a26-b1b7-04650cb5c66b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{FechaInicio}+" / "+$P{FechaFin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="142" width="110" height="20" backcolor="#D3D3D3" uuid="46877f90-e57e-4559-93bd-943a11263e3c">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5">
+					<pen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Curso (Course)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="112">
+			<staticText>
+				<reportElement x="0" y="20" width="550" height="30" uuid="69a2a448-1a67-4d52-91b9-bd241d9bbd50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota: La asignación está sujeta a la cancelación o reasignación de grupos de acuerdo a la demanda de los alumnos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="50" width="220" height="30" uuid="345c0ca9-4bc6-4d68-a801-a5ad8cef25f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[____________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="75" width="200" height="30" uuid="9298f6ea-74b9-45e5-a5eb-270b5fbe21c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre y firma de enterado del instructor]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

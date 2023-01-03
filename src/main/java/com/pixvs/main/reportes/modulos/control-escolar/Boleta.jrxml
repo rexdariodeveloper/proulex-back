@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Boleta" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="634d493f-42b2-420e-bb11-5dab6fabf39c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.report.description" value="Boleta de calificaciones"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Header" hTextAlign="Center" vTextAlign="Middle" fontSize="8" isBold="true">
+		<pen lineWidth="0.0" lineColor="rgba(0, 0, 0, 0.0)"/>
+		<box>
+			<pen lineWidth="0.25"/>
+		</box>
+	</style>
+	<style name="Group Label" hTextAlign="Left" vTextAlign="Middle" fontSize="8" isBold="true"/>
+	<style name="Title" hTextAlign="Center" vTextAlign="Middle" fontSize="12" isBold="true"/>
+	<style name="Detail" hTextAlign="Left" vTextAlign="Middle" fontSize="8">
+		<box>
+			<leftPen lineWidth="0.25"/>
+			<rightPen lineWidth="0.25"/>
+		</box>
+	</style>
+	<subDataset name="Detalles" uuid="a558fb30-e56d-4cee-9377-6004c71edbf5">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PROULEX"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="id" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[select *,dbo.[NumeroLetra](detalles.TotalConvertir) AS Letras
+from (
+SELECT
+	NumeroPartida,
+	CodigoRequisicion,
+	CodigoArticulo,
+	NombreArticulo,
+	CometariosExtras,
+    FechaRequerida,
+	UnidadMedida,
+	CONVERT(varchar,CONVERT(decimal(28,2),CantidadRequerida)) AS CantidadRequerida,
+	CONVERT(varchar,CONVERT(decimal(28,2),CantidadPendiente)) AS CantidadPendiente,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),Precio)) AS Precio,
+	'$ '  + CONVERT(varchar,CONVERT(decimal(28,2),TotalDescuento)) TotalDescuento,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),Subtotal)) AS Subtotal,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),IEPS)) AS IEPS,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),IVA)) AS IVA,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),Total)) AS Total,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),SUM(Subtotal) OVER())) AS SumaSubtotal,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),SUM(IEPS) OVER())) AS SumaIEPS,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),SUM(IVA) OVER())) AS SumaIVA,
+	'$ ' + CONVERT(varchar,CONVERT(decimal(28,2),SUM(Total) OVER())) AS SumaTotal,
+	(SUM(Total)  OVER())as TotalConvertir
+FROM(
+	SELECT
+		ROW_NUMBER() OVER(ORDER BY OCD_OrdenCompraDetalleId) AS NumeroPartida,
+		REQ_Codigo AS CodigoRequisicion,
+		ART_CodigoArticulo AS CodigoArticulo,
+		ART_NombreArticulo AS NombreArticulo,
+		REQP_Comentarios AS CometariosExtras,
+		FORMAT(REQP_FechaRequerida,'dd/MM/yyyy') AS FechaRequerida,
+		UM_Nombre AS UnidadMedida,
+		OCD_Cantidad AS CantidadRequerida,
+		OCD_Cantidad - SUM(OCR_CantidadRecibo) AS CantidadPendiente,
+		OCD_Precio AS Precio,
+		SUM(OCD_Descuento) AS TotalDescuento,
+		(SELECT Subtotal FROM [dbo].[fn_getImpuestosArticulo](OCD_Cantidad,OCD_Precio,OCD_Descuento,CASE OCD_IVAExento WHEN 1 THEN 0 ELSE OCD_IVA END,CASE WHEN OCD_IEPSCuotaFija IS NOT NULL THEN NULL ELSE OCD_IEPS END,OCD_IEPSCuotaFija)) AS Subtotal,
+		(SELECT IEPS FROM [dbo].[fn_getImpuestosArticulo](OCD_Cantidad,OCD_Precio,OCD_Descuento,CASE OCD_IVAExento WHEN 1 THEN 0 ELSE OCD_IVA END,CASE WHEN OCD_IEPSCuotaFija IS NOT NULL THEN NULL ELSE OCD_IEPS END,OCD_IEPSCuotaFija)) AS IEPS,
+		(SELECT IVA FROM [dbo].[fn_getImpuestosArticulo](OCD_Cantidad,OCD_Precio,OCD_Descuento,CASE OCD_IVAExento WHEN 1 THEN 0 ELSE OCD_IVA END,CASE WHEN OCD_IEPSCuotaFija IS NOT NULL THEN NULL ELSE OCD_IEPS END,OCD_IEPSCuotaFija)) AS IVA,
+		(SELECT Total FROM [dbo].[fn_getImpuestosArticulo](OCD_Cantidad,OCD_Precio,OCD_Descuento,CASE OCD_IVAExento WHEN 1 THEN 0 ELSE OCD_IVA END,CASE WHEN OCD_IEPSCuotaFija IS NOT NULL THEN NULL ELSE OCD_IEPS END,OCD_IEPSCuotaFija)) AS Total
+	FROM OrdenesCompraDetalles
+	LEFT JOIN RequisicionesPartidas ON REQP_RequisicionpartidaId = OCD_REQP_RequisicionpartidaId
+	LEFT JOIN Requisiciones ON REQ_RequisicionId = REQP_REQ_RequisicionId
+	INNER JOIN Articulos ON ART_ArticuloId = OCD_ART_ArticuloId
+	INNER JOIN UnidadesMedidas ON UM_UnidadMedidaId = OCD_UM_UnidadMedidaId
+	LEFT JOIN OrdenesCompraRecibos ON OCR_OCD_OrdenCompraDetalleId = OCD_OrdenCompraDetalleId
+	WHERE OCD_OC_OrdenCompraId =$P{id}
+	GROUP BY OCD_OrdenCompraDetalleId, REQ_Codigo, ART_CodigoArticulo, ART_NombreArticulo, REQP_FechaRequerida, UM_Nombre, OCD_Cantidad, OCD_Precio, OCD_Descuento, OCD_IVAExento, OCD_IVA, OCD_IEPSCuotaFija, OCD_IEPS, REQP_Comentarios
+)t
+) detalles ORDER BY NumeroPartida]]>
+		</queryString>
+		<field name="NumeroPartida" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="NumeroPartida"/>
+			<property name="com.jaspersoft.studio.field.label" value="NumeroPartida"/>
+		</field>
+		<field name="CodigoRequisicion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CodigoRequisicion"/>
+			<property name="com.jaspersoft.studio.field.label" value="CodigoRequisicion"/>
+		</field>
+		<field name="CodigoArticulo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CodigoArticulo"/>
+			<property name="com.jaspersoft.studio.field.label" value="CodigoArticulo"/>
+		</field>
+		<field name="NombreArticulo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="NombreArticulo"/>
+			<property name="com.jaspersoft.studio.field.label" value="NombreArticulo"/>
+		</field>
+		<field name="CometariosExtras" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CometariosExtras"/>
+			<property name="com.jaspersoft.studio.field.label" value="CometariosExtras"/>
+		</field>
+		<field name="FechaRequerida" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="FechaRequerida"/>
+			<property name="com.jaspersoft.studio.field.label" value="FechaRequerida"/>
+		</field>
+		<field name="UnidadMedida" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="UnidadMedida"/>
+			<property name="com.jaspersoft.studio.field.label" value="UnidadMedida"/>
+		</field>
+		<field name="CantidadRequerida" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CantidadRequerida"/>
+			<property name="com.jaspersoft.studio.field.label" value="CantidadRequerida"/>
+		</field>
+		<field name="CantidadPendiente" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CantidadPendiente"/>
+			<property name="com.jaspersoft.studio.field.label" value="CantidadPendiente"/>
+		</field>
+		<field name="Precio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Precio"/>
+			<property name="com.jaspersoft.studio.field.label" value="Precio"/>
+		</field>
+		<field name="TotalDescuento" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="TotalDescuento"/>
+			<property name="com.jaspersoft.studio.field.label" value="TotalDescuento"/>
+		</field>
+		<field name="Subtotal" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Subtotal"/>
+			<property name="com.jaspersoft.studio.field.label" value="Subtotal"/>
+		</field>
+		<field name="IEPS" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="IEPS"/>
+			<property name="com.jaspersoft.studio.field.label" value="IEPS"/>
+		</field>
+		<field name="IVA" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="IVA"/>
+			<property name="com.jaspersoft.studio.field.label" value="IVA"/>
+		</field>
+		<field name="Total" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Total"/>
+			<property name="com.jaspersoft.studio.field.label" value="Total"/>
+		</field>
+		<field name="SumaSubtotal" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="SumaSubtotal"/>
+			<property name="com.jaspersoft.studio.field.label" value="SumaSubtotal"/>
+		</field>
+		<field name="SumaIEPS" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="SumaIEPS"/>
+			<property name="com.jaspersoft.studio.field.label" value="SumaIEPS"/>
+		</field>
+		<field name="SumaIVA" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="SumaIVA"/>
+			<property name="com.jaspersoft.studio.field.label" value="SumaIVA"/>
+		</field>
+		<field name="SumaTotal" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="SumaTotal"/>
+			<property name="com.jaspersoft.studio.field.label" value="SumaTotal"/>
+		</field>
+		<field name="TotalConvertir" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="TotalConvertir"/>
+			<property name="com.jaspersoft.studio.field.label" value="TotalConvertir"/>
+		</field>
+		<field name="Letras" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Letras"/>
+			<property name="com.jaspersoft.studio.field.label" value="Letras"/>
+		</field>
+	</subDataset>
+	<parameter name="path" class="java.lang.String">
+		<defaultValueExpression><![CDATA["D:/Projects/PSCA/pixvs-core-front/src"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="alumnoId" class="java.lang.Integer"/>
+	<parameter name="grupoId" class="java.lang.Integer"/>
+	<parameter name="hashId" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+	ALU_Codigo codigo,
+	CONCAT_WS(' ', ALU_Nombre, ALU_PrimerApellido, ALU_SegundoApellido) alumno,
+	PROG_Codigo programaCorto,
+	PROG_Nombre programaLargo,
+	idioma.CMM_Valor idioma,
+	PAMOD_Nombre modalidad,
+	tipo.CMM_Valor tipo,
+	FORMAT(PROGRU_Nivel, '00') nivel,
+	FORMAT(PROGRU_FechaInicio, 'dd/MM/yyyy') inicio,
+	FORMAT(PROGRU_FechaFin, 'dd/MM/yyyy') fin,
+	CONCAT_WS(' ',PAMODH_Horario,'h') horario,
+	CONCAT_WS(' ', EMP_PrimerApellido, EMP_SegundoApellido, EMP_Nombre) instructor,
+	SUC_Nombre sede,
+	COALESCE(ALUG_CalificacionFinal,0) calificacion,
+	[dbo].[NumeroLetra] (ALUG_CalificacionFinal) calificacionLetra,
+	FORMAT(CASE WHEN ALUG_CMM_EstatusId = 2000673 THEN PROGRU_Nivel ELSE
+		CASE WHEN ALUG_CMM_EstatusId = 2000674 THEN PROGRU_Nivel ELSE
+		CASE WHEN ALUG_CMM_EstatusId = 2000676 THEN PROGRU_Nivel ELSE
+		CASE WHEN ALUG_CMM_EstatusId = 2000677 THEN PROGRU_Nivel ELSE
+		CASE WHEN ALUG_CalificacionFinal < PROGI_CalificacionMinima THEN PROGRU_Nivel ELSE
+		CASE WHEN PROGRU_Nivel = PROGI_NumeroNiveles THEN null ELSE PROGRU_Nivel + 1 END END END END END END, '00') siguiente,
+	BAN_Nombre institucion,
+	BAC_Codigo cuenta,
+	BAC_CLABE clabe,
+	BAC_Convenio convenio,
+	ALU_Referencia referencia,
+	eb.ENBE_Codigo AS EntidadBeca,
+	becas.BECU_CodigoBeca AS FolioBeca,
+	becas.BECU_Descuento AS PorcentajeBeca,
+	becas.BECU_Comentarios AS ComentariosBeca
+FROM 
+	AlumnosGrupos ag
+	INNER JOIN Alumnos a ON ag.ALUG_ALU_AlumnoId = a.ALU_AlumnoId
+	INNER JOIN ProgramasGrupos pg ON ag.ALUG_PROGRU_GrupoId = pg.PROGRU_GrupoId
+	INNER JOIN ControlesMaestrosMultiples tipo ON pg.PROGRU_CMM_TipoGrupoId = tipo.CMM_ControlId
+	INNER JOIN ProgramasIdiomas pi ON pg.PROGRU_PROGI_ProgramaIdiomaId = pi.PROGI_ProgramaIdiomaId
+	INNER JOIN Programas p ON pi.PROGI_PROG_ProgramaId = p.PROG_ProgramaId
+	INNER JOIN ControlesMaestrosMultiples idioma ON pi.PROGI_CMM_Idioma = idioma.CMM_ControlId
+	INNER JOIN PAModalidades pam ON pg.PROGRU_PAMOD_ModalidadId = pam.PAMOD_ModalidadId
+	INNER JOIN PAModalidadesHorarios pamh ON pg.PROGRU_PAMODH_PAModalidadHorarioId = pamh.PAMODH_PAModalidadHorarioId
+	INNER JOIN Inscripciones i ON i.INS_ALU_AlumnoId = a.ALU_AlumnoId and i.INS_PROGRU_GrupoId = pg.PROGRU_GrupoId
+	INNER JOIN OrdenesVentaDetalles ovd ON i.INS_OVD_OrdenVentaDetalleId = ovd.OVD_OrdenVentaDetalleId
+	INNER JOIN OrdenesVenta ov ON ovd.OVD_OV_OrdenVentaId = ov.OV_OrdenVentaId
+	LEFT JOIN Empleados e ON pg.PROGRU_EMP_EmpleadoId = e.EMP_EmpleadoId
+	INNER JOIN Sucursales s ON ov.OV_SUC_SucursalId = s.SUC_SucursalId
+	LEFT JOIN BancosCuentas bc ON s.SUC_BAC_CuentaId = bc.BAC_CuentaId
+	LEFT JOIN Bancos b ON bc.BAC_BAN_BancoId = b.BAN_BancoId
+	LEFT JOIN BecasUDG becas ON  a.ALU_Codigo = becas.BECU_CodigoAlumno AND pi.PROGI_ProgramaIdiomaId = becas.BECU_PROGI_ProgramaIdiomaId AND becas.BECU_Nivel = pg.PROGRU_Nivel AND becas.BECU_PAMOD_ModalidadId = pg.PROGRU_PAMOD_ModalidadId AND becas.BECU_CMM_EstatusId IN (2000571, 2000573) AND becas.BECU_CMM_TipoId = 2000582
+	LEFT JOIN EntidadesBecas eb ON becas.BECU_ENBE_EntidadBecaId = eb.ENBE_EntidadBecaId
+WHERE ALUG_CMM_EstatusId <> 2000677
+	AND ALUG_ALU_AlumnoId = $P{alumnoId} 
+	AND ALUG_PROGRU_GrupoId = $P{grupoId}]]>
+	</queryString>
+	<field name="codigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+	</field>
+	<field name="alumno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="alumno"/>
+		<property name="com.jaspersoft.studio.field.label" value="alumno"/>
+	</field>
+	<field name="programaCorto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="programaCorto"/>
+		<property name="com.jaspersoft.studio.field.label" value="programaCorto"/>
+	</field>
+	<field name="programaLargo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="programaLargo"/>
+		<property name="com.jaspersoft.studio.field.label" value="programaLargo"/>
+	</field>
+	<field name="idioma" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="idioma"/>
+		<property name="com.jaspersoft.studio.field.label" value="idioma"/>
+	</field>
+	<field name="modalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="modalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="modalidad"/>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipo"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo"/>
+	</field>
+	<field name="nivel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nivel"/>
+		<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+	</field>
+	<field name="inicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="inicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="inicio"/>
+	</field>
+	<field name="fin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fin"/>
+		<property name="com.jaspersoft.studio.field.label" value="fin"/>
+	</field>
+	<field name="horario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="horario"/>
+		<property name="com.jaspersoft.studio.field.label" value="horario"/>
+	</field>
+	<field name="instructor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="instructor"/>
+		<property name="com.jaspersoft.studio.field.label" value="instructor"/>
+	</field>
+	<field name="sede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sede"/>
+		<property name="com.jaspersoft.studio.field.label" value="sede"/>
+	</field>
+	<field name="calificacion" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="calificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="calificacion"/>
+	</field>
+	<field name="calificacionLetra" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="calificacionLetra"/>
+		<property name="com.jaspersoft.studio.field.label" value="calificacionLetra"/>
+	</field>
+	<field name="siguiente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="siguiente"/>
+		<property name="com.jaspersoft.studio.field.label" value="siguiente"/>
+	</field>
+	<field name="institucion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="institucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="institucion"/>
+	</field>
+	<field name="cuenta" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="cuenta"/>
+		<property name="com.jaspersoft.studio.field.label" value="cuenta"/>
+	</field>
+	<field name="clabe" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="clabe"/>
+		<property name="com.jaspersoft.studio.field.label" value="clabe"/>
+	</field>
+	<field name="convenio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="convenio"/>
+		<property name="com.jaspersoft.studio.field.label" value="convenio"/>
+	</field>
+	<field name="referencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="referencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="referencia"/>
+	</field>
+	<field name="EntidadBeca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="EntidadBeca"/>
+		<property name="com.jaspersoft.studio.field.label" value="EntidadBeca"/>
+	</field>
+	<field name="FolioBeca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="FolioBeca"/>
+		<property name="com.jaspersoft.studio.field.label" value="FolioBeca"/>
+	</field>
+	<field name="PorcentajeBeca" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="PorcentajeBeca"/>
+		<property name="com.jaspersoft.studio.field.label" value="PorcentajeBeca"/>
+	</field>
+	<field name="ComentariosBeca" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ComentariosBeca"/>
+		<property name="com.jaspersoft.studio.field.label" value="ComentariosBeca"/>
+	</field>
+	<variable name="CURRENT_DATE" class="java.lang.String">
+		<variableExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format(new Date());]]></variableExpression>
+	</variable>
+	<background>
+		<band height="520">
+			<image>
+				<reportElement mode="Opaque" x="-20" y="-20" width="842" height="540" uuid="650e39cc-b1c4-4cf7-bf8a-7dc23be121fd">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{path} + "/app/main/img/logos/reportes/boleta_editar.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="470" y="20" width="322" height="30" uuid="3589c09f-6a6a-47fa-940d-5b0b2c81c310"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[BOLETA DE CALIFICACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="98" width="440" height="34" uuid="0b25a190-0582-4d44-b911-3ea5639d1d03">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL ALUMNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="193" width="440" height="37" uuid="c40bcebf-99c1-4304-a123-84dfe988b3a4"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="407" width="100" height="33" uuid="888fe29d-155b-4287-b1cf-1987ae68c826"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÓN FINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="407" width="101" height="33" uuid="f5cf6d47-65cd-4e03-8594-66c678b9e3b1"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÓN CON LETRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="407" width="96" height="33" uuid="62e98294-9a55-4c1c-8d5e-9ceccea373c5"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<text><![CDATA[SIGUIENTE NIVEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="407" width="102" height="33" uuid="39bc6de1-afa0-477f-9692-ce28e18ca13e"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="0.0"/>
+				</textElement>
+				<text><![CDATA[NUEVO NIVEL CON LETRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="141" width="100" height="16" uuid="80ca174b-1a34-459a-a968-d668fa1feeec"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="161" width="100" height="16" uuid="2f3151e5-f194-486b-b505-ad9b4ffc9616">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="237" width="100" height="16" uuid="66d97d32-3fe0-4584-a12c-cca0db71932a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[CURSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="253" width="100" height="16" uuid="18559023-eeb0-4cfe-8343-dfde8a6316b5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NIVEL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="285" width="100" height="16" uuid="cf311ad8-c12f-490d-bc19-62c8821a3358">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[TERMINO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="269" width="100" height="16" uuid="6eaedd20-4571-4e8c-ba7b-44a8666de859">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[INICIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="317" width="100" height="16" uuid="d153a483-cecf-42e0-a403-26573697122c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[INSTRUCTOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-6" y="301" width="100" height="16" uuid="d8b8b197-0cf4-4a85-99e5-362e4cfaef34">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[HORARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="590" y="68" width="60" height="16" uuid="4baceedf-b75f-4040-8fbd-f9b896971fc9"/>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="650" y="68" width="141" height="16" uuid="6fd1e59b-33ed-4c1c-b28f-3bce5a2b2436"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yy hh:mm:ss aa").format(new Date());]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="141" width="340" height="16" uuid="f1538d22-d871-491b-8c9a-9aa91e8da3f3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="161" width="340" height="16" uuid="073b7d6a-0533-4f03-9871-ed9477e1f728"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alumno}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="237" width="340" height="16" uuid="047f98b1-d45d-4345-8964-70ea5cc01fc3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{programaCorto}+" "+$F{idioma}+" "+$F{modalidad}+" ("+$F{tipo}+")").toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="253" width="340" height="16" uuid="f236898c-85a0-493d-b938-9db383a39e4e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="269" width="340" height="16" uuid="fc061fcd-1398-4567-800c-064bfc53e9e1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inicio}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="285" width="340" height="16" uuid="04c65ff6-96d2-4ee0-9ee0-4c689ae2e1a3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fin}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="301" width="340" height="16" uuid="adfe055e-cc4e-4eaa-aef6-faf4545ba6fc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="317" width="340" height="16" uuid="80281f63-6961-4209-9231-fe4a8b27b207"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{instructor}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="-6" y="460" width="106" height="50" uuid="5cb50259-b2f7-467d-a04d-b05897e4ca23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calificacion}.setScale(0,RoundingMode.FLOOR)]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="110" y="460" width="106" height="50" uuid="029198c7-fca5-4197-bfc0-6df294533d27"/>
+				<box leftPadding="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calificacionLetra}.split("PESOS")[0]]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="224" y="460" width="106" height="50" uuid="6083e824-b26a-4a0c-86df-505c5ce6a56b">
+					<printWhenExpression><![CDATA[$F{siguiente} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{programaCorto}+" "+$F{siguiente}+" "+$F{idioma}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="339" y="460" width="106" height="50" uuid="230ce44a-f0ee-4b74-9a76-d88a86b906f6">
+					<printWhenExpression><![CDATA[$F{siguiente} != null]]></printWhenExpression>
+				</reportElement>
+				<box leftPadding="10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{programaLargo}+" "+$F{siguiente}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="625" y="347" width="160" height="152" uuid="2a79f40a-87cd-453d-b0de-91ab507e61ef">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:codeExpression><![CDATA[$P{hashId}]]></jr:codeExpression>
+				</jr:QRCode>
+			</componentElement>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="470" y="115" width="310" height="20" uuid="c382b764-1455-416f-aa7c-95148b317176">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<printWhenExpression><![CDATA[$F{institucion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INSTITUCIÓN BANCARIA: "+$F{institucion}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="470" y="140" width="310" height="20" uuid="624c4794-36fc-4748-b045-fa10ca51e8b3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$F{institucion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CUENTA: "+$F{cuenta}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="470" y="165" width="310" height="20" uuid="d9a881e0-f2eb-4fa2-9712-6dbe172f5cc6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$F{institucion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CLABE: "+($F{clabe} != null ? $F{clabe} : "")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="470" y="190" width="310" height="20" uuid="3029e7ae-3fdb-41d7-98f9-8e122811ce44">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$F{institucion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONVENIO: "+($F{convenio} != null ?  $F{convenio} : "")]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="470" y="215" width="310" height="20" uuid="7098870d-b682-4114-83a0-81b769e7a92f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<printWhenExpression><![CDATA[$F{institucion} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REFERENCIA BANCARIA: "+$F{referencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-6" y="333" width="100" height="16" uuid="d8abd20a-67bf-488e-952b-5060d2d3054a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box leftPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[SEDE:]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+				<reportElement x="94" y="333" width="340" height="16" uuid="d469b2b0-4457-407c-8985-0f1c15e392bc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sede}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="625" y="483" width="159" height="30" uuid="71ef6cf5-d54f-4d40-932c-8f5ef576da56"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hashId}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement x="470" y="235" width="310" height="125" uuid="bd997099-88bc-4ffd-9d62-000ea6bacc4b"/>
+				<textFieldExpression><![CDATA["Notas: \n" +
+"Es necesario presentar la BOLETA DE CALIFICACIONES en cualquiera de nuestras sedes o de manera virtual para reinscribirse. \n" +
+"En caso de extravío podrá solicitarse una reposición en la Dirección de la Sede donde fue expedida. \n" +
+"Esta BOLETA tiene vigencia de 3 (tres) meses a partir de la fecha de expedición. \n" +
+"La presente BOLETA DE CALIFICACIONES no es un comprobante oficial."]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="-6" y="349" width="440" height="33" isRemoveLineWhenBlank="true" uuid="8f9696ee-a777-499f-a628-3fd6277120ab">
+					<printWhenExpression><![CDATA[$F{EntidadBeca} != null]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement x="-1" y="1" width="100" height="16" uuid="db9be8ad-e4d3-4f12-8097-d590c94d308c">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[BECA:]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement x="99" y="1" width="151" height="16" uuid="b6bbb3ed-bbdd-480f-a4b6-b7c3b8e5c47a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{EntidadBeca}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="250" y="1" width="50" height="16" uuid="1f899952-a04b-4872-a9ec-2130f9a77e68">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[FOLIO:]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement x="300" y="1" width="140" height="16" uuid="bf22e619-326e-43a7-a670-2fe78703d9e1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FolioBeca}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement x="99" y="17" width="101" height="16" uuid="849f6061-2f38-4665-a6dc-a4d0c54650d0"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.math.BigDecimal($F{PorcentajeBeca}.doubleValue() * 100) + "%"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="200" y="17" width="100" height="16" uuid="284b9652-4829-46ef-8763-878e4681faf4">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box leftPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[COMENTARIOS:]]></text>
+				</staticText>
+				<textField textAdjust="ScaleFont" isBlankWhenNull="true">
+					<reportElement x="300" y="17" width="140" height="33" uuid="bf27a7d3-f074-4831-8859-b349ab34f431"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ComentariosBeca}.toUpperCase()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</background>
+</jasperReport>

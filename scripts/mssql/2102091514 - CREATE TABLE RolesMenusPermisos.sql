@@ -1,0 +1,31 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[RolesMenusPermisos](
+	[ROLMPP_RolMenuPermisoId] [INT] IDENTITY(1,1) NOT NULL,
+	[ROLMPP_ROL_RolId] [INT] NOT NULL,
+	[ROLMPP_MPP_MenuPrincipalPermisoId] [INT] NOT NULL,
+
+	CONSTRAINT [PK_RolesMenusPermisos] PRIMARY KEY CLUSTERED 
+	(
+		[ROLMPP_RolMenuPermisoId] ASC
+	) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[RolesMenusPermisos]  WITH CHECK ADD  CONSTRAINT [FK_ROLMPP_ROL_RolId] FOREIGN KEY([ROLMPP_ROL_RolId])
+REFERENCES [dbo].[Roles] ([ROL_RolId])
+GO
+
+ALTER TABLE [dbo].[RolesMenusPermisos] CHECK CONSTRAINT [FK_ROLMPP_ROL_RolId]
+GO
+
+ALTER TABLE [dbo].[RolesMenusPermisos]  WITH CHECK ADD  CONSTRAINT [FK_ROLMPP_MPP_MenuPrincipalPermisoId] FOREIGN KEY([ROLMPP_MPP_MenuPrincipalPermisoId])
+REFERENCES [dbo].[MenuPrincipalPermisos] ([MPP_MenuPrincipalPermisoId])
+GO
+
+ALTER TABLE [dbo].[RolesMenusPermisos] CHECK CONSTRAINT [FK_ROLMPP_MPP_MenuPrincipalPermisoId]
+GO

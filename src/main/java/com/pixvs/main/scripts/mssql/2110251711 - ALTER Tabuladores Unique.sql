@@ -1,0 +1,6 @@
+ALTER TABLE TabuladoresCursos DROP CONSTRAINT TABC_UNIQUE
+GO
+
+ALTER TABLE TabuladoresCursos
+ADD CONSTRAINT [TABC_UNIQUE] UNIQUE ([TABC_PROG_ProgramaId], [TABC_PAMOD_ModalidadId], [TABC_PROGI_ProgramaIdiomaId], [TABC_PAMODH_PAModalidadHorarioId],[TABC_Activo])
+GO

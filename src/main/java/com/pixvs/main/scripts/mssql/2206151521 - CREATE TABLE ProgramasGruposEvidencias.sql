@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS ProgramasGruposEvidencias
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE ProgramasGruposEvidencias(
+	PROGRUE_ProgramaGrupoEvidenciaId INT IDENTITY(1,1) NOT NULL,	
+	PROGRUE_PROGRU_GrupoId INT NOT NULL,
+	PROGRUE_ARC_ArchivoId INT NOT NULL,
+	PROGRUE_Nombre VARCHAR (100) NOT NULL,
+	PROGRUE_Vigente BIT NOT NULL
+ CONSTRAINT PK_ProgramasGruposEvidencias PRIMARY KEY CLUSTERED 
+(
+	PROGRUE_ProgramaGrupoEvidenciaId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE ProgramasGruposEvidencias  WITH CHECK ADD  CONSTRAINT FK_ProgramasGruposEvidencias_Grupo FOREIGN KEY(PROGRUE_PROGRU_GrupoId)
+REFERENCES ProgramasGrupos (PROGRU_GrupoId)
+GO
+ALTER TABLE ProgramasGruposEvidencias CHECK CONSTRAINT FK_ProgramasGruposEvidencias_Grupo
+GO
+
+ALTER TABLE ProgramasGruposEvidencias  WITH CHECK ADD  CONSTRAINT FK_ProgramasGruposEvidencias_Archivos FOREIGN KEY(PROGRUE_ARC_ArchivoId)
+REFERENCES Archivos (ARC_ArchivoId)
+GO
+ALTER TABLE ProgramasGruposEvidencias CHECK CONSTRAINT FK_ProgramasGruposEvidencias_Archivos
+GO

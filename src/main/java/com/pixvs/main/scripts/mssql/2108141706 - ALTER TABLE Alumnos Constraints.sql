@@ -1,0 +1,54 @@
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_FechaNacimiento] DATE NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_PAI_PaisNacimientoId] SMALLINT NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_EST_EstadoNacimientoId] INT NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_CiudadNacimiento] NVARCHAR(100) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_CURP] NVARCHAR(30) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_CMM_EscolaridadMaximaId] int NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_LugarEstudios] NVARCHAR(50) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_Ocupacion] NVARCHAR(50) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_Domicilio] NVARCHAR(250) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_Colonia] NVARCHAR(250) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_CP] NVARCHAR(10) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_PAI_PaisId] SMALLINT NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_EST_EstadoId] INT NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_Ciudad] NVARCHAR(100) NULL
+GO
+ALTER TABLE [dbo].[Alumnos] ALTER COLUMN [ALU_CorreoElectronico] NVARCHAR(50) NULL
+GO
+
+/*Constraints */
+ALTER TABLE [dbo].[Alumnos] DROP CONSTRAINT [CHK_ALU_Telefono]
+GO
+
+ALTER TABLE [dbo].[Alumnos] DROP CONSTRAINT [UNQ_ALU_CURP]
+GO
+
+CREATE UNIQUE INDEX [IX_ALU_CURP] ON [dbo].[Alumnos] ([ALU_CURP]) WHERE [ALU_CURP] IS NOT NULL
+GO
+
+CREATE UNIQUE INDEX [IX_ALU_CodigoAlumnoUDG] ON [dbo].[Alumnos] ([ALU_CodigoAlumnoUDG]) WHERE [ALU_CodigoAlumnoUDG] IS NOT NULL
+GO
+
+ALTER TABLE [dbo].[Alumnos] WITH CHECK ADD CONSTRAINT [CHK_ALU_Telefono] CHECK  (
+	[ALU_AlumnoJOBS] = 1 OR
+	(
+		[ALU_AlumnoJOBS] = 0 AND ([ALU_TelefonoFijo] IS NOT NULL OR [ALU_TelefonoMovil] IS NOT NULL OR [ALU_TelefonoTrabajo] IS NOT NULL OR [ALU_TelefonoMensajeriaInstantanea] IS NOT NULL)
+	)
+)
+GO
+
+ALTER TABLE [dbo].[Alumnos] CHECK CONSTRAINT [CHK_ALU_Telefono]
+GO

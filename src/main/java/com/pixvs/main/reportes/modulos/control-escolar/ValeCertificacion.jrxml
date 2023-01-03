@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ValeCertificacion" pageWidth="480" pageHeight="680" columnWidth="10" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="68b01179-1b31-4da8-befd-316359c41f03">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FrontUrl" class="java.lang.String">
+		<defaultValueExpression><![CDATA["https://www.plic.proulex.com"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AlumnoGrupoId" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT * FROM [dbo].[VW_RPT_ReporteValeCalificacion] WHERE AlumnoGrupoId = $P{AlumnoGrupoId}]]>
+	</queryString>
+	<field name="AlumnoGrupoId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="AlumnoGrupoId"/>
+		<property name="com.jaspersoft.studio.field.label" value="AlumnoGrupoId"/>
+	</field>
+	<field name="Codigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Codigo"/>
+	</field>
+	<field name="Alumno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Alumno"/>
+		<property name="com.jaspersoft.studio.field.label" value="Alumno"/>
+	</field>
+	<field name="Sede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Sede"/>
+		<property name="com.jaspersoft.studio.field.label" value="Sede"/>
+	</field>
+	<field name="Curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="Curso"/>
+	</field>
+	<field name="Nivel" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Nivel"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nivel"/>
+	</field>
+	<field name="Certificacion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Certificacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Certificacion"/>
+	</field>
+	<field name="Descuento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Descuento"/>
+		<property name="com.jaspersoft.studio.field.label" value="Descuento"/>
+	</field>
+	<field name="Vigencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Vigencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="Vigencia"/>
+	</field>
+	<field name="CostoFinal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="CostoFinal"/>
+		<property name="com.jaspersoft.studio.field.label" value="CostoFinal"/>
+	</field>
+	<field name="Estatus" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Estatus"/>
+		<property name="com.jaspersoft.studio.field.label" value="Estatus"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="-20" width="460" height="101" uuid="6bfd5f02-44ec-437a-a700-60ab83b6b4d0"/>
+				<image>
+					<reportElement x="0" y="40" width="100" height="30" uuid="64d4afa0-aee3-432c-be0b-22d339d3f771"/>
+					<imageExpression><![CDATA[$P{FrontUrl} +"/app/main/img/logos/reportes/reportes-criterios.png"]]></imageExpression>
+				</image>
+				<line>
+					<reportElement x="100" y="20" width="1" height="60" uuid="274aed96-2424-49d1-86bb-6bcd1135aada">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="1.0" lineStyle="Solid" lineColor="#C7C7C7"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="200" y="20" width="1" height="60" uuid="eeecf9e1-5248-42b4-8136-d484d9f1fb54">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="1.0" lineStyle="Solid" lineColor="#C7C7C7"/>
+					</graphicElement>
+				</line>
+				<image>
+					<reportElement x="100" y="40" width="100" height="30" uuid="6b2bdf95-d4a2-42b8-8115-d8b6c8119578"/>
+					<imageExpression><![CDATA[$P{FrontUrl} +"/app/main/img/logos/reportes/reportes-criterios.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement mode="Opaque" x="280" y="40" width="160" height="30" forecolor="#FFFFFF" backcolor="#434343" uuid="b99ce6c8-370e-4ed2-988f-b34154405e4d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Calibri" size="18"/>
+					</textElement>
+					<text><![CDATA[VALE CERTIFICACIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="70" width="100" height="30" uuid="b69e0f9b-92f8-4a49-b6f7-bddb813bceff"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Calibri" size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FPLX-CEI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="440" y="40" width="20" height="30" backcolor="#434343" uuid="3486c8d4-f372-4aa0-ae8d-c82ebcaeb1d8"/>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="552" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="280" y="0" width="180" height="480" backcolor="#C7C7C7" uuid="45d15f11-2335-4237-8be3-a5f640e4394d"/>
+				<staticText>
+					<reportElement x="10" y="20" width="150" height="62" uuid="9fa0f778-1257-4d53-af16-af4c93dbbb54">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+						<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="Calibri" size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[FORMAS DE PAGO: <br/><b>Depósito/Transferencia </b><br/>Banco Santander<br/>Convenio: 9552 <br/>"U de G PLX CEI"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="220" width="150" height="50" uuid="4ce4ea4c-48f0-4d0e-b82c-05f47a77b180">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="Calibri" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[UBICACIÓN: <br/> Av. Fray Antonio Alcalde #1918 <br/> Col. Jardines Alcalde <br/> Guadalajara, Jalisco.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="293" width="150" height="156" uuid="beda23e8-c52b-403a-bd11-ed3a528596bf">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="Calibri" size="10"/>
+					</textElement>
+					<text><![CDATA[HORARIO: <br/> <b>lunes a viernes</b><br/> 09:00 - 14:00 h. <br/> 16:00 - 19:00 h. <br/><br/><b>sábado</b><br/>09:00 - 14:00 h.<br/><br/><b>Cuenta Clabe</b><br/>014320655032859599]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="170" y="17" width="10" height="18" backcolor="#434343" uuid="c8bc9470-4169-44f3-8dfe-bc402145f0c8">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="170" y="218" width="10" height="18" backcolor="#434343" uuid="b3a533a1-09e9-4767-8d51-1ccfff52d062">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="170" y="291" width="10" height="18" backcolor="#434343" uuid="ac729daa-c19e-4a78-9911-7e74bece70a8">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="115" width="150" height="83" uuid="bd2f07cf-77f2-43c3-b614-e3ce28bdf8a4">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="Calibri"/>
+					</textElement>
+					<text><![CDATA[<b>Tarjeta crédio/débito</b><br/>Terminal física en<br/> el área de inscripción CEI<br/><br/>Centro de Pago Online <br/> (llamar al área de inscripción CEI <br/> y solicitar su liga de pago)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" x="10" y="82" width="90" height="13" uuid="bab7dbc1-41b2-4326-90b0-6de9ec259707">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+						<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right" markup="styled">
+						<font fontName="Calibri" size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Referencia:]]></text>
+				</staticText>
+				<textField>
+					<reportElement stretchType="RelativeToBandHeight" x="100" y="82" width="60" height="13" uuid="109cbb9c-ec02-4ad8-9fe7-1a1dd6b6ada1"/>
+					<textElement textAlignment="Right">
+						<font fontName="Calibri"/>
+					</textElement>
+					<textFieldExpression><![CDATA[ $F{Codigo}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="0" y="483" width="270" height="68" uuid="c44c52a3-ce70-4e26-a242-a7581296b652"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[* Precio sujeto a cambio sin previo aviso dentro de la vígencia del mismo vale.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="483" width="160" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="52a6f551-e018-42cf-b666-f608d156a71f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[33-3854-7117 ext. 108,100]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="501" width="160" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="2e98fe24-0a9f-41d1-8f49-836ccd04f2f7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[cei.proulex@proulex.udg.mx]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="519" width="160" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="5884c1f6-e91b-4bb7-ba52-d0448d4cdb24">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[CEI.PROULEX.COM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="537" width="160" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="a581c966-d467-4722-98c8-ca0d16bea60a">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[@ProulexCEI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="483" width="20" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="150c6eca-54c5-481c-8ac6-2373b7691095">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="501" width="20" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="5ffa89ce-9af8-4328-9e4c-d28c13a71904">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="519" width="20" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="8f3b3415-075d-4aa3-a910-069c166aa767">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="537" width="20" height="15" forecolor="#FFFFFF" backcolor="#434343" uuid="6237eb37-d09f-4556-900a-0dc57e415f5f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="270" height="80" uuid="6dd44da4-9b15-4fc8-9f1b-784260a9f800"/>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[Favor de presentar, de forma física o digital, este VALE en las oficinas del Centro de Exámenes Internacionales (CEI) o vía correo electrónico (cei.proulex@proulex.udg.mx) con una identificación oficial vigente (obligatoria) para poder hacer efectivo su pago y registro al examen de certificación internacional que avala los siguientes datos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="270" height="13" uuid="7e1f36be-20c5-4b8f-be23-aeec522cb940">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[NOMBRE COMPLETO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="93" width="270" height="20" backcolor="#C7C7C7" uuid="47f5644a-7830-4d14-a237-9ee7151b47aa">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Alumno}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="143" width="270" height="20" backcolor="#C7C7C7" uuid="72c5cca4-2f16-4b48-8d08-7662c567cc15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sede}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="130" width="270" height="13" uuid="d56c5181-c8a4-415c-ae8f-3167a056aa1b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[SEDE DE PROCEDENCIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="193" width="270" height="20" backcolor="#C7C7C7" uuid="20c41ba0-92f9-45a9-86f3-9df825816bac">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Vigencia}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="180" width="270" height="13" uuid="4c1209fb-d762-42e8-a4f3-f76f52c18723">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[VIGENCIA DE REGISTRO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="243" width="270" height="80" backcolor="#C7C7C7" uuid="bb8ad044-572b-4952-a7cd-e6cf6dceec4b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Top">
+					<font fontName="Calibri" size="18" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="5" spacingBefore="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Certificacion}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="230" width="270" height="13" uuid="0c961b04-377c-46ef-904f-5232d7affe5d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[CALIFICACIÓN A TOMAR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="353" width="270" height="20" backcolor="#C7C7C7" uuid="7843653d-1ebe-4595-bcdd-c7727e8d55ca">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descuento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="340" width="270" height="13" uuid="5a08517a-9b12-4f65-a602-5c3a316f0f90">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[DESCUENTO OTRORGADO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="410" width="270" height="20" backcolor="#C7C7C7" uuid="7a6749bd-3de2-4dfe-a32a-de43465a5ce2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["* $" + $F{CostoFinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="400" width="270" height="9" uuid="71242864-59f9-49dd-a59f-5a6adee62895">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri" size="7"/>
+				</textElement>
+				<text><![CDATA[(YA CON DESCUENTO APLICADO)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="390" width="270" height="13" uuid="2015550d-4e50-40c0-afb4-88b5c4a42873">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[COSTO FINAL:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,3 @@
+ALTER TABLE ProgramasGrupos
+ADD PROGRU_Multisede BIT NOT NULL DEFAULT(0)
+GO

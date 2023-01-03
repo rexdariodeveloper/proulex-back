@@ -1,0 +1,23 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER TABLE ArticulosFamilias ADD AFAM_ARC_ImagenId INT DEFAULT NULL
+GO
+ALTER TABLE [dbo].[ArticulosFamilias]  WITH CHECK ADD  CONSTRAINT [FK_AFAM_ARC_ImagenId] FOREIGN KEY([AFAM_ARC_ImagenId])
+REFERENCES [dbo].[Archivos] ([ARC_ArchivoId])
+GO
+
+ALTER TABLE ArticulosCategorias ADD ACAT_ARC_ImagenId INT DEFAULT NULL
+GO
+ALTER TABLE [dbo].[ArticulosCategorias]  WITH CHECK ADD  CONSTRAINT [FK_ACAT_ARC_ImagenId] FOREIGN KEY([ACAT_ARC_ImagenId])
+REFERENCES [dbo].[Archivos] ([ARC_ArchivoId])
+GO
+
+ALTER TABLE ArticulosSubcategorias ADD ASC_ARC_ImagenId  INT DEFAULT NULL
+GO
+ALTER TABLE [dbo].[ArticulosSubcategorias]  WITH CHECK ADD  CONSTRAINT [FK_ASC_ARC_ImagenId] FOREIGN KEY([ASC_ARC_ImagenId])
+REFERENCES [dbo].[Archivos] ([ARC_ArchivoId])
+GO

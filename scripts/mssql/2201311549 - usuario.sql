@@ -1,0 +1,30 @@
+/** Core usuario **/
+ALTER TABLE Usuarios ADD USU_PAI_PaisId SMALLINT
+GO
+
+ALTER TABLE Usuarios ADD USU_EST_EstadoId INT
+GO
+
+ALTER TABLE Usuarios ADD USU_MUN_MunicipioId INT
+GO
+
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_USU_PAI_PaisId] FOREIGN KEY([USU_PAI_PaisId])
+REFERENCES [dbo].[Paises] (PAI_PaisId)
+GO
+
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_USU_PAI_PaisId]
+GO
+
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_USU_EST_EstadoId] FOREIGN KEY([USU_EST_EstadoId])
+REFERENCES [dbo].[Estados] (EST_EstadoId)
+GO
+
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_USU_EST_EstadoId]
+GO
+
+ALTER TABLE [dbo].[Usuarios]  WITH CHECK ADD  CONSTRAINT [FK_USU_MUN_MunicipioId] FOREIGN KEY([USU_MUN_MunicipioId])
+REFERENCES [dbo].[Municipios] (MUN_MunicipioId)
+GO
+
+ALTER TABLE [dbo].[Usuarios] CHECK CONSTRAINT [FK_USU_MUN_MunicipioId]
+GO

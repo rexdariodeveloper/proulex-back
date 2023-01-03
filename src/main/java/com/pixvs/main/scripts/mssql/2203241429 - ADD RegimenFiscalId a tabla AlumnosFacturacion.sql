@@ -1,0 +1,8 @@
+ALTER TABLE AlumnosFacturacion ADD ALUF_RF_RegimenFiscalId	INT
+GO
+
+ALTER TABLE AlumnosFacturacion  WITH CHECK ADD  CONSTRAINT FK_AlumnosFacturacion_RegimenFiscal FOREIGN KEY(ALUF_RF_RegimenFiscalId)
+REFERENCES SATRegimenesFiscales (RF_RegimenFiscalId)
+GO
+ALTER TABLE AlumnosFacturacion CHECK CONSTRAINT FK_AlumnosFacturacion_RegimenFiscal
+GO

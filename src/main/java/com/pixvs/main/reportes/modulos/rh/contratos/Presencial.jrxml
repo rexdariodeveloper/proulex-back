@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.10.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Proulex Contrato" pageWidth="612" pageHeight="792" columnWidth="512" leftMargin="50" rightMargin="50" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="c6d812fd-eac1-4d68-b515-b0a796cb290a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#EBEDF0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#EDEDED">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Grupos" uuid="f02e526a-e1d3-4bf3-88ef-2ab317d917ff">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="465"/>
+		<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="521"/>
+		<parameter name="idEmpleado" class="java.lang.String"/>
+		<parameter name="idIdioma" class="java.lang.String"/>
+		<parameter name="fechaInicio" class="java.lang.String"/>
+		<parameter name="fechaFin" class="java.lang.String"/>
+		<parameter name="idModalidad" class="java.lang.String"/>
+		<parameter name="idCiclo" class="java.lang.String"/>
+		<parameter name="idPlantel" class="java.lang.String"/>
+		<parameter name="idCmmIdioma" class="java.lang.String"/>
+		<parameter name="idSucursal" class="java.lang.String"/>
+		<parameter name="tipoContrato" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[$P{tipoContrato}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT "ProgramasGrupos"."PROGRU_Codigo" AS codigo,
+	CONCAT( PROG_Codigo,' ',CMM_Valor,' ',PAMOD_Nombre,' Nivel ',FORMAT( PROGRU_Nivel,'00'),' Grupo ',FORMAT( PROGRU_Grupo,'00')) AS nombreGrupo,
+	"ProgramasGrupos"."PROGRU_Nivel" AS nivel,
+	"PAModalidadesHorarios"."PAMODH_Horario" AS horario,
+	"ProgramasGrupos"."PROGRU_SueldoProfesor" AS sueldo
+FROM "ProgramasGrupos"
+	INNER JOIN "VW_ProgramasGruposProfesores" ON "PROGRU_GrupoId" = "grupoId"
+	INNER JOIN "ProgramasIdiomas" ON 
+	 "ProgramasIdiomas"."PROGI_ProgramaIdiomaId" = "ProgramasGrupos"."PROGRU_PROGI_ProgramaIdiomaId" 
+	INNER JOIN "Programas" ON 
+	 "Programas"."PROG_ProgramaId" = "ProgramasIdiomas"."PROGI_PROG_ProgramaId" 
+	INNER JOIN "PAModalidades" ON 
+	 "PAModalidades"."PAMOD_ModalidadId" = "ProgramasGrupos"."PROGRU_PAMOD_ModalidadId" 
+	INNER JOIN "PAModalidadesHorarios" ON 
+	 "PAModalidadesHorarios"."PAMODH_PAModalidadHorarioId" = "ProgramasGrupos"."PROGRU_PAMODH_PAModalidadHorarioId" 
+	INNER JOIN "Empleados" ON 
+	 "Empleados"."EMP_EmpleadoId" = "empleadoId" 
+	LEFT JOIN "SucursalesPlanteles" ON 
+	 "SucursalesPlanteles"."SP_SucursalPlantelId" = "ProgramasGrupos"."PROGRU_SP_SucursalPlantelId" 
+	INNER JOIN "ControlesMaestrosMultiples" ON 
+	 "ControlesMaestrosMultiples"."CMM_ControlId" = "ProgramasIdiomas"."PROGI_CMM_Idioma" 
+WHERE 
+	"activo" = 1
+	 AND "empleadoId" = $P{idEmpleado}
+	 AND "ProgramasGrupos"."PROGRU_PROGI_ProgramaIdiomaId" = $P{idIdioma}
+	 AND "PAModalidades"."PAMOD_ModalidadId" = $P{idModalidad}
+	 AND ($P{idPlantel} IS NULL OR PROGRU_SP_SucursalPlantelId =  $P{idPlantel})
+	 AND "ControlesMaestrosMultiples"."CMM_ControlId" = $P{idCmmIdioma}
+	 AND "ProgramasGrupos"."PROGRU_SUC_SucursalId" =   $P{idSucursal}
+	 AND "fechaInicio" =  $P{fechaInicio} 
+	AND "fechaFin" =   $P{fechaFin}
+	AND (CASE WHEN "PROGRU_CMM_TipoGrupoId" = 2000392 THEN 2000391 ELSE "PROGRU_CMM_TipoGrupoId" END) =  $P{tipoContrato}]]>
+		</queryString>
+		<field name="codigo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+			<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+		</field>
+		<field name="nombreGrupo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombreGrupo"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombreGrupo"/>
+		</field>
+		<field name="nivel" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="nivel"/>
+			<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+		</field>
+		<field name="horario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="horario"/>
+			<property name="com.jaspersoft.studio.field.label" value="horario"/>
+		</field>
+		<field name="sueldo" class="java.math.BigDecimal">
+			<property name="com.jaspersoft.studio.field.name" value="sueldo"/>
+			<property name="com.jaspersoft.studio.field.label" value="sueldo"/>
+		</field>
+	</subDataset>
+	<subDataset name="beneficiarios" uuid="fe76b055-4386-48c4-872e-84b7e3b26e59">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NO_DATA_ADAPTER"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="idEmpleado" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT
+		TRIM(CONCAT(TRIM(EMPBE_Nombre), ' ', TRIM(EMPBE_PrimerApellido), ' ', TRIM(NULLIF(EMPBE_SegundoApellido, '')) ) ) AS nombre,
+		CMM_Valor AS parentesco,
+		CONCAT(EMPBE_Porcentaje, '%') AS porcentaje
+	FROM EmpleadosBeneficiarios
+	INNER JOIN ControlesMaestrosMultiples ON EMPBE_CMM_ParentescoId = CMM_ControlId
+	WHERE EMPBE_EMP_EmpleadoId =  $P{idEmpleado}]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		</field>
+		<field name="parentesco" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="parentesco"/>
+			<property name="com.jaspersoft.studio.field.label" value="parentesco"/>
+		</field>
+		<field name="porcentaje" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="porcentaje"/>
+			<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
+		</field>
+	</subDataset>
+	<parameter name="idSucursal" class="java.lang.Integer"/>
+	<parameter name="idIdioma" class="java.lang.Integer"/>
+	<parameter name="idPlantel" class="java.lang.Integer"/>
+	<parameter name="idCiclo" class="java.lang.Integer"/>
+	<parameter name="idCmmIdioma" class="java.lang.Integer"/>
+	<parameter name="idModalidad" class="java.lang.Integer"/>
+	<parameter name="fechaFin" class="java.lang.String"/>
+	<parameter name="fechaInicio" class="java.lang.String"/>
+	<parameter name="idEmpleado" class="java.lang.Integer"/>
+	<parameter name="tipoContrato" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[$P{tipoContrato}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM [dbo].[fn_getContrato](
+	 $P{idEmpleado} , $P{fechaInicio} ,  $P{fechaFin} ,  $P{idModalidad} ,  $P{idCiclo} ,
+	  $P{idCmmIdioma} ,  $P{idPlantel} ,  $P{idIdioma} ,  $P{idSucursal},  $P{tipoContrato} 
+)]]>
+	</queryString>
+	<field name="profesorId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="profesorId"/>
+		<property name="com.jaspersoft.studio.field.label" value="profesorId"/>
+	</field>
+	<field name="tipoEmpleado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipoEmpleado"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipoEmpleado"/>
+	</field>
+	<field name="nombreProfesor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreProfesor"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreProfesor"/>
+	</field>
+	<field name="nacionalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nacionalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="nacionalidad"/>
+	</field>
+	<field name="fechaNacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaNacimiento"/>
+	</field>
+	<field name="genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="genero"/>
+	</field>
+	<field name="estadoCivil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estadoCivil"/>
+		<property name="com.jaspersoft.studio.field.label" value="estadoCivil"/>
+	</field>
+	<field name="gradoEstudio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gradoEstudio"/>
+		<property name="com.jaspersoft.studio.field.label" value="gradoEstudio"/>
+	</field>
+	<field name="curp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="curp"/>
+		<property name="com.jaspersoft.studio.field.label" value="curp"/>
+	</field>
+	<field name="rfc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rfc"/>
+		<property name="com.jaspersoft.studio.field.label" value="rfc"/>
+	</field>
+	<field name="domicilio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="domicilio"/>
+		<property name="com.jaspersoft.studio.field.label" value="domicilio"/>
+	</field>
+	<field name="codigoProfesor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigoProfesor"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigoProfesor"/>
+	</field>
+	<field name="plantel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="plantel"/>
+		<property name="com.jaspersoft.studio.field.label" value="plantel"/>
+	</field>
+	<field name="domicilioPlantel" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="domicilioPlantel"/>
+		<property name="com.jaspersoft.studio.field.label" value="domicilioPlantel"/>
+	</field>
+	<field name="salario" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="salario"/>
+		<property name="com.jaspersoft.studio.field.label" value="salario"/>
+	</field>
+	<field name="modalidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="modalidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="modalidad"/>
+	</field>
+	<field name="fechaInicioContrato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaInicioContrato"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaInicioContrato"/>
+	</field>
+	<field name="fechaFinContrato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaFinContrato"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaFinContrato"/>
+	</field>
+	<field name="fechaImpresion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fechaImpresion"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechaImpresion"/>
+	</field>
+	<field name="programa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="programa"/>
+		<property name="com.jaspersoft.studio.field.label" value="programa"/>
+	</field>
+	<field name="directorGeneral" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorGeneral"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorGeneral"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dbo.fn_getContrato"/>
+	</field>
+	<field name="directorRecursosHumanos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorRecursosHumanos"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorRecursosHumanos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="dbo.fn_getContrato"/>
+	</field>
+	<field name="directorSede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="directorSede"/>
+		<property name="com.jaspersoft.studio.field.label" value="directorSede"/>
+	</field>
+	<field name="coordinadorSede" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="coordinadorSede"/>
+		<property name="com.jaspersoft.studio.field.label" value="coordinadorSede"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="350" y="9" width="162" height="10" uuid="735d8b6d-b718-43d0-870a-0125be6982be">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoProfesor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="25" width="511" height="10" uuid="d3250d78-14ec-4e14-b4a6-1df7e0560aa4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SISTEMA CORPORATIVO PROULEX-COMLEX"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="4" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="530" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="1" y="53" width="510" height="12" uuid="ecef0c06-0277-4492-b9d0-38036966028a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DECLARACIONES:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="512" height="52" uuid="f6a39963-9e9a-45cf-b6fc-f7d01174cc6f"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DETERMINADO QUE CELEBRAN POR UNA PARTE “SISTEMA CORPORATIVO PROULEX-COMLEX” A QUIEN EN LO SUCESIVO SE DENOMINARÁ “EL PATRÓN” REPRESENTADO POR SU DIRECTOR EL MTRO. EDWIN ALFREDO BELLO RAMÍREZ, Y POR LA OTRA EL (LA) C. "+$F{nombreProfesor}+" A QUIEN EN LO SUCESIVO SE DENOMINARÁ  EL “INSTRUCTOR” EL CUAL SUJETAN AL TENOR  DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="71" width="512" height="10" uuid="0de3cd80-240c-4648-84d4-12bf8a297d64">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement markup="none">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Declara "EL PATRÓN":]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="20" y="84" width="493" height="56" uuid="33b1b745-a8f0-423f-bd54-daaed88afa43">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Que la Universidad de Guadalajara, es un organismo público descentralizado del Gobierno del Estado de Jalisco con autonomía, personalidad jurídica y patrimonio propios, de conformidad con lo dispuesto en el artículo 1º de su Ley Orgánica, promulgada por el Ejecutivo local el día 15 de Enero de 1994, en ejecución del decreto número 15319 del H. Congreso del Estado de Jalisco.<br>Que es atribución de la Universidad de Guadalajara, conforme al artículo 6 fracción XIII, Crear entidades y realizar programas generadores de recursos complementarios y para tal efecto mediante dictamen número 251, emitido por el H. Consejo General Universitario, se creó “Sistema Corporativo Proulex-Comlex”, el cual tiene por objeto: prestar servicios de educación continua en todas las áreas de idioma extranjero y en computación así como dedicarse a la adquisición y venta de equipo y de servicios técnicos especializados.<br>Que mediante dictamen Núm. IV/2021/131 del H. Consejo General Universitario, se creó la Coordinación de Entidades Productivas para la Generación de Recursos Complementarios, por lo que de conformidad en lo dispuesto en el resolutivo cuarto las empresas Universitarias que formaban parte de la Coordinación del Corporativo de Empresas Universitarias como instancias integrantes de la misma, pasarán a formar parte de la Coordinación de Entidades Productivas para la Generación de Recursos Complementarios, como Entidades Productivas de dicha Coordinación, por lo que, a partir de la aprobación de dicho dictamen, serán nombradas como Entidades Productivas.<br>Que el Director de Sistema Corporativo Proulex-Comlex, cuenta con atribuciones para administrar y representar a la entidad, de conformidad con lo establecido en las fracciones I y III del punto décimo primero del Dictamen de Creación del Sistema Corporativo Proulex-Comlex, así como en la fracción I del artículo 71 del Estatuto Orgánico del Centro Universitario de Ciencias Económico-Administrativas.<br>Que designa como responsable para la ejecución del presente convenio al Jefe de la Unidad de Personal de Sistema Corporativo Proulex Comlex.<br>Que para efectos señala como domicilio de las Oficinas Corporativas en la calle Prisciliano Sánchez número 1105, Colonia Americana, en Guadalajara, Jalisco y como domicilio de la fuente de trabajo en la SEDE "+$F{plantel}+" ubicada en "+$F{domicilioPlantel}+".  Que en lo sucesivo se denominará como LA SEDE."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="84" width="20" height="56" uuid="33722ab2-2155-4f16-9f32-09565df7b028"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I.<br><br><br>II.<br><br><br><br>III.<br><br><br><br><br>IV.<br><br><br><br>V.<br><br>VI."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="1" y="143" width="510" height="10" uuid="272729d4-b1d0-41a0-a3b9-a0bd6e5ee4e6">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DECLARA <b>“EL INSTRUCTOR”:<b>"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="156" width="20" height="20" uuid="cceb7af6-231f-4930-bf46-eea9ae6f246d"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["I."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="20" y="156" width="491" height="20" uuid="5d6252f0-e100-46a5-9c9c-524693b9a74b">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Que cuenta con la capacidad y las aptitudes para el desarrollo del trabajo motivo de este contrato, y que sus generales son los siguientes:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="30" y="179" width="169" height="39" uuid="f1978757-1ab1-4dd1-9ee3-60e063696960">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["a) Nacionalidad: "+$F{nacionalidad}+
+"<br>b) Fecha de nacimiento: "+$F{fechaNacimiento}+
+"<br>c) Sexo: "+$F{genero}+
+"<br>d) Estado Civil: "+$F{estadoCivil}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="199" y="179" width="313" height="39" uuid="49be2e59-ea7e-4eb3-9402-88a475c45016">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["e) Domicilio: "+$F{domicilio}+
+"<br>f) Escolaridad: "+$F{gradoEstudio}+
+"<br>g) CURP: "+$F{curp}+
+"<br>h) RFC: "+$F{rfc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="221" width="19" height="20" uuid="3f6951ee-dc8f-40e6-b15c-8d00305a9e26"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["II."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="19" y="221" width="494" height="20" uuid="a1cee71a-1413-4ed9-8761-8f8ceffe7fd0">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Que designa como beneficiarios, para el pago de los salarios y prestaciones devengadas y no cobradas, para el caso de fallecimiento o desaparición, las siguientes personas:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="259" width="512" height="10" uuid="aa237392-772c-4197-aaee-95b7605aeda6">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>DECLARAN LAS PARTES:</b><br>Que en consideración a las declaraciones que anteceden, convienen en las siguientes:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="271" width="510" height="10" uuid="2779bc9c-395e-48db-9857-be09ec630920">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÁUSULAS:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="286" width="513" height="20" uuid="ca02a210-2cd7-43a8-9835-5462759e5510">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>PRIMERA</b>.- <b>“EL PATRÓN”</b>, contrata al <b>“INSTRUCTOR”</b> por el periodo comprendido del día "+$F{fechaInicioContrato}+", al día "+$F{fechaFinContrato}+", para prestar sus servicios en la sede PROULEX  "+$F{plantel}+" como <b>“INSTRUCTOR”</b> de:  "+$F{programa}+".<br>Las partes acuerdan, dada la naturaleza de la materia de trabajo del presente contrato que en los casos en que el grupo al cual se asignó al <b>INSTRUCTOR</b>, no se inscriba el mínimo de alumnos que tiene contemplado EL PATRÓN dentro de los tres primeros días de inicio del curso, el presente contrato se dará por terminado al cuarto día.<br>En el mismo sentido y de conformidad con lo dispuesto en el numerales 37 fracción I de la Ley Federal del Trabajo, así como en la cláusula séptima del Contrato Colectivo de Trabajo celebrado entre el Sistema Corporativo Proulex-Comlex y el Sindicato Único de Trabajadores de la Universidad de Guadalajara, las partes acuerdan que una vez terminada la vigencia a que se refiere la presente cláusula, el presente contrato concluirá automáticamente.<br><b>“EL PATRÓN”</b> podrá supervisar el trabajo del <b>“INSTRUCTOR”</b> ya sea mediante cámaras de video o bien grabando la clase o en su caso asignando a una persona para que manera presencial supervise la clase.<br><b>SEGUNDA</b>.- Las partes acuerdan que la prestación de los servicios del <b>“INSTRUCTOR”</b> consistirán principalmente en: Impartir las clases de manera presencial el domicilio de LA SEDE señalada en la fracción VI de las declaraciones de <b>“EL PATRÓN”</b>,  para tal efecto <b>“EL INSTRUCTOR”</b> tiene las obligaciones siguientes:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="20" y="309" width="493" height="38" uuid="94f3f018-e75c-4422-86a5-90ca2503f61d">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Impartir las clases de manera presencial, para las cuales se le contrató en la sede señalada en la fracción VI de las declaraciones de “EL PATRÓN”.<br>Evitar hablar de asuntos personales durante la impartición de las clases. Así como abstenerse de usar sus dispositivos para temas personales durante la impartición de sus clases, o para atender asuntos ajenos a la misma.<br>Asistir puntualmente al lugar de trabajo en el horario fijado, en los días laborales registrando su ingreso y salida, en el entendido de que deberá cubrir las horas contratadas completas.<br>Controlar la asistencia y disciplina de sus alumnos y evitar intimar con ellos.<br>Efectuar las evaluaciones y/o exámenes con estricto apego al calendario, medio de aplicación y supervisión establecidos, en el Manual de Procedimientos Académicos de Sistema Corporativo Proulex Comlex.<br>Capturar las asistencias diariamente de los alumnos en el sistema que indique “EL PATRÓN”, así como las calificaciones de los alumnos a más tardar al día siguiente de su aplicación.<br>Utilizar el material didáctico y los programas oficiales señalados por “EL PATRÓN”.<br>Las demás funciones específicas derivadas de las anteriores que le sean encargadas por “EL PATRÓN” o sus representantes.<br>Asistir a los cursos de preparación o capacitación, así como talleres de trabajo que indique “EL PATRÓN”, ya sea que se impartan de manera virtual o presencial, las cuales se pagarán de acuerdo al tabulador de hora/clase.<br>En las clases de idiomas, abstenerse de hablar español en la clase, de manera indebida o injustificable apegándose en todo momento a la metodología institucional.<br>Vestir de manera apropiada durante su jornada laboral, portando el uniforme y gafete que le fue proporcionado por “EL PATRON”.<br>Dirigirse a sus compañeros, representantes del patrón, alumnos y en el caso de tener alumnos menores con los padres o tutores de los alumnos, con respeto y lenguaje adecuado.<br>Dar aviso oportunamente a “EL PATRÓN” cuando no le sea posible asistir a sus labores a efecto de que se esté en la posibilidad de sustituirlo, y evitar suspender las clases.<br>Cumplir con los protocolos de salud y seguridad sanitarias que dicten tanto las autoridades federales como locales, así como las que establezca “EL PATRÓN”.<br>Abstenerse de fumar o comer durante su jornada laboral, esto es; cuando esté frente a grupo.<br>Cumplir con lo estipulado en la Ley Federal del Trabajo, el Contrato Colectivo de Trabajo y el Reglamento Interior de Trabajo para los instructores en idiomas y cómputo del Sistema Corporativo Proulex Comlex."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="309" width="20" height="38" uuid="f4bf57cc-4a8b-46ae-a8a7-4a50520d9f3d"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1.<br><br>2.<br><br>3.<br><br>4.<br>5.<br><br>6.<br><br>7.<br>8.<br>9.<br><br>10.<br><br>11.<br>12.<br><br>13.<br><br>14.<br><br>15.<br>16."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="350" width="510" height="20" uuid="ccd2aef3-5bed-43e0-b181-ba05bf4fe161">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Asimismo acuerdan las partes que EL INSTRUCTOR, tiene prohibido grabar las clases o usar los materiales de <b>“EL PATRÓN”</b>, para fines distintos a los contratados. De igual forma tiene prohibido promocionar o realizar propaganda de servicios de enseñanza de idiomas o de cómputo respecto de los servicios que brinde ya sea por si mismo o por un tercero de manera externa a los servicios que presta para <b>“EL PATRÓN”</b>. ya sea que lo haga de manera particular o con alguna otra empresa o institución.<br><b>TERCERA</b>.- El presente Contrato obliga a lo expresamente pactado conforme a las disposiciones contenidas en el artículo 31 de la Ley Federal de Trabajo y la duración del mismo será la señalada en la cláusula primera, por lo que al concluir su término las partes contratantes lo darán por terminado con apoyo en el artículo antes mencionado e igualmente en los artículos 35, 37 Fracción I, 53 Fracción III y demás relativos de la citada Ley Federal del Trabajo, sin responsabilidad de ninguna naturaleza para <b>“EL PATRÓN”</b>.<br><b>CUARTA</b>.- <b>“EL INSTRUCTOR”</b> conviene en que prestará sus servicios en el domicilio de LA SEDE señalada en la fracción VI de las declaraciones de <b>“EL PATRÓN”</b>.<br><b>QUINTA</b>.- La jornada de trabajo constituye el tiempo durante el cual el instructor está a disposición de <b>“EL PATRÓN”</b>  para prestar sus servicios de conformidad con los siguientes grupos:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="407" width="511" height="20" uuid="ce888f22-dde6-4ce8-b8a5-bb784f970b80">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Todos los grupos en la Modalidad de: "+$F{modalidad}+"<br>SÉXTA</b>.- El <b>“INSTRUCTOR”</b> percibirá el salario por clase impartida (en caso que labore menos de las horas contratadas sin causa justificada, no se pagará dicho tiempo), lo anterior de conformidad a lo dispuesto por el artículo 83 de la Ley Federal del Trabajo y por los montos especificados en el tabulador salarial del Contrato Colectivo de Trabajo el cual le será cubierto los días quince y último del mes y será pago electrónico remitiendo su recibo al domicilio de <b>“EL PATRÓN”</b> donde tenga su mayor carga horaria.<br>Del salario anterior, <b>“EL PATRÓN”</b> hará por cuenta del <b>“INSTRUCTOR”</b> las deducciones legales correspondientes, particularmente las que se refieren a Impuestos sobre la Renta, Seguro Social y otras que acuerden las partes.<br><b>SÉPTIMA</b>.- En caso que el curso que imparta el <b>“INSTRUCTOR”</b>, coincida con periodo vacacional, éste disfrutará de dos periodos vacacionales, dos semanas en primavera (semana sanata y pascua)  y dos semanas en invierno, (dos últimas semanas de diciembre) , de conformidad a lo establecido en el Contrato Colectivo de Trabajo y percibirá una prima vacacional que consistirá en un pago del 25% de los salarios que corresponda al periodo vacacional a que tuviera derecho, en relación a su antigüedad y conforme lo marca el artículo 76 de la Ley Federal del Trabajo.<br><b>OCTAVA</b>.- El <b>“INSTRUCTOR”</b> percibirá un aguinaldo anual equivalente a 30 días de salario tabulado promedio ó el proporcional al tiempo trabajado y disfrutará de los días de descanso obligatorio que refiere el Contrato Colectivo de Trabajo.<br><b>NOVENA</b>.- Las partes convienen que <b>“EL PATRÓN”</b> podrá rescindir la relación de trabajo que por este medio se contrata, con el solo requisito de comunicar su decisión por escrito al trabajador en los siguientes casos:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="430" width="20" height="20" uuid="d47200b9-0b7f-459c-bf6e-95a709032d5f"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["a)<br><br>b)<br><br>c)<br><br>d)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="20" y="430" width="491" height="20" uuid="9b3e97cc-8498-4fce-9b89-bf9dd45b68f3">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Si el <b>“INSTRUCTOR”</b> no ejecuta los servicios de acuerdo a lo estipulado en este contrato, o si altera o modifica el programa de enseñanza sin la autorización correspondiente.<br>Si suspende injustificadamente las clases que se le asignaron o si no los realiza eficaz y oportunamente, con base en sus conocimientos y experiencia por los cuales fue contratado.<br>Si el <b>“INSTRUCTOR”</b> sin autorización saca copias de libros, CDs, USB o cualquier otro material electrónico o impreso exclusivo de <b>“EL PATRÓN”</b>.<br>En caso de que promocione o realice propaganda de servicios de enseñanza de idiomas o de cómputo respecto de los servicios que brinde ya sea por sí mismo de manera externa o que brinde un tercero o cualquier otra institución."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="454" width="512" height="20" uuid="cd4440bb-69db-4e08-8678-ed6e4936d57a">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>DÉCIMA</b>.- El <b>“INSTRUCTOR”</b> se obliga en los términos de la Fracción X del artículo 134 de la Ley Federal del Trabajo a someterse a todos los reconocimientos y exámenes médicos que <b>“EL PATRÓN”</b> indique.<br><b>DÉCIMA PRIMERA</b>.- <b>“EL INSTRUCTOR”</b> se obliga a no divulgar, así como a no hacer uso para beneficio propio o de terceros, por cualquier medio, de la información que pudiera obtener con motivo de su trabajo en <b>“EL PATRÓN”</b>, de toda clase de investigaciones, estudios, métodos y formas de trabajo y/o proyectos a que haya tenido acceso y que hubiera tenido conocimiento, las cuales son propiedad de la Universidad de Guadalajara.<br><b>“EL INSTRUCTOR”</b> se obliga, tanto durante el tiempo que preste sus servicios y al menos seis años posteriores a la conclusión del mismo, con respecto a la Información y el Know How de EL PATRÓN, a lo siguiente:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="478" width="19" height="20" uuid="5689d796-9896-41a0-b115-5ab2844a98d3"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["a)<br>b)<br>c)<br>d)<br><br>e)<br>f)<br>g)"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="19" y="478" width="494" height="20" uuid="ef738554-2e8c-488b-97b7-d11844a4f286">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Proteger y asegurar la información de uso no autorizado o su divulgación.<br>Evitar exponer o divulgar material confidencial en lugares donde puedan ser observados fácilmente.<br>Evitar los comentarios de toda clase de investigaciones, estudios, métodos y formas de trabajo y/o proyectos que obtenga.<br>Abstenerse de copiar o reproducir por cualquier medio, diseminar o divulgar en cualquier forma la información a que se refiere el inciso anterior a la que tenga acceso.<br>Informar inmediatamente de cualquier pérdida de información.<br>Custodiar y cuidar la documentación e información a la cual se tenga acceso.<br>Abstenerse de realizar prácticas desleales."]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="501" width="512" height="20" uuid="061e3e7a-e820-450c-a7c3-5c884c9cd383">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>DÉCIMA SEGUNDA</b>.- <b>“EL INSTRUCTOR”</b> reconoce que las únicamente tiene derecho a las prestaciones que se establecen en el presente contrato, así como a las que se establecen en el Contrato Colectivo celebrado por Sistema Corporativo Proulex, por lo que manifiesta que no le corresponden prestaciones adicionales a las señaladas en el presente documento y en el Contrato Colectivo señalado.<br><b>DÉCIMA TERCERA</b>.- El <b>“INSTRUCTOR”</b> se obliga a participar en todos los Planes de Capacitación y Adiestramiento que <b>“EL PATRÓN”</b> le imparta para el mejor desarrollo de sus aptitudes y conocimiento, planes que podrán implantarse dentro de los programas educativos y durante las labores del <b>“INSTRUCTOR”</b>. Ya sea de manera virtual o presencial. De igual modo deberá observar las medidas preventivas de riesgos de trabajo.<br><b>DÉCIMA CUARTA</b>.- <b>“EL INSTRUCTOR”</b> está obligado a checar su tarjeta, firmar listas de asistencia ó a registrar su asistencia por medios electrónicos, a la entrada y salida de sus labores, por lo que el incumplimiento de este requisito indicará la falta injustificada a sus labores, para todos los efectos legales. La entrada a las labores se deberá realizar con puntualidad, de acuerdo a lo que marca el Reglamento Interior de Trabajo para instructores de idiomas y de cómputo.<br>Lo no previsto por este contrato se regirá por las disposiciones de la Ley Federal del Trabajo, del Contrato Colectivo de Trabajo vigente y el Reglamento Interior de Trabajo.<br>b>DÉCIMA QUINTA</b>.- Lo no previsto por este contrato se regirá por las disposiciones de la Ley Federal del Trabajo, del Contrato Colectivo de Trabajo vigente y el Reglamento Interior de Trabajo.<br>Leído que fue el presente contrato por quienes en el intervienen y enterados de su contenido lo suscriben por duplicado quedando un original en poder de cada parte. En la ciudad de Guadalajara, Jalisco a <b>"+$F{fechaImpresion}+"</b>"]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement positionType="Float" x="0" y="374" width="511" height="30" uuid="fd2b85eb-098b-45d6-bb8c-4628da863864">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Grupos" uuid="5904012e-775c-468c-8718-38eb161523cf">
+						<datasetParameter name="idEmpleado">
+							<datasetParameterExpression><![CDATA[$P{idEmpleado}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idIdioma">
+							<datasetParameterExpression><![CDATA[$P{idIdioma}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaInicio">
+							<datasetParameterExpression><![CDATA[$P{fechaInicio}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="fechaFin">
+							<datasetParameterExpression><![CDATA[$P{fechaFin}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idModalidad">
+							<datasetParameterExpression><![CDATA[$P{idModalidad}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idCiclo">
+							<datasetParameterExpression><![CDATA[$P{idCiclo}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idPlantel">
+							<datasetParameterExpression><![CDATA[$P{idPlantel}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idCmmIdioma">
+							<datasetParameterExpression><![CDATA[$P{idCmmIdioma}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="idSucursal">
+							<datasetParameterExpression><![CDATA[$P{idSucursal}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tipoContrato">
+							<datasetParameterExpression><![CDATA[$P{tipoContrato}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="110" uuid="902b28cd-033d-4fd1-9266-68f882cd4061">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:columnHeader style="Table 1_CH" height="15" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="15" uuid="0bcfe26e-9589-4ae4-a033-f1f91674be70"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Código]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="110" height="15" uuid="17c8638b-7059-494a-856a-3a59b8609da4">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Left">
+									<font size="8"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="250" uuid="765f9bb6-3a3b-458b-907c-74ca3eaf37f5">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:columnHeader style="Table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="250" height="15" uuid="05bb2176-3515-48c2-a090-4d60b131ee55"/>
+								<textElement>
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Descripción]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="250" height="15" uuid="7b8b37d6-4bdb-47f8-91df-086ea1f482dc">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement>
+									<font size="8"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombreGrupo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="6932c260-4fb4-471d-b3a9-735e7e8c0e28">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:columnHeader style="Table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="15" uuid="748f3aa9-958a-4acb-adff-f254aeb6b122"/>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Nivel]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="40" height="15" uuid="6f440f43-6c96-4c71-89d7-c4897e7101d2">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="40fe93ca-eb45-4aac-814f-f070eafaaaec">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:columnHeader style="Table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="15" uuid="e2921fc5-b15f-4ea2-9c22-6858a2046e62"/>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Horario]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="60" height="15" uuid="eae0f3d7-cd24-41d5-a5d5-632d86754e41">
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{horario}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="9226a16b-df0e-4f7e-a069-19955d649b65">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:columnHeader style="Table 1_CH" height="15" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="15" uuid="6fbaf038-7e1b-4d5c-8b0c-9f7510847da6"/>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+								</textElement>
+								<text><![CDATA[Sueldo por hora]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="15">
+							<textField isStretchWithOverflow="true">
+								<reportElement x="0" y="0" width="50" height="15" uuid="80467b2a-67ee-481d-88f2-55c9798df401">
+									<property name="com.jaspersoft.studio.unit.rightIndent" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center">
+									<font size="8"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{sueldo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="244" width="513" height="11" forecolor="#FFFFFF" uuid="0ef45949-b8f7-41ff-bb40-488ecc995095">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="beneficiarios" uuid="ff9988af-57f3-4a83-b353-ab0d445434b5">
+						<datasetParameter name="idEmpleado">
+							<datasetParameterExpression><![CDATA[$P{idEmpleado}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="30" uuid="d1e40eb0-e5ff-4c7b-b8da-e4ba1a48d0bd">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="04720027-96a5-46a4-8f2f-7e04994aa3cb">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="40" height="11" uuid="8df5fd70-626c-4b75-905e-9ce64dd7f1bc"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nombre:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="170" uuid="1d00bbfb-3536-4006-9b80-12e7a94e9dcf">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="170" height="11" uuid="b689b54d-82f7-4d9f-8278-d5f2e58875df"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="6f3e8d39-6dc8-4bf1-aa39-6fdd5494183c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="11" uuid="8617e454-495e-4c53-b33e-856fa3a86a63"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Parentesco:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="91f5a3f2-ac3e-436c-85fa-5883fe389a53">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="70" height="11" uuid="7d8d5aa4-45c6-4daf-a658-ad176ad38972"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{parentesco}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="463aba5d-5bf1-4f34-a109-1e5b7b27bf51">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="11" uuid="4fbf3f34-050b-427a-83f7-edfb8094c549"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Porcentaje:]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c74c96fb-1439-4cdf-827a-7c3def45c64e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:detailCell style="Table_TD" height="11">
+							<box>
+								<pen lineColor="#FFFFFF"/>
+							</box>
+							<textField>
+								<reportElement x="0" y="0" width="100" height="11" uuid="ac4b710d-c53a-4998-a129-af868a98c14a"/>
+								<box>
+									<pen lineColor="#FFFFFF"/>
+									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+									<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								</box>
+								<textElement>
+									<font fontName="Tahoma" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentaje}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="198" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement positionType="Float" x="292" y="70" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="b0ccb28b-1ec3-44e5-884c-e468681d4da7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>MTRO. EDWIN ALFREDO BELLO RAMÍREZ</b><br>DIRECTOR DE SISTEMA CORPORATIVO PROULEX COMLEX"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="10" y="70" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="3df1a8cf-5813-4db9-9754-e0da2b7db8ae"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["C: "+$F{nombreProfesor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="100" width="511" height="10" isPrintWhenDetailOverflows="true" uuid="4777b99b-7feb-4ee5-b0d2-3a7c6b50a0a9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[TESTIGOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="10" y="153" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="fb457454-c995-442d-b87d-d5548dfda0bf"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{directorSede}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="290" y="153" width="209" height="28" isPrintWhenDetailOverflows="true" uuid="8d0b1e9b-4213-4484-a85c-5c8e3e0bf30f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{coordinadorSede}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="20" width="209" height="10" isPrintWhenDetailOverflows="true" uuid="b193e101-4f8a-4d76-9bf1-6c9b747a4a5c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA["INSTRUCTOR"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="292" y="20" width="209" height="10" isPrintWhenDetailOverflows="true" uuid="27940896-f957-4ca8-ba6b-f40f5c2946e5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA["EL PATRÓN"]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="184" width="450" height="12" uuid="8d5400d4-8a20-4613-a782-8ecc6fb4b887">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Control, aplicación y archivo: "+$F{directorRecursosHumanos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

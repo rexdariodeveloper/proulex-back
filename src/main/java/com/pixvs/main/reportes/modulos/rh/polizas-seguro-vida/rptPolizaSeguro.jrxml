@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.10.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="612" pageHeight="792" columnWidth="532" leftMargin="40" rightMargin="40" topMargin="0" bottomMargin="0" uuid="6a8c2c92-3441-466d-80de-b16ab66fc6f8">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="CENPRO"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="ColorLetrasEspecial" forecolor="#0D1F63" backcolor="#FFFFFF"/>
+	<parameter name="ID_EMPLEADO" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["reportes_jaspereditor\\Reportes\\Rh\\PolizasSeguro\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PATH_REPORTES" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	EMP_EmpleadoId,
+	EMP_CodigoEmpleado AS noCertificado,
+	'499790905' AS noPoliza,
+	'11546' AS noContrato,
+	CONCAT('CENPRO / ', ENT_Codigo) AS dependencia,
+	'' AS codigoCliente,
+	CONCAT(EMP_Nombre, ' ', EMP_PrimerApellido, ' ', NULLIF(EMP_SegundoApellido, '')) AS nombreCompleto,
+	FORMAT(EMP_FechaNacimiento, 'dd') AS diaNacimiento,
+	FORMAT(EMP_FechaNacimiento, 'MM') AS mesNacimiento,
+	FORMAT(EMP_FechaNacimiento, 'yyyy') AS anioNacimiento,
+	LEFT(genero.CMM_Valor, 1) AS genero,
+	'' AS puesto,
+	'' AS gradoEstudios,
+	-- Fecha Expedicion
+	FORMAT(GETDATE(), 'dd') AS diaExpedicion,
+	FORMAT(GETDATE(), 'MM') AS mesExpedicion,
+	FORMAT(GETDATE(), 'yyyy') AS anioExpedicion,
+	-- Certificado
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'dd') AS diaCertInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'MM') AS mesCertInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'yyyy') AS anioCertInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'dd') AS diaCertFin,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'MM') AS mesCertFin,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'yyyy') AS anioCertFin,
+	CONCAT(DATEDIFF(DAY, vigencias.CMM_POLIZA_FECHA_INICIO, vigencias.CMM_POLIZA_FECHA_FIN), ' días') AS duracionCertificado,
+	-- Poliza
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'dd') AS diaPolInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'MM') AS mesPolInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_INICIO AS DATE), 'yyyy') AS anioPolInicio,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'dd') AS diaPolFin,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'MM') AS mesPolFin,
+	FORMAT(CAST(vigencias.CMM_POLIZA_FECHA_FIN AS DATE), 'yyyy') AS anioPolFin,
+	CONCAT(DATEDIFF(DAY, vigencias.CMM_POLIZA_FECHA_INICIO, vigencias.CMM_POLIZA_FECHA_FIN), ' días') AS duracionPoliza
+FROM Empleados
+INNER JOIN Entidades ON EMP_ENT_EntidadId = ENT_EntidadId
+INNER JOIN ControlesMaestrosMultiples genero ON EMP_CMM_GeneroId = genero.CMM_ControlId
+INNER JOIN(
+	SELECT * FROM (
+		select
+		CMM_Control as ctrl, CMM_Valor AS valor
+		from ControlesMaestrosMultiples WHERE CMM_ControlId IN(2000690, 2000691)
+	) as datos
+	UNPIVOT (value for name in ([valor])) up
+	PIVOT (max(value) for ctrl in ([CMM_POLIZA_FECHA_INICIO],[CMM_POLIZA_FECHA_FIN])) AS result
+) AS vigencias ON 1 = 1
+WHERE EMP_EmpleadoId =  $P{ID_EMPLEADO}]]>
+	</queryString>
+	<field name="EMP_EmpleadoId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="EMP_EmpleadoId"/>
+		<property name="com.jaspersoft.studio.field.label" value="EMP_EmpleadoId"/>
+	</field>
+	<field name="noCertificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="noCertificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="noCertificado"/>
+	</field>
+	<field name="noPoliza" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="noPoliza"/>
+		<property name="com.jaspersoft.studio.field.label" value="noPoliza"/>
+	</field>
+	<field name="noContrato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="noContrato"/>
+		<property name="com.jaspersoft.studio.field.label" value="noContrato"/>
+	</field>
+	<field name="dependencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dependencia"/>
+		<property name="com.jaspersoft.studio.field.label" value="dependencia"/>
+	</field>
+	<field name="codigoCliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigoCliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigoCliente"/>
+	</field>
+	<field name="nombreCompleto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombreCompleto"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombreCompleto"/>
+	</field>
+	<field name="diaNacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaNacimiento"/>
+	</field>
+	<field name="mesNacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesNacimiento"/>
+	</field>
+	<field name="anioNacimiento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioNacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioNacimiento"/>
+	</field>
+	<field name="genero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="genero"/>
+		<property name="com.jaspersoft.studio.field.label" value="genero"/>
+	</field>
+	<field name="puesto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="puesto"/>
+		<property name="com.jaspersoft.studio.field.label" value="puesto"/>
+	</field>
+	<field name="gradoEstudios" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="gradoEstudios"/>
+		<property name="com.jaspersoft.studio.field.label" value="gradoEstudios"/>
+	</field>
+	<field name="diaExpedicion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaExpedicion"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaExpedicion"/>
+	</field>
+	<field name="mesExpedicion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesExpedicion"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesExpedicion"/>
+	</field>
+	<field name="anioExpedicion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioExpedicion"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioExpedicion"/>
+	</field>
+	<field name="diaCertInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaCertInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaCertInicio"/>
+	</field>
+	<field name="mesCertInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesCertInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesCertInicio"/>
+	</field>
+	<field name="anioCertInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioCertInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioCertInicio"/>
+	</field>
+	<field name="diaCertFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaCertFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaCertFin"/>
+	</field>
+	<field name="mesCertFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesCertFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesCertFin"/>
+	</field>
+	<field name="anioCertFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioCertFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioCertFin"/>
+	</field>
+	<field name="duracionCertificado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="duracionCertificado"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracionCertificado"/>
+	</field>
+	<field name="diaPolInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaPolInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaPolInicio"/>
+	</field>
+	<field name="mesPolInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesPolInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesPolInicio"/>
+	</field>
+	<field name="anioPolInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioPolInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioPolInicio"/>
+	</field>
+	<field name="diaPolFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="diaPolFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="diaPolFin"/>
+	</field>
+	<field name="mesPolFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="mesPolFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="mesPolFin"/>
+	</field>
+	<field name="anioPolFin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="anioPolFin"/>
+		<property name="com.jaspersoft.studio.field.label" value="anioPolFin"/>
+	</field>
+	<field name="duracionPoliza" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="duracionPoliza"/>
+		<property name="com.jaspersoft.studio.field.label" value="duracionPoliza"/>
+	</field>
+	<group name="Bloque5" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="166">
+				<staticText>
+					<reportElement x="357" y="0" width="170" height="56" forecolor="#999999" uuid="d0eef184-fe25-47cd-9c67-7ba7a6d66e0c"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="0" width="45" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="5fb90d4a-d580-40a9-a934-d23a789409a5"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Póliza No.]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="448" y="-1" width="78" height="13" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="53017aeb-8bd4-49b2-8417-14cdffc9ff4c"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{noPoliza}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="362" y="11" width="51" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="06954992-8431-42b8-8078-adb1d36d8b48"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Contrato No]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="448" y="9" width="78" height="13" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="a11a7c01-ab9c-46ae-a858-66e81cea1ac2"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{noContrato}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="362" y="22" width="29" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="3d9347a7-7be6-4bd9-b63a-1f3025776f37"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Versión]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="398" y="21" width="21" height="13" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="1b35d7ea-0056-4eb3-b5b0-caa18ae6d66f"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["0"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="448" y="22" width="48" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="dc9c42c0-98a3-4b78-85b2-2f0951adcc98"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Renovación:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="498" y="21" width="21" height="13" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="0a4571c8-5cd8-487c-8433-347f5bd935d6"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["0"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="466" y="35" width="12" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="e1a98a21-b181-40f3-b8e7-cfa4d7cb313a">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Día]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="481" y="35" width="15" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="7b6f14f4-f8c0-42b4-8b0f-8a8a554b8246">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Mes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="499" y="35" width="15" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="f1fc3d8d-935b-4e32-8649-82c10c26e5a3">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Año]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="362" y="45" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="dba83834-5134-4d15-8bb6-4fa8703ee3ef"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Fecha de expedición]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="467" y="45" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="0a8088fd-3dfc-472f-9900-c40e7b9c267e"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaExpedicion}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="482" y="45" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="a31d24f0-f72e-4755-bf1f-048e47c450fa"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesExpedicion}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="497" y="45" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="30957935-34f8-42fe-b4bb-0f2bf26683e3"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioExpedicion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="357" y="56" width="170" height="50" forecolor="#999999" uuid="ad914874-6839-433c-bfb1-15c4d21b0c05"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="56" width="99" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="753c3764-1976-4cd5-8eaa-bd20d7454607"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Vigencia  del certificado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="69" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="bd14924e-8bbb-4e86-bda2-cb573cb1580c"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Desde las 12:00 hrs. del]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="81" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="c0c024ae-e792-4b77-a9cf-29358ef76a2c"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Hasta las  12:00 hrs. del]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="94" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="8fdc5f4b-a97e-4c07-a6e2-8ade22e06a08"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Duración]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="466" y="56" width="12" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="5cf0f116-7f56-4944-b4cd-eaeafa8220dd"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Día]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="481" y="56" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="804ba1a6-bb17-4a02-8761-b801e0aaca6f"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Mes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="499" y="56" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="d1049a95-a493-4955-b9d1-5800fbaa773a"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Año]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="482" y="69" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="cac1d6c8-a03a-4823-9677-703961b6e305"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesCertInicio}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="467" y="69" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="56f004af-ef0e-41ee-8048-d4eb25fde26c"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaCertInicio}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="497" y="69" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="96e38bb7-5af2-4b80-8a52-3a06337ecd2c"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioCertInicio}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="497" y="81" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="ae348b0b-fc34-4c49-a638-176045f89fcd"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioCertFin}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="467" y="81" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="56ca3ceb-1a29-4a69-8840-f50284058cc1"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaCertFin}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="482" y="81" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="df312f4b-1163-452d-ab00-3a545f52c69c"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesCertFin}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="357" y="106" width="170" height="59" forecolor="#999999" uuid="f7803d5d-ed05-4007-a548-4c2df8b5ac30"/>
+					<box>
+						<pen lineColor="#000000"/>
+						<topPen lineColor="#000000"/>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+						<rightPen lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="131" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="9641f39f-3e02-403c-988f-8ac7c2d883e1"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Hasta las  12:00 hrs. del]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="499" y="106" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="e58e3aa1-49b0-420c-b929-f1af379046be"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Año]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="467" y="120" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="87852845-55e8-42b6-8b45-75d83405674f"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaPolInicio}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="482" y="120" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="5beb5499-ef31-4601-8387-dba8ea2b5fd0"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesPolInicio}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="466" y="106" width="12" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="a14220e7-20a1-4c4e-82a8-085edf5a5d16"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Día]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="481" y="106" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="a98eab57-2be6-4ddc-b46f-e9ecec823887"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Mes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="145" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="f0fcf44c-dc63-48ce-aa0c-65fcf524329c"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Duración]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="497" y="120" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="aa301e22-e2bf-4253-9971-a3122e6a637b"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioPolInicio}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="467" y="131" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="77d1a39c-31ff-412e-8f43-fbdc9ed06e6e"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaPolFin}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="497" y="131" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="03eeb8d0-28de-4854-8c57-294004f503bd"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioPolFin}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="106" width="99" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="9e74b707-70ee-4df7-b656-971f79db7237"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Vigencia de la póliza]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="482" y="131" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="01b6848f-c89e-4617-819e-f83b71202f95"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesPolFin}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="361" y="120" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="2ce33186-e1a3-42cb-9b11-a1953e114013"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Desde las 12:00 hrs. del]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="10" width="128" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="5585dba9-6670-489a-b79f-c43430139178"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Nombre del Asegurado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="178" y="79" width="67" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="b87b5c99-8d41-4c57-b287-833b655696dd"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Dependencia:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="106" width="172" height="59" forecolor="#999999" uuid="e282c6d9-b2eb-4ec5-8251-842cd60e914d"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="184" y="119" width="165" height="46" forecolor="#999999" uuid="155bf1cd-f8e3-4b0d-b73d-f655af3e9cfa"/>
+					<box>
+						<pen lineColor="#000000"/>
+						<topPen lineColor="#000000"/>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+						<rightPen lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="9" y="119" width="52" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="f6724202-5dd8-4052-8b8b-42e651d09fc2"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Sexo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="9" y="131" width="52" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="1b14ed5b-70ba-40f4-a466-73681586d956"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Estado Civil:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="9" y="143" width="52" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="18021952-ce69-4755-9919-cb363623ef3e"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Ocupación:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="194" y="140" width="98" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="bb538df4-b455-4aaa-a868-bf35427a6942"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Fecha de Nacimiento:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="289" y="132" width="12" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="663a928b-3b68-4bb6-974f-de8e3c1a32ef"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Día]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="322" y="132" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="a0ceb33e-8966-49bf-b876-d17c1822cb48"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Año]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="304" y="132" width="15" height="12" forecolor="#000000" backcolor="#FFFFFF" uuid="244fcbb9-1ba5-473c-89fd-832c2c514251"/>
+					<textElement textAlignment="Left">
+						<font fontName="Ebrima" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Mes]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="304" y="141" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="bedd192a-01a2-4005-816d-ef4c191bfae9"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{mesNacimiento}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="319" y="141" width="25" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="435cb510-b782-4920-ba7d-dcafffb9e8ec"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anioNacimiento}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="289" y="141" width="15" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="f43afac7-22cb-4747-8a17-be1caddf595d"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{diaNacimiento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="177" y="79" width="173" height="26" forecolor="#999999" backcolor="#FFFFFF" uuid="0aceb88e-c408-42a9-bd77-5aae5974432c"/>
+					<box>
+						<pen lineColor="#000000"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineColor="#000000"/>
+						<rightPen lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="10" y="33" width="339" height="16" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="f0e13dab-37c9-4afc-9987-e0515f09884c"/>
+					<box>
+						<pen lineColor="#999999"/>
+						<topPen lineColor="#999999"/>
+						<leftPen lineColor="#999999"/>
+						<rightPen lineColor="#999999"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nombreCompleto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="178" y="89" width="67" height="17" forecolor="#000000" backcolor="#CCCCCC" uuid="438df8af-e4ec-4d6a-8c44-defcf7e5c0b1"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Código cliente:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="246" y="79" width="102" height="13" forecolor="#0D1F63" uuid="ff353eb3-a9b6-4766-8fd9-4eb34bef7a33"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dependencia}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="4" y="23" width="347" height="83" forecolor="#999999" uuid="ac14cc7f-49be-4fd2-8376-a9feb7ebdbd7"/>
+					<box>
+						<pen lineColor="#000000"/>
+						<topPen lineColor="#000000"/>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+						<rightPen lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="466" y="145" width="55" height="12" forecolor="#0D1F63" uuid="e201e1aa-4551-40cc-8288-61789739fcd5"/>
+					<textElement>
+						<font fontName="Ebrima" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{duracionPoliza}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="466" y="94" width="55" height="12" forecolor="#0D1F63" uuid="9ca72827-c91b-46b6-88a0-6f8cd6e6d0b3"/>
+					<textElement>
+						<font fontName="Ebrima" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{duracionCertificado}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="61" y="120" width="102" height="13" forecolor="#0D1F63" uuid="1ac6376e-5d7f-4698-aed6-d2e82ed922af"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque1">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="57">
+				<staticText>
+					<reportElement x="4" y="0" width="523" height="56" forecolor="#999999" uuid="b2496e4b-132e-4ad7-91cd-e715dc480ddf"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="7" y="2" width="65" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="4d57934e-df08-49d8-81c5-59c34788733f"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Contratante]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="15" y="15" width="173" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="0728049e-3e31-4d24-b112-9a01586e143c"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[UNIVERSIDAD DE GUADALAJARA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="15" y="27" width="379" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="d4b66c99-752e-43b1-8b63-5e4367be478a"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[AVENIDA JUAREZ 976  44100  GUADALAJARA JALISCO MEXICO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="15" y="44" width="45" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="a8093889-6e29-4b78-90a5-5d2c0fbd7ecf"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="8" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[TELÉFONO:  ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="61" y="43" width="72" height="12" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="b8057e0c-6b9d-4e8d-aef0-11a44720a558"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[(52) 3336826368]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque2">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="207">
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="0" width="65" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="4b0555e7-c063-4c30-b7ee-28ac359295b5"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Coberturas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="4" y="165" width="526" height="40" forecolor="#000000" uuid="1d61f9e1-9385-4d7a-8e7d-9a5a9c1c3f12">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Justified">
+						<font fontName="Ebrima" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[El monto total de la Suma Asegurada por Cobertura esta limitado al importe de la Suma Asegurada Máxima por Asegurado sin requisitos de asegurabilidad, señalada en la Carátula de la Póliza de la que forma parte este Certificado.]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque6">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="197">
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="0" width="71" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="342cd963-630b-465e-92a9-69a000e80aa2"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Beneficiarios]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="13" width="525" height="89" forecolor="#999999" uuid="945b24c0-d280-438d-b9ee-3356f89d547f"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="10" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" x="4" y="-196" width="526" height="153" forecolor="#999999" uuid="953a181c-4858-4afa-8fe2-fffffffde058"/>
+					<box>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement>
+						<font size="9" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="362" y="82" width="163" height="20" uuid="cbbd4a9c-eb99-40ba-9838-9cefd62bf534"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Firma del asegurado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="5" y="-195" width="64" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="acd25ad0-e4a7-4f75-871b-ac319bcc3568"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Cobertura]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-182" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="da04532c-b962-41c1-8b7d-615e6aa0736e">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Fallecimiento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-164" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="415d93ca-cb47-47a4-be87-50146316b3fb"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Exención pago Pma por Invz Total y Perm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-146" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="b2d3ff50-badd-40d9-b0db-92f10c32d301"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Pago por muerte accidental]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-127" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="ca58280d-7457-4a30-99fe-fee92e97b389"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Adicional Fallecimiento Familiar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-109" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="50acc9d8-9158-4e19-b083-501820a24af3"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Pago parcial de fallecimiento]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-91" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="3b0b331e-953a-4d9b-9c72-2dd316e48a37"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Cláusula de enfermedades terminales]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="9" y="-73" width="167" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="423c138c-7743-4d6a-8359-5f6a6f73affa"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Membresía Médica Móvil]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-181" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="43080eba-fe1b-43e6-9476-c747f06ffcc1"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[FALL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-164" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="5ac802ff-523f-4f9e-bad1-00c8f74b1198"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[BIT]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-146" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="1003533c-ee18-42e7-a9a8-ba81e071a3d1"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[MA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-127" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="a0082ef1-791f-406e-9fee-f75f15d78aa2"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[CFAM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-109" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="1763ad73-4124-4ca3-b06d-1b409b0786ce"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[CUG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="180" y="-91" width="30" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="6eb78dc8-6831-46f7-aaff-ddecd19f6b38"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[SEV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-181" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="ea0fe459-51a6-496b-a38d-606eb08a4bec"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-164" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="40880e2b-93b7-4599-ab9a-fe5e57ff32ab"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-146" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="8a56e8c3-b403-4669-bf8a-7c068195c737"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-127" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="e9e83312-c094-4af6-8f1b-54b11cf8dfb2"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-109" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="f406fc6c-eabc-4e8c-aa2b-2495676118d8"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="216" y="-91" width="38" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="72a13181-23a8-4059-b594-513d32562653"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Principal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-182" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="0e70729e-8f90-4695-bd4a-256c61b1d813"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[$ 750,000.00 de Suma Asegurada para cada miembro del grupo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-164" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="f6b00b30-f3f9-4afc-b47f-f5303e5c3148"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Amparado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-146" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="d76a370b-7c68-4f26-9de2-0196c3b7c49b"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[$ 750,000.00 de Suma Asegurada para cada miembro del grupo
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-127" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="5abe2587-98b5-4a09-b760-935528e25dfc"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[5% de la cobertura de FALL.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-109" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="abb32764-41e8-4053-8ff3-4a3d675b3155"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Amparado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-91" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="8eefd78c-06b2-4458-93f1-cb94e8a797ec"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Amparado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="264" y="-73" width="264" height="14" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="5480e2fa-fe32-491d-bb3a-444c08d49273"/>
+					<textElement>
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Amparado]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="ColorLetrasEspecial" mode="Opaque" x="10" y="-58" width="514" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="5765e0cd-88f5-496c-af2d-79c40ac3dfef">
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="Ebrima" size="10" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Forma de liquidación de la suma asegurada: pago unico]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="216" y="-195" width="38" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="612b7e5f-dccf-472c-9ede-cc9783547674"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Tipo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="265" y="-195" width="263" height="13" forecolor="#000000" backcolor="#FFFFFF" uuid="4664970d-4716-4c1d-a74b-7bb8c0323148"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Suma asegurada]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="9" y="179" width="45" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="76658e0f-46c9-48b0-b275-822e7560f3e6"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Agente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="281" y="179" width="45" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="25a20e42-bd10-4313-847d-a5170bcf08c8"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Top">
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[ Clave]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="408" y="181" width="117" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="0e922c37-8c2e-4473-bbd4-839f79c2f47a"/>
+					<textElement textAlignment="Center">
+						<font fontName="Ebrima" size="7" isBold="false" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Grupo Nacional Provincial, S.A.B.]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="54" y="179" width="216" height="13" backcolor="#FFFFFF" uuid="1cf2714a-65f4-4728-8109-2748ff9d035b">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.75" lineColor="#999999"/>
+						<topPen lineWidth="0.75" lineColor="#000000"/>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+						<rightPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Grupo Nacional Provincial"]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement mode="Transparent" x="326" y="179" width="74" height="13" backcolor="#FFFFFF" uuid="72658c8b-35b7-49d4-9a6f-ac041238d3d9">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<pen lineWidth="0.75" lineColor="#999999"/>
+						<topPen lineWidth="0.75" lineColor="#000000"/>
+						<leftPen lineWidth="0.75" lineColor="#000000"/>
+						<bottomPen lineWidth="0.75" lineColor="#000000"/>
+						<rightPen lineWidth="0.75" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial Narrow" size="10" isBold="true"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA["0050000004"]]></textFieldExpression>
+				</textField>
+				<image hAlign="Center">
+					<reportElement x="408" y="140" width="117" height="38" uuid="f96ceb57-cd3e-4737-a8b9-b31621de1ae4"/>
+					<imageExpression><![CDATA[$P{PATH_REPORTES}+"/modulos/rh/polizas-seguro-vida/firma_gnp.jpg"]]></imageExpression>
+				</image>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque7" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="315">
+				<staticText>
+					<reportElement mode="Transparent" x="4" y="4" width="524" height="311" forecolor="#000000" backcolor="#FFFFFF" uuid="fd7aa908-86a1-403d-99d5-41b2a5a6ac21">
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Justified">
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+						<paragraph lineSpacing="Single" leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Sólo se considerarán ingresos exentos en materia de seguros aquellos dispuestos en la Ley del Impuesto Sobre la Renta vigente.
+
+Este Certificado forma parte integrante del Contrato de Seguro y de sus Condiciones Generales, las cuales se acompañan al presente, por lo que forman un documento indivisible. Los derechos y obligaciones se contienen conjuntamente en dichos documentos. Adicionalmente, las Condiciones Generales también se encuentran en la página gnp.com.mx, puede solicitarlas al contratante o bien llamando al 5227 9000 desde la Ciudad de México o al 01 800 400 9000 desde el Interior de la República.
+
+Los Certificados de todos y cada uno de los Asegurados, así como las Condiciones Generales de su Póliza serán entregados por GNP al Contratante, quién a su vez se obliga a hacer llegar los citados documentos a cada Asegurado.
+
+Se sugiere al Asegurado consultar las Condiciones Generales correspondientes a este Certificado para conocer las Coberturas, Exclusiones y Restricciones del Seguro.
+
+El tratamiento de los datos personales en Grupo Nacional Provincial, S.A.B. se realiza de conformidad con el Aviso de Privacidad Integral, disponible en la página de Internet gnp.com.mx, o bien llamando del área metropolitana al teléfono 5227 9000 o del Interior de la República al 01 800 400 9000.
+
+Para cualquier aclaración o duda no resuelta relacionada con su Seguro, le sugerimos ponerse en contacto con la Unidad Especializada de Atención a Usuarios (UNE) de Grupo Nacional Provincial, S.A.B. ubicada en Av. Cerro de las Torres 395, Colonia Campestre Churubusco, Delegación Coyoacán, C.P. 04200, comunicarse a los teléfonos 5227 9000 desde la Ciudad de México o al 01 800 400 9000 desde el Interior de la República, o al correo electrónico: unidad.especializada@gnp.com.mx; o bien contacte a la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros (CONDUSEF) con domicilio en Insurgentes Sur 762, Colonia Del Valle, Delegación Benito Juarez, C.P. 03100, comuníquese a los teléfonos 53400999 desde la Ciudad de México o al 01 800 999 8080 desde el Interior de la República, al correo electrónico: asesoria@condusef.gob.mx o visite la página condusef.gob.mx.]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque3">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque11">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque4">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque8" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="624">
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="1" width="523" height="27" forecolor="#000000" backcolor="#CCCCCC" uuid="0a230915-0703-4166-a528-6c4662d245ec"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[REGLAMENTO DEL SEGURO DE GRUPO PARA LA OPERACIÓN DE VIDA Y DEL SEGURO COLECTIVO PARA LA OPERACION DE ACCIDENTES Y ENFERMEDADES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="4" y="29" width="522" height="590" forecolor="#000000" backcolor="#FFFFFF" uuid="81180df5-2e5f-4caa-9f51-a33bc798f1ed">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Justified" markup="html">
+						<font fontName="Ebrima" size="9" isBold="false" isItalic="false"/>
+						<paragraph lineSpacing="Single" leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[De acuerdo al Reglamento del Seguro de Grupo para la Operación de Vida y del Seguro Colectivo para la Operación de Accidentes y Enfermedades, se incluyen los artículos 17 al 21 en el Certificado Individual:<br><br>
+<b>Artículo 17.-</b>  "Las personas que ingresen al Grupo o Colectividad asegurado con posterioridad a la celebración del contrato y que hayan dado su consentimiento para ser asegurados dentro de los treinta días naturales siguientes a su ingreso, quedarán aseguradas con las mismas condiciones en que fue contratada la póliza, desde el momento en que adquirieron las características para formarparte del Grupo o Colectividad de que se trate.<br>
+Con independencia de lo previsto en el párrafo anterior, tratándose de personas que soliciten su ingreso al Grupo o Colectividad asegurado con posterioridad ala celebración del contrato y que hayan dado su consentimiento después de los treinta días naturales siguientes ala fecha en que hubieran adquirido el derecho de formarparte del mismo, la Aseguradora, dentro de los treinta días naturales siguientes a la fecha en que se le haya comunicado esa situación, podrá exigir requisitos médicos u otros para asegurarlas, si no lo hace quedarán aseguradas con las mismas condiciones en que fue contratada la póliza.<br>
+Cuando la Aseguradora exija requisitos médicos u otros para asegurára las personas a que se reﬁere el parrafo anterior, contará con un plazo de 30 días naturales, contado a partir de la fecha en que se hayan cumplido dichos requisitos para resolver sobre la aceptación o no de asegurar a la persona, de no hacerlo se entenderá que la acepta con las mismas condiciones en que fue contratada la póliza."<br><br>
+
+<b>Artículo 18.-</b> "Las personas que se separen deﬁnitivamente del Grupo o Colectividad asegurado, dejarán de estar aseguradas desde el momento de su separación, quedando sin validez alguna el Certiﬁcado individual expedido. En este caso, la Aseguradora restituirá la parte de la prima neta no devengada de dichos Integrantes calculada en días exactos, a quienes la hayan aportado, en la proporción correspondiente."<br><br>
+
+<b>Artículo 19.-</b> "En los Seguros de Grupo y en los Seguros Colectivos cuyo objeto sea otorgar una prestación laboral, se deberá cumplir con lo siguiente:<br><br>
+
+l. Para la operación de vida, la Aseguradora tendrá la obligación de asegurar, por una sola vez y sin requisitos médicos, al Integrante del Grupo o Colectividad que se separe definitivamente del mismo, en cualquiera de los planes individuales de la operación de vida que ésta comercialice, con excepción del seguro temporal y sin incluir beneﬁcio adicional alguno, siempre que su edad esté comprendida dentro de los límites de admisión de la Aseguradora. Para ejercer este derecho, la persona separada del Grupo o Colectividad deberá presentar su solicitud a la Aseguradora, dentro del plazo de treinta días naturales a partir de su separación. La suma asegurada será la que resulte menor entre la que se encontraba en vigor al momento de la separación y la maxima suma asegurada sin pruebas médicas de la cartera individual de la Aseguradora, considerando la edad alcanzada del asegurado al momento de separarse. La prima será determinada de acuerdo a los procedimientos establecidos en las notas técnicas registradas ante la Comisión. El solicitante deberá pagar a la Aseguradora la prima que corresponda ala edad alcanzada y ocupación, en su caso, enla fecha de su solicitud, según la tarifa en vigor. Las Aseguradoras que practiquen el Seguro de Grupo enla operación de vida deberán operar, cuando menos, un plan ordinario de vida. ”<br><br>
+
+<b>Artículo 20.-</b> "Para el caso de los Seguros de Grupo y de los Seguros Colectivos cuyo objeto sea otorgar una prestación laboral, cuando exista cambio de Contratante la Aseguradora podrá:<br><br>
+
+Tratándose de Seguros de Grupo, rescindir el contrato o rechazar la inclusión de nuevos integrantes al Grupo o Colectividad, dentro de los treinta días naturales siguientes a la fecha en que tenga conocimiento del cambio. Sus obligaciones terminarán treinta dias naturales después de haber sido notiﬁcada la rescisión de manera fehaciente al nuevo Contratante."<br><br>
+
+<b>Artículo 21.-</b> "La Aseguradora podrá renovar los contratos de Seguros de Grupo y del Seguro Colectivo cuando la temporalidad sea de un año 0 de plazos menores, mediante endoso ala póliza en las mismas condiciones en que fueron contratadas, siempre que se reúnan los requisitos del presente Reglamento enla fecha de vencimiento del contrato. En cada renovación se aplicarán las primas de tarifa obtenidas conforme a los procedimientos registrados ante la Comisión en las notas técnicas respectivas."]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque9" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupHeader>
+			<band height="85">
+				<staticText>
+					<reportElement x="4" y="0" width="520" height="80" uuid="337f5fa6-bca5-4836-9821-d2063c6a5820">
+						<property name="com.jaspersoft.studio.unit.firstLineIndent" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					</reportElement>
+					<box>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Justified">
+						<font fontName="Ebrima" size="10" isItalic="true"/>
+						<paragraph spacingBefore="10"/>
+					</textElement>
+					<text><![CDATA["En cumplimiento a lo dispuesto en el artículo 202 de la Ley de Instituciones de Seguros y de Fianzas, la documentación contractual y la nota técnica que integran este producto de Seguro, quedaron registradas ante la Comisión Nacional de Seguros y Fianzas, a partir del día 05 de Noviembre de 2010, con el número CNSF-S0043-0997-2010/CONDUSEF-001 256-01"]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Bloque10">
+		<groupExpression><![CDATA[$F{EMP_EmpleadoId}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="113">
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="100" width="322" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="d1891484-0ec8-4139-af40-c91bdbeefbe3"/>
+				<textElement>
+					<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ Certificado Individual de Seguro de Vida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="315" y="100" width="35" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="d20f9549-4077-49fe-946d-d27d0f00eac5"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Grupo ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="357" y="100" width="73" height="13" forecolor="#000000" backcolor="#CCCCCC" uuid="83d7a322-0d00-4375-8a0b-4f08b95bb695"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial Narrow" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ Certificado]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="430" y="100" width="100" height="13" forecolor="#0D1F63" backcolor="#CCCCCC" uuid="62b95feb-6c97-4d70-af8d-b3443a6e4d48">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#999999"/>
+					<topPen lineColor="#999999"/>
+					<leftPen lineColor="#999999"/>
+					<rightPen lineColor="#999999"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="Arial Narrow" size="10" isBold="true"/>
+					<paragraph rightIndent="0"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noCertificado}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="0" y="10" width="530" height="80" uuid="a499e9e7-fc2d-47a7-ae29-803d1a253967"/>
+				<imageExpression><![CDATA[$P{PATH_REPORTES}+"/modulos/rh/polizas-seguro-vida/cintillo_gnp.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50">
+			<staticText>
+				<reportElement mode="Transparent" x="353" y="34" width="171" height="13" forecolor="#0D1F63" backcolor="#FFFFFF" uuid="5e151f04-6a79-4ef7-bd9b-98f56aedb901"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="9" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[   OCCIDENTE 006 OF. GUADALAJARA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="ColorLetrasEspecial" mode="Opaque" x="30" y="5" width="479" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="a9a915c1-40fd-472a-88ce-eabbd9997d81">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Para mayor información contáctenos: al 5227 9000 para la ciudad de México, al 800 400 9000 para el  interior de la república o visite gnp.com.mx]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-2" y="34" width="532" height="1" uuid="0971e14b-a092-47ad-ad1e-7fa484efb242"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

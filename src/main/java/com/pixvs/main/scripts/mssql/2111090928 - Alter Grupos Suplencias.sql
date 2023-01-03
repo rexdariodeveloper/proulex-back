@@ -1,0 +1,7 @@
+ALTER TABLE ProgramasGruposListadoClases
+ADD PROGRULC_FechaPago DATETIME NULL
+GO
+
+UPDATE ProgramasGruposListadoClases
+SET PROGRULC_FechaPago=CONVERT(DATETIME, '2021-10-25', 102)
+WHERE PROGRULC_Fecha <= '2021-10-31'

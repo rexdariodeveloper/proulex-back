@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.10.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DESCUENTOS" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="58870a06-b63a-4595-8898-599add4b66cd">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Proulex - Test"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="path" class="java.lang.String">
+		<defaultValueExpression><![CDATA["http://localhost:4200"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.Integer">
+		<parameterDescription><![CDATA[Id del corte]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+	codigoCorte,
+	codigo,
+	COALESCE([Español], 0) AS Español,
+	COALESCE([Inglés], 0) AS Inglés,
+	COALESCE([Francés], 0) AS Francés,
+	COALESCE([Alemán], 0) AS Alemán,
+	COALESCE([Chino], 0) AS Chino,
+	COALESCE([CURSOGUARDADO], 0) AS CURSOGUARDADO,
+	(
+	COALESCE([CURSOGUARDADO], 0) + COALESCE([Español], 0) + COALESCE([Inglés], 0) + COALESCE([Francés], 0) + COALESCE([Alemán], 0) + COALESCE([Chino], 0) + 
+	COALESCE([CURSOGUARDADODes], 0) + COALESCE([EspañolDes], 0) + COALESCE([InglésDes], 0) + COALESCE([FrancésDes], 0) + COALESCE([AlemánDes], 0) + COALESCE([ChinoDes], 0)
+	) subTotal,
+	(COALESCE([CURSOGUARDADODes], 0) + COALESCE([EspañolDes], 0) + COALESCE([InglésDes], 0) + COALESCE([FrancésDes], 0) + COALESCE([AlemánDes], 0) + COALESCE([ChinoDes], 0)) AS descuentoDetalle,
+	(COALESCE([CURSOGUARDADO], 0) + COALESCE([Español], 0) + COALESCE([Inglés], 0) + COALESCE([Francés], 0) + COALESCE([Alemán], 0) + COALESCE([Chino], 0)) AS montoTotal
+	FROM (
+	SELECT
+		codigoCorte,
+		codigo,
+		idioma,
+		idiomaDes,
+		SUM(descuentoDetalle) AS descuentoDetalle,
+		SUM(totalDetalle) AS totalDetalle
+	FROM (
+		SELECT
+			SCC_Codigo AS codigoCorte,
+			codigo,
+			(CASE WHEN (INS_CMM_EstatusId = 2000512 AND OVCD_OVD_OrdenVentaDetalleId IS NULL) OR CMM.CMM_Valor IS NULL THEN 'CURSOGUARDADO' ELSE CMM.CMM_Valor END) AS idioma,
+			(CASE WHEN (INS_CMM_EstatusId = 2000512 AND OVCD_OVD_OrdenVentaDetalleId IS NULL) OR CMM.CMM_Valor IS NULL THEN 'CURSOGUARDADODes' ELSE CONCAT(CMM.CMM_Valor,'Des') END) AS idiomaDes,
+			(SELECT Descuento FROM [dbo].[fn_getImpuestosArticulo](DetallePadre.OVD_Cantidad,DetallePadre.OVD_Precio,DetallePadre.OVD_Descuento,CASE WHEN DetallePadre.OVD_IVAExento = 1 THEN 0 ELSE DetallePadre.OVD_IVA END,DetallePadre.OVD_IEPS,DetallePadre.OVD_IEPSCuotaFija)) AS descuentoDetalle,
+			(SELECT Total FROM [dbo].[fn_getImpuestosArticulo](DetallePadre.OVD_Cantidad,DetallePadre.OVD_Precio,DetallePadre.OVD_Descuento,CASE WHEN DetallePadre.OVD_IVAExento = 1 THEN 0 ELSE DetallePadre.OVD_IVA END,DetallePadre.OVD_IEPS,DetallePadre.OVD_IEPSCuotaFija)) AS totalDetalle,
+			fechaCreacion
+		FROM VW_OrdenesVenta
+			INNER JOIN SucursalesCortesCajas ON sucursalCorteCajaId = SCC_SucursalCorteCajaId
+			INNER JOIN OrdenesVentaDetalles AS DetallePadre ON DetallePadre.OVD_OV_OrdenVentaId = id AND DetallePadre.OVD_OVD_DetallePadreId IS NULL
+			LEFT JOIN OrdenesVentaCancelacionesDetalles ON OVCD_OVD_OrdenVentaDetalleId = DetallePadre.OVD_OrdenVentaDetalleId
+			INNER JOIN Articulos AS ArticuloPrimario on DetallePadre.OVD_ART_ArticuloId = ArticuloPrimario.ART_ArticuloId
+			LEFT JOIN Inscripciones AS INS ON DetallePadre.OVD_OrdenVentaDetalleId = INS.INS_OVD_OrdenVentaDetalleId
+			LEFT JOIN ProgramasGrupos ON INS_PROGRU_GrupoId = PROGRU_GrupoId
+			LEFT JOIN ProgramasIdiomas AS PROGI ON PROGRU_PROGI_ProgramaIdiomaId = PROGI.PROGI_ProgramaIdiomaId
+			LEFT JOIN ControlesMaestrosMultiples AS CMM ON PROGI.PROGI_CMM_Idioma = CMM.CMM_ControlId
+		WHERE sucursalCorteCajaId =  $P{id}  AND montoDescuento > 0
+) AS detalles
+	GROUP BY codigoCorte, codigo, idioma,idiomaDes
+	) AS datos
+PIVOT  
+(  
+  SUM(totalDetalle)
+  FOR idioma IN ([Español], [Inglés], [Francés], [Alemán], [Chino], [CURSOGUARDADO])  
+) AS totalPv
+PIVOT  
+(  
+  SUM(descuentoDetalle)
+  FOR idiomaDes IN ([EspañolDes], [InglésDes], [FrancésDes], [AlemánDes], [ChinoDes], [CURSOGUARDADODes])  
+) AS descuentoPV
+ORDER BY codigo]]>
+	</queryString>
+	<field name="codigoCorte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigoCorte"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigoCorte"/>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
+	</field>
+	<field name="Español" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Español"/>
+		<property name="com.jaspersoft.studio.field.label" value="Español"/>
+	</field>
+	<field name="Inglés" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Inglés"/>
+		<property name="com.jaspersoft.studio.field.label" value="Inglés"/>
+	</field>
+	<field name="Francés" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Francés"/>
+		<property name="com.jaspersoft.studio.field.label" value="Francés"/>
+	</field>
+	<field name="Alemán" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Alemán"/>
+		<property name="com.jaspersoft.studio.field.label" value="Alemán"/>
+	</field>
+	<field name="Chino" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="Chino"/>
+		<property name="com.jaspersoft.studio.field.label" value="Chino"/>
+	</field>
+	<field name="CURSOGUARDADO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="CURSOGUARDADO"/>
+		<property name="com.jaspersoft.studio.field.label" value="CURSOGUARDADO"/>
+	</field>
+	<field name="subTotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="subTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="subTotal"/>
+	</field>
+	<field name="descuentoDetalle" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="descuentoDetalle"/>
+		<property name="com.jaspersoft.studio.field.label" value="descuentoDetalle"/>
+	</field>
+	<field name="montoTotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="montoTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="montoTotal"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="640" y="0" width="152" height="30" uuid="ea5233ef-ceaa-45c5-b301-5e2d6f2ae31c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Corte de caja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="30" width="310" height="30" uuid="729b1162-5758-43ea-8404-3d137e150d4d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descuentos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="120" height="26" backcolor="#4CAF50" uuid="f3ca70ec-3038-4fe0-b1c0-b3ba2e14c834">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOTA DE VENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="120" y="1" width="70" height="26" backcolor="#4CAF50" uuid="8ecccbc4-9834-41bc-9b1b-e8fbcba60075">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[INGLÉS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="190" y="1" width="70" height="26" backcolor="#4CAF50" uuid="5e4820a7-b02b-4fb7-912a-4143e4e482bf">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[FRANCES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="260" y="1" width="70" height="26" backcolor="#4CAF50" uuid="9e021c5e-f7aa-4db2-abbe-d49dbe433da8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ALEMAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="1" width="70" height="26" backcolor="#4CAF50" uuid="43ba184f-0b28-417d-a2e3-8b747f518709">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CHINO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="400" y="1" width="70" height="26" backcolor="#4CAF50" uuid="98968b46-26db-4bb0-ba4f-7f33991da800">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ESPAÑOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="540" y="1" width="100" height="26" backcolor="#4CAF50" uuid="881b099e-1c8c-4a06-bd0f-be44ceb79a45">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[TOTAL DESCUENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="1" width="80" height="26" backcolor="#4CAF50" uuid="9c51b512-51d3-4bca-9def-09d7e13fd109">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[IMPORTE COBRADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="720" y="1" width="72" height="26" backcolor="#4CAF50" uuid="ec9c0dc0-6c77-43ba-a65e-fa560377db18">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="1" width="70" height="26" backcolor="#4CAF50" uuid="0246b810-e683-447c-8716-d201ce620a9a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CURSO GUARDADO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="120" height="25" isPrintInFirstWholeBand="true" uuid="ffff24c7-8ceb-40de-b953-f6cfca12c1e6">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="120" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="64b24b61-623e-489e-bdd1-853459fe4829">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Inglés}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="190" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="417ebc5a-0217-4968-b348-07aecdf8487a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Francés}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="260" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="8a37ab8a-53b9-402c-9c46-05fa59f9de0f">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Alemán}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="330" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="870c446f-3f65-4ab4-8010-dcb37167193e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Chino}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="400" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="ea7822c7-2702-4467-ad77-e34a48de8a18">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Español}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="540" y="1" width="100" height="25" isPrintInFirstWholeBand="true" uuid="310322e7-6ebf-4e77-89ff-549a8d221742">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descuentoDetalle}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="640" y="1" width="80" height="25" isPrintInFirstWholeBand="true" uuid="a4c93f1d-377c-4ba9-b77f-526ac11676cb">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="720" y="1" width="71" height="25" isPrintInFirstWholeBand="true" uuid="accf2c43-df28-4eda-98f3-852444198a3a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{montoTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00;$ -#,##0.00">
+				<reportElement x="470" y="1" width="70" height="25" isPrintInFirstWholeBand="true" uuid="f0265960-0a04-4770-8b26-e4a3354f4d7c">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CURSOGUARDADO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<noData>
+		<band height="50"/>
+	</noData>
+</jasperReport>

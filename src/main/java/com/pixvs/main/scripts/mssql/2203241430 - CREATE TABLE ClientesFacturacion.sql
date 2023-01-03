@@ -1,0 +1,86 @@
+DROP TABLE IF EXISTS ClientesFacturacion
+GO
+
+CREATE TABLE ClientesFacturacion(
+	CLIF_ClienteFacturacionId INT IDENTITY(1,1) NOT NULL ,
+	CLIF_CLI_ClienteId INT NOT NULL,
+    CLIF_CMM_TipoPersonaId INT NOT NULL,
+    CLIF_Predeterminado BIT NOT NULL,
+    CLIF_RFC NVARCHAR(20) NOT NULL,
+    CLIF_Nombre NVARCHAR(50) NULL,
+	CLIF_PrimerApellido NVARCHAR(50) NULL,
+	CLIF_SegundoApellido NVARCHAR(50) NULL,
+    CLIF_RazonSocial NVARCHAR(50) NULL,
+    CLIF_RegistroIdentidadFiscal NVARCHAR(50) NULL,
+	CLIF_RF_RegimenFiscalId INT NULL,
+    CLIF_Calle NVARCHAR(250) NOT NULL,
+    CLIF_NumeroExterior NVARCHAR(10) NOT NULL,
+    CLIF_NumeroINTerior NVARCHAR(10) NULL,
+    CLIF_Colonia NVARCHAR(250) NOT NULL,
+    CLIF_CP NVARCHAR(10) NOT NULL,
+    CLIF_PAI_PaisId SMALLINT NOT NULL,
+    CLIF_EST_EstadoId INT NOT NULL,
+	CLIF_MUN_MunicipioId	INT NULL,
+    CLIF_Ciudad NVARCHAR(100) NOT NULL,
+    CLIF_CorreoElectronico NVARCHAR(50) NOT NULL,
+    CLIF_TelefonoFijo NVARCHAR(50) NULL,
+    CLIF_TelefonoMovil NVARCHAR(50) NULL,
+    CLIF_TelefonoTrabajo NVARCHAR(50) NULL,
+    CLIF_TelefonoTrabajoExtension NVARCHAR(10) NULL,
+    CLIF_TelefonoMensajeriaInstantanea NVARCHAR(50) NULL
+PRIMARY KEY CLUSTERED 
+(
+	CLIF_ClienteFacturacionId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+) ON [PRIMARY]
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_CLI_ClienteId FOREIGN KEY(CLIF_CLI_ClienteId)
+REFERENCES Clientes (CLI_ClienteId)
+GO
+
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_CLI_ClienteId
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_CMM_TipoPersonaId FOREIGN KEY(CLIF_CMM_TipoPersonaId)
+REFERENCES ControlesMaestrosMultiples (CMM_ControlId)
+GO
+
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_CMM_TipoPersonaId
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_PAI_PaisId FOREIGN KEY(CLIF_PAI_PaisId)
+REFERENCES Paises (PAI_PaisId)
+GO
+
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_PAI_PaisId
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_EST_EstadoId FOREIGN KEY(CLIF_EST_EstadoId)
+REFERENCES Estados (EST_EstadoId)
+GO
+
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_EST_EstadoId
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_MUN_MunicipioId FOREIGN KEY(CLIF_MUN_MunicipioId)
+REFERENCES Municipios (MUN_MunicipioId)
+GO
+
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_MUN_MunicipioId
+GO
+
+ALTER TABLE ClientesFacturacion  WITH CHECK ADD  CONSTRAINT FK_CLIF_RF_RegimenFiscalId FOREIGN KEY(CLIF_RF_RegimenFiscalId)
+REFERENCES SATRegimenesFiscales (RF_RegimenFiscalId)
+GO
+ALTER TABLE ClientesFacturacion CHECK CONSTRAINT FK_CLIF_RF_RegimenFiscalId
+GO
+
+ALTER TABLE ClientesFacturacion WITH CHECK ADD CONSTRAINT CHK_CLIF_Telefono CHECK (
+    CLIF_TelefonoFijo IS NOT NULL
+    OR CLIF_TelefonoMovil IS NOT NULL
+    OR CLIF_TelefonoTrabajo IS NOT NULL
+    OR CLIF_TelefonoMensajeriaInstantanea IS NOT NULL
+)
+GO

@@ -1,0 +1,15 @@
+ALTER TABLE EmpleadosDocumentos DROP CONSTRAINT IF EXISTS FK_EMPD_CMM_TipoProcesoRHId;
+GO
+
+IF COL_LENGTH('dbo.EmpleadosDocumentos','EMPD_CMM_TipoProcesoRHId') IS NULL
+BEGIN
+	ALTER TABLE EmpleadosDocumentos ADD EMPD_CMM_TipoProcesoRHId INT DEFAULT 2000900 NOT NULL
+END
+GO
+
+ALTER TABLE EmpleadosDocumentos WITH CHECK ADD CONSTRAINT FK_EMPD_CMM_TipoProcesoRHId FOREIGN KEY(EMPD_CMM_TipoProcesoRHId)
+REFERENCES ControlesMaestrosMultiples(CMM_ControlId)
+GO
+
+ALTER TABLE EmpleadosDocumentos CHECK CONSTRAINT FK_EMPD_CMM_TipoProcesoRHId
+GO

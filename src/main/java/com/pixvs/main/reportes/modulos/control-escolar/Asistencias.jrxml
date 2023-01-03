@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Asistencia" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38d1db3a-e423-455f-896c-20dbdbef7315">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Tabla_Reporte_Asistencia_Rojo" mode="Opaque" forecolor="#FFFFFF" backcolor="#C00000">
+		<box>
+			<pen lineWidth="0.5"/>
+			<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Tabla_Reporte_Asistencia_Negro" mode="Opaque" forecolor="#000000" backcolor="#D9D9D9">
+		<box>
+			<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ReporteAsistencia" uuid="1be69e8d-928a-49c6-8167-5aed4f4e6f03">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<parameter name="GrupoId" class="java.lang.Integer"/>
+		<queryString>
+			<![CDATA[SELECT * FROM fn_ReporteAsistencias ($P{GrupoId})]]>
+		</queryString>
+		<field name="Numero" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.name" value="Numero"/>
+			<property name="com.jaspersoft.studio.field.label" value="Numero"/>
+		</field>
+		<field name="CodigoProulex" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="CodigoProulex"/>
+			<property name="com.jaspersoft.studio.field.label" value="CodigoProulex"/>
+		</field>
+		<field name="Folio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Folio"/>
+			<property name="com.jaspersoft.studio.field.label" value="Folio"/>
+		</field>
+		<field name="Nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+			<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		</field>
+		<field name="Faltas" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Faltas"/>
+			<property name="com.jaspersoft.studio.field.label" value="Faltas"/>
+		</field>
+		<field name="Asistencias" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Asistencias"/>
+			<property name="com.jaspersoft.studio.field.label" value="Asistencias"/>
+		</field>
+		<field name="Retardos" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.name" value="Retardos"/>
+			<property name="com.jaspersoft.studio.field.label" value="Retardos"/>
+		</field>
+		<field name="Estatus" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.name" value="Estatus"/>
+			<property name="com.jaspersoft.studio.field.label" value="Estatus"/>
+		</field>
+	</subDataset>
+	<parameter name="Ids" class="java.util.Collection" nestedType="java.lang.Integer"/>
+	<parameter name="Url_Logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["http://www.pixvs.com/img/logo.png"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM VW_RPT_ReporteAsistencias WHERE $X{IN, GrupoId , Ids} ORDER BY Orden OPTION(RECOMPILE)]]>
+	</queryString>
+	<field name="GrupoId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="GrupoId"/>
+		<property name="com.jaspersoft.studio.field.label" value="GrupoId"/>
+	</field>
+	<field name="Programa" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Programa"/>
+		<property name="com.jaspersoft.studio.field.label" value="Programa"/>
+	</field>
+	<field name="Institucion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Institucion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Institucion"/>
+	</field>
+	<field name="Curso" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Curso"/>
+		<property name="com.jaspersoft.studio.field.label" value="Curso"/>
+	</field>
+	<field name="Horario" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Horario"/>
+		<property name="com.jaspersoft.studio.field.label" value="Horario"/>
+	</field>
+	<field name="Profesor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Profesor"/>
+		<property name="com.jaspersoft.studio.field.label" value="Profesor"/>
+	</field>
+	<field name="SedeId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="SedeId"/>
+		<property name="com.jaspersoft.studio.field.label" value="SedeId"/>
+	</field>
+	<field name="ModalidadId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ModalidadId"/>
+		<property name="com.jaspersoft.studio.field.label" value="ModalidadId"/>
+	</field>
+	<field name="FechaInicio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="FechaInicio"/>
+		<property name="com.jaspersoft.studio.field.label" value="FechaInicio"/>
+	</field>
+	<field name="ProgramaId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="ProgramaId"/>
+		<property name="com.jaspersoft.studio.field.label" value="ProgramaId"/>
+	</field>
+	<field name="Orden" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="Orden"/>
+		<property name="com.jaspersoft.studio.field.label" value="Orden"/>
+	</field>
+	<group name="Grupo por el ID" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{GrupoId}]]></groupExpression>
+		<groupHeader>
+			<band>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="132">
+			<textField>
+				<reportElement x="110" y="0" width="445" height="40" forecolor="#C00000" uuid="eb1ed27c-1f33-461e-9de9-d42659bccd42">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="5">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["REPORTE DE ASISTENCIA " + $F{Programa}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center" vAlign="Middle" onErrorType="Blank">
+				<reportElement x="0" y="0" width="110" height="75" uuid="953247ec-ff1e-44f8-87b6-9f00531eeaea">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$P{Url_Logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="118" y="41" width="125" height="24" forecolor="#FFFFFF" backcolor="#C00000" uuid="83e1ed41-ca56-4df5-8a8a-fbba17df509d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTITUCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="243" y="41" width="90" height="24" forecolor="#FFFFFF" backcolor="#C00000" uuid="5adf4b73-f17a-4d30-827f-86cbd3c49167">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURSO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="41" width="90" height="24" forecolor="#FFFFFF" backcolor="#C00000" uuid="a31a20ad-fab1-4ada-92a1-7098cd4e31ad">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="423" y="41" width="125" height="24" forecolor="#FFFFFF" backcolor="#C00000" uuid="a03e389e-0199-4852-bede-d3603aad8e93">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="2">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROFESOR]]></text>
+			</staticText>
+			<textField textAdjust="ScaleFont">
+				<reportElement mode="Opaque" x="423" y="65" width="125" height="54" forecolor="#000000" backcolor="#D9D9D9" uuid="4560748e-0a5a-48a2-8933-9c55c246ac3e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="5">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Profesor}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement mode="Opaque" x="333" y="65" width="90" height="54" forecolor="#000000" backcolor="#D9D9D9" uuid="005d4bba-ffed-4767-b19f-a478861e51c2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box padding="5">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Horario}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement mode="Opaque" x="243" y="65" width="90" height="54" forecolor="#000000" backcolor="#D9D9D9" uuid="d5c55c64-64fa-43f1-8a31-7ebf2dac40b1">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="5">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Curso}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="ScaleFont">
+				<reportElement mode="Opaque" x="118" y="65" width="125" height="54" forecolor="#000000" backcolor="#D9D9D9" uuid="c9980ac4-b17a-43b1-b560-92c73341318e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box padding="5">
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Institucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="56">
+			<componentElement>
+				<reportElement x="0" y="0" width="555" height="50" uuid="17c23381-c6dd-44b6-9913-de968b7798f1">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ReporteAsistencia" uuid="bb70beef-ec67-4976-9610-ec446d8470dd">
+						<datasetParameter name="GrupoId">
+							<datasetParameterExpression><![CDATA[$F{GrupoId}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="30" uuid="dd599fb5-fde6-4fad-8829-389243f87205">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="30" height="30" forecolor="#FFFFFF" backcolor="#C00000" uuid="2dd53da3-0ba5-4123-9e92-882715fd2efa"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["NO."]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="30" height="20" uuid="a347f2db-967b-4612-8512-b8db64004b8c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Numero}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="9006d668-7da4-4c8b-a5e5-64ce6a215890">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="80" height="30" forecolor="#FFFFFF" uuid="87c2c14b-7603-43bb-86b0-7f80ff481c1c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["CÓDIGO PROULEX"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="80" height="20" uuid="7c1d6672-bd24-4cc9-8776-ce41ecb9c54f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CodigoProulex}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="5f1f2507-f959-4721-afeb-27a5fff5ddd3">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="45" height="30" forecolor="#FFFFFF" uuid="2981875f-9543-454f-aba2-8d5e4d1b3f6c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["FOLIO"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="45" height="20" uuid="3acb0ecc-692c-4111-baf0-ecc1f9267a2a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Folio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="165" uuid="7ce5f5b3-87c7-4e70-9223-24652fbb11cc">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="165" height="30" forecolor="#FFFFFF" uuid="68e2df8b-f819-4c43-88d2-f98ec094772a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["NOMBRE"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="165" height="20" uuid="45e2760b-0bfb-449e-a0dd-cf6622c4369d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="40" uuid="d3aff90c-3c45-43ec-ac28-3d2b2faf5b36">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="40" height="30" forecolor="#FFFFFF" uuid="8466d38c-cfa8-447a-bfa1-ab5c439db7f8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["FALTAS"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="40" height="20" uuid="45349471-4353-4866-908a-3e9349a16fa7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Faltas}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="efee0d5d-0867-4115-ba91-f620b84bb866">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30" forecolor="#FFFFFF" uuid="6207a6a7-b180-4e49-b9e9-06910042a6e3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["ASISTENCIAS"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="60" height="20" uuid="6c747d43-a50f-4095-8989-115b55d7ae08"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Asistencias}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="c591e76d-8894-4920-9117-997b8607b13c">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="55" height="30" forecolor="#FFFFFF" uuid="c68de573-ff23-4a48-85a6-386a7466b1a0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["RETARDOS"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="55" height="20" uuid="b3fe7a9d-e081-480d-b275-10e7724e6f5f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Retardos}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="685c9776-d7ab-43f6-adb8-75de0821a90e">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column8"/>
+						<jr:tableHeader style="Tabla_Reporte_Asistencia_Rojo" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="79" height="30" forecolor="#FFFFFF" uuid="0470449b-327b-46b6-94dd-1286bdae9884"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA["ESTATUS"]]></textFieldExpression>
+							</textField>
+						</jr:tableHeader>
+						<jr:detailCell style="Tabla_Reporte_Asistencia_Negro" height="20">
+							<property name="com.jaspersoft.studio.unit.height" value="px"/>
+							<textField>
+								<reportElement x="0" y="0" width="79" height="20" uuid="45885c5b-3cda-4da8-b399-e9fed3bfb052"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Estatus}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,4 @@
+UPDATE Programas
+SET PROG_JOBSSEMS=1
+WHERE PROG_ProgramaId=3
+GO

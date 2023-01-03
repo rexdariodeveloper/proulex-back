@@ -1,0 +1,8 @@
+ALTER TABLE Programas
+ADD [PROG_PCP][BIT] NULL
+GO
+
+UPDATE Programas
+SET PROG_PCP = 1
+WHERE PROG_ProgramaId=17
+GO

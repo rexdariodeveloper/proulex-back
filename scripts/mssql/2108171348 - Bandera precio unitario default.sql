@@ -1,0 +1,9 @@
+UPDATE ControlesMaestros
+SET CMA_Valor = 1
+WHERE CMA_Nombre='CM_CALCULO_PRECIO_UNITARIO'
+GO
+
+UPDATE ControlesMaestros
+SET CMA_Valor = 0
+WHERE CMA_Nombre='CM_CALCULO_PRECIO_TOTAL'
+GO

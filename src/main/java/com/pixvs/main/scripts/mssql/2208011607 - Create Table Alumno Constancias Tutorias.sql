@@ -1,0 +1,43 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE AlumnosConstanciasTutorias(
+	ALUCT_AlumnoConstanciaTutoriaId INT IDENTITY(1,1) NOT NULL,	
+	ALUCT_ALU_AlumnoId INT NOT NULL,
+	ALUCT_ART_ArticuloId INT NOT NULL,
+	ALUCT_Activo bit NOT NULL,
+	ALUCT_FechaCreacion datetime2(7) NOT NULL,
+	ALUCT_USU_CreadoPorId int NOT NULL,
+	ALUCT_FechaUltimaModificacion datetime2 (7) NULL,
+	ALUCT_USU_ModificadoPorId int NULL
+ CONSTRAINT PK_AlumnosConstanciasTutorias PRIMARY KEY CLUSTERED 
+(
+	ALUCT_AlumnoConstanciaTutoriaId ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE AlumnosConstanciasTutorias  WITH CHECK ADD  CONSTRAINT FK_ALUCT_ALU_AlumnoId FOREIGN KEY(ALUCT_ALU_AlumnoId)
+REFERENCES Alumnos (ALU_AlumnoId)
+GO
+ALTER TABLE AlumnosConstanciasTutorias CHECK CONSTRAINT FK_ALUCT_ALU_AlumnoId
+GO
+
+ALTER TABLE AlumnosConstanciasTutorias  WITH CHECK ADD  CONSTRAINT FK_ALUCT_ART_ArticuloId FOREIGN KEY(ALUCT_ART_ArticuloId)
+REFERENCES Articulos (ART_ArticuloId)
+GO
+ALTER TABLE AlumnosConstanciasTutorias CHECK CONSTRAINT FK_ALUCT_ART_ArticuloId
+GO
+
+ALTER TABLE AlumnosConstanciasTutorias  WITH CHECK ADD  CONSTRAINT FK_ALUCT_USU_CreadoPorId FOREIGN KEY(ALUCT_USU_CreadoPorId)
+REFERENCES Usuarios (USU_UsuarioId)
+GO
+ALTER TABLE AlumnosConstanciasTutorias CHECK CONSTRAINT FK_ALUCT_USU_CreadoPorId
+GO
+
+ALTER TABLE AlumnosConstanciasTutorias  WITH CHECK ADD  CONSTRAINT FK_ALUCT_USU_ModificadoPorId FOREIGN KEY(ALUCT_USU_ModificadoPorId)
+REFERENCES Usuarios (USU_UsuarioId)
+GO
+ALTER TABLE AlumnosConstanciasTutorias CHECK CONSTRAINT FK_ALUCT_USU_ModificadoPorId
+GO
